@@ -195,17 +195,25 @@ By proving that any such sub-level set is closed, we have showed that the functi
 Step 2: "only if" direction \newline 
 We know that the function $f$ is continuous and closed and the domain $f$ is open. Let's analyze any given sublevel set of the function $f$. Given any constant $\alpha \in \mathbb{R}$, a sublevel set is defined as $S = \{x \in dom f : f(x) \leq \alpha \}$. Due to the fact that the function $f$ is closed, we know that any such sublevel set is CLOSED. The definition of a closed set is that the limit point of every CONVERGENT sequence is within that set. 
 
-Let us have a sequence. We can describe this sequence as $x_i \in dom f$ such that $\lim_{i} x_i = x \in bd \enspace dom f$. We know that the sequence is contained within the domain of $f$, $f$ is continuous along its domain, and $f$ is closed. Hence, based on the general definition of limits, we can see that there are two cases for what we can observe for $\lim_{i\to\infty} f(x_i)$. This limit can either have a finite value or an infinite value. To prove that this limit must have an infinite value, I will show that it CANNOT have a finite value. \newline 
+Let us have a sequence. We can describe this sequence as $x_i \in dom f$ such that $\lim_{i} x_i = x \in bd \enspace dom f$. We know that the sequence is contained within the domain of $f$, $f$ is continuous along its domain, and $f$ is closed. Hence, based on the general definition of limits, we can see that there are several cases for what we can observe for $\lim_{i\to\infty} f(x_i)$. This limit can have a finite value, the limit can have an infinite value(i.e. $f(x_i)$ is unbounded and, thus, diverges), or the limit may not even exist(e.g. sequence $f(x_i)$ is bounded but does NOT have a limit. This, for example, happens with oscillating functions). To prove that this limit must have an infinite value, I will show that it CANNOT have a finite value and I will show that, for the case where the limit does not exist, it CANNOT occur. \newline 
 
 Case: The Limit is a finite value(i.e. $\lim_{i\to\infty} f(x_i) = c$ where $c \in \mathbb{R}$) . \newline 
 
 Since our sequence is defined as $x_i \in dom f$ such that $\lim_{i} x_i = x \in bd \enspace dom f$, we know that $f(x_i)$ is defined at every point along the sequence.  Hence, in this case, the sequence $f(x_i)$ would be a CONVERGENT SEQUENCE. \newline 
 
-Given the case where $\lim_{i\to\infty} f(x_i) = c$ where $c \in \mathbb{R}$, the sequence($x_i \in dom f$ such that $\lim_{i} x_i = x \in bd \enspace dom f$), based on the definition of a sublevel set, would be in $S$. \newline 
+Given the case where $\lim_{i\to\infty} f(x_i) = c$ where $c \in \mathbb{R}$, the sequence($x_i \in dom f$ such that $\lim_{i} x_i = x \in bd \enspace dom f$), based on the definition of a sublevel set, would be in the sublevel set $S_M$ defined as such: $S_M = \{x \in dom f : f(x) \leq M \}$. \newline 
 
 The reason is that convergent sequences are bounded. So, if we take $M$ to be the "maximum" value that can be attained in the sequence $f(x_i)$, we can say that the entire sequence($x_i \in dom f$ such that $\lim_{i} x_i = x \in bd \enspace dom f$) will be in the sublevel set $S_M = \{x \in dom f : f(x) \leq M \}$. \newline 
 
 In this case, the limit point of the sequence($x_i \in dom f$ such that $\lim_{i} x_i = x \in bd \enspace dom f$) would NOT be in $S$ since the domain of $f$ is open. This would mean that $S$ is an open set which CONTRADICTS the fact that we know that $S$ HAS to be closed. \newline 
+
+Case: $f(x_i)$ is bounded but the limit does NOT exist. In other words, the Limit of the sequence $f(x_i)$ does NOT exist but $f(x_i)$ is bounded. \newline 
+If the limit of the sequence $f(x_i)$ does NOT exist and $f(x_i)$ is bounded, we know that the sequence $f(x_i)$ oscillates between several values. In this case, we can say that the sequence $f(x_i)$ is bounded by some $M$ where $M \in \mathbb{R}$. \newline 
+
+So, if we take $M$ to be the "maximum" value that can be attained in the sequence $f(x_i)$, we can say that the entire sequence($x_i \in dom f$ such that $\lim_{i} x_i = x \in bd \enspace dom f$) will be in the sublevel set $S_M = \{x \in dom f : f(x) \leq M \}$. Hence, in this case, we can see that the sequence($x_i \in dom f$ such that $\lim_{i} x_i = x \in bd \enspace dom f$), based on the definition of a sublevel set, would be in $S_M$. \newline 
+
+In this case, the limit point of the sequence($x_i \in dom f$ such that $\lim_{i} x_i = x \in bd \enspace dom f$) would NOT be in $S_M$ since the domain of $f$ is open. This would mean that $S$ is an open set which CONTRADICTS the fact that we know that $S$ HAS to be closed. \newline 
+
 
 We have shown that $\lim_{i\to\infty} f(x_i) = \infty$\newline 
 
