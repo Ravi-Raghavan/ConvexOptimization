@@ -157,7 +157,7 @@ Let $f : \mathbb{R}^n \rightarrow \mathbb{R}$ be a continuous function with dom 
 Step 1: "if" direction \newline 
 We know that the function  $f$ is continuous and the domain $f$ is open. Let's analyze any given sublevel set of the function $f$. Given any constant $\alpha \in \mathbb{R}$, a sublevel set is defined as $S = \{x \in dom f : f(x) \leq \alpha \}$
 
-Our goal is to prove that any such sub-level set is closed. Let's say we have a convergent sequence $H = (x_n)_{n \in \mathbb{N}}$ which lies in the sublevel set $S$ and we know that this sequence $H$ converges to c. 
+Our goal is to prove that any such sub-level set is closed when for every sequence $x_i \in dom f$ such that $\lim_{i} x_i = x \in bd \enspace dom f$, we have $\lim_{i\to\infty} f(x_i) = \infty$. Let's say we have a convergent sequence $H = (x_n)_{n \in \mathbb{N}}$ which lies in the sublevel set $S$ and we know that this sequence $H$ converges to c. 
 
 Since $H$ lies within $S$ and $S$ is a subset of the domain of $f$, we know that $H$ lies within the domain of $f$. 
 
