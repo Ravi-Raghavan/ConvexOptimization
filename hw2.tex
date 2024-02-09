@@ -165,6 +165,17 @@ Since $H$ lies within the domain of $f$ and the domain of $f$ is an OPEN set, th
 
 However, if we look at the first case, this fact jumps out at us: for every sequence $x_i \in dom f$ such that $\lim_{i} x_i = x \in bd \enspace dom f$, we have $\lim_{i\to\infty} f(x_i) = \infty$. This would mean that $H$ CANNOT possibly be within $S$ since we need $f(x_i) \leq \alpha$ to ALWAYS be true. This would then violate our assumption at the beginning that $H$ lies in the sublevel set $S$. Hence, we know that only the second case must be true which means that $c$ is in the domain of $f$.   \newline 
 
+
+\underline{Further Analysis for why $\lim_{i\to\infty} f(x_i) = \infty$ CANNOT BE TRUE} \newline 
+
+Let's look at this closer. Given two sequences $(a_n)_{n \in \mathbb{N}}$ and $(b_n)_{n \in \mathbb{N}}$, if $a_n \leq b_n$ for all $n$, then  $\lim_{n\to\infty} a_n \leq \lim_{n\to\infty} b_n$. If we consider $a_n$ to be $f(x_n)$ and consider $b_n$ to be a constant sequence where the value is always $\alpha$, we can see the following: \newline 
+
+$f(x_n) \leq \alpha \rightarrow \lim_{n\to\infty} f(x_n) \leq \lim_{n\to\infty} \alpha$ \newline 
+
+$f(x_n) \leq \alpha \rightarrow \lim_{n\to\infty} f(x_n) \leq  \alpha$ \newline 
+
+Since $\lim_{n\to\infty} f(x_n) \leq  \alpha$, this would mean that it is IMPOSSIBLE for $\lim_{i\to\infty} f(x_n) = \infty$ to be true. \newline 
+
 Case: $c$ lies within the domain of $f$ \newline 
 Since the function is continuous, $H$ lies within the domain of $f$, and $c$ lies within the domain of $f$, we know that the sequence $(f(x_n))_{n \in \mathbb{N}}$ converges to $f(c)$. 
 
