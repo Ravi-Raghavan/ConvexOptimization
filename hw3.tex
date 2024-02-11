@@ -1,0 +1,273 @@
+\documentclass{article}
+
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+%=====================================================
+% Add PACKAGES Here (You typically would not need to):
+%=====================================================
+
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}  % Include the amsmath and amssymb packages for mathematical symbols
+
+%=====================================================
+% Ignore This Part (But Do NOT Delete It:)
+%=====================================================
+
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem*{fun}{Fun with Algorithms}
+\newtheorem*{challenge}{Challenge Yourself}
+\def\fline{\rule{0.75\linewidth}{0.5pt}}
+\newcommand{\finishline}{\begin{center}\fline\end{center}}
+\newtheorem*{solution*}{Solution}
+\newenvironment{solution}{\begin{solution*}}{{\finishline} \end{solution*}}
+\newcommand{\grade}[1]{\hfill{\textbf{($\mathbf{#1}$ points)}}}
+\newcommand{\thisdate}{February 20, 2024}
+\newcommand{\thissemester}{\textbf{Rutgers: Spring 2024}}
+\newcommand{\thiscourse}{ECE 509: Convex Optimization} 
+\newcommand{\thishomework}{Number} 
+\newcommand{\thisname}{Name} 
+\newcommand{\thisextension}{Yes/No} 
+
+\headheight 40pt              
+\headsep 10pt
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
+
+\newcommand{\thisheading}{
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { \textbf{\thiscourse \hfill \thissemester} }
+       \vspace{4mm}
+       \hbox to 6.28in { {\Large \hfill Homework \#\thishomework \hfill} }
+       \vspace{2mm}
+         \hbox to 6.28in { { \hfill \thisdate  \hfill} }
+       \vspace{2mm}
+       \hbox to 6.28in { \emph{Name: \thisname \hfill Extension: \thisextension}}
+      \vspace{2mm}}
+      }
+   \end{center}
+   \bigskip
+}
+
+%=====================================================
+% Some useful MACROS (you can define your own in the same exact way also)
+%=====================================================
+
+
+\newcommand{\ceil}[1]{{\left\lceil{#1}\right\rceil}}
+\newcommand{\floor}[1]{{\left\lfloor{#1}\right\rfloor}}
+\newcommand{\prob}[1]{\Pr\paren{#1}}
+\newcommand{\expect}[1]{\Exp\bracket{#1}}
+\newcommand{\var}[1]{\textnormal{Var}\bracket{#1}}
+\newcommand{\set}[1]{\ensuremath{\left\{ #1 \right\}}}
+\newcommand{\poly}{\mbox{\rm poly}}
+
+
+%=====================================================
+% Fill Out This Part With Your Own Information:
+%=====================================================
+
+
+\renewcommand{\thishomework}{3} %Homework number
+\renewcommand{\thisname}{Ravi Raghavan} % Enter your name here
+\renewcommand{\thisextension}{No} % Pick only one of the two options accordingly
+
+\begin{document}
+
+\thisheading
+\vspace{-0.75cm}
+
+
+%=====================================================
+% LaTeX Tip: You can erase this part from here.... 
+%=====================================================		
+
+\finishline
+
+%=====================================================
+% LaTeX Tip: ... to here
+%=====================================================	
+
+
+\bigskip
+
+\begin{problem} Suppose $f: \mathbb{R} \rightarrow \mathbb{R}$ is convex, and $a, b \in dom f$ with $a < b$
+    \begin{enumerate}
+        \item[(a)] Show that 
+                    \begin{equation}
+                        \label{eq:example}
+                            f(x) \leq \frac{b - x}{b - a} f(a) + \frac{x - a}{b - a} f(b)
+                    \end{equation}
+                    for all $x \in [a, b]$. 
+
+                    \begin{solution}
+                        Let us have $\theta \in \mathbb{R}$ where $0 \leq \theta \leq 1$. Since $x \in [a, b]$, we can define $x$ as $\theta a + (1 - \theta)b $ \newline 
+
+                        Based on the definition of a convex function, we know that $f(\theta a + (1 - \theta)b) \leq \theta f(a) + (1 - \theta) f(b)$ \newline 
+
+                        $f(x) \leq \theta f(a) + (1 - \theta) f(b)$ \newline 
+
+                        $x = \theta a + b - \theta b$ \newline 
+
+                        $x - b = \theta (a - b)$ \newline 
+
+                        $\frac{x - b}{a - b} = \frac{b - x}{b - a} = \theta$ \newline 
+
+                        $1 - \theta = 1 - \frac{b - x}{b - a} = \frac{x - a}{b - a}$ \newline 
+
+                        $f(x) \leq \frac{b - x}{b - a} f(a) + \frac{x - a}{b - a} f(b)$ \newline 
+                    \end{solution}
+        \item[(b)] Show that 
+                    \begin{equation}
+                        \label{eq:example}
+                            \frac{f(x) - f(a)}{x - a} \leq \frac{f(b) - f(a)}{b - a} \leq \frac{f(b) - f(x)}{b - x} 
+                    \end{equation}
+                    for all $x \in (a, b)$. Draw a sketch that illustrates this inequality
+
+                    \begin{solution}
+                        \begin{equation}
+                        \label{eq:example}
+                            f(x) \leq \frac{b - x}{b - a} f(a) + \frac{x - a}{b - a} f(b)
+                    \end{equation}
+
+                    Multiply both sides by $b - a$ \newline 
+
+                    \begin{equation}
+                        \label{eq:example}
+                            f(x) (b - a) \leq (b - x) f(a) + (x - a) f(b)
+                    \end{equation}
+
+                    \begin{equation}
+                        \label{eq:example}
+                            f(x) (b - a) \leq (b - a) f(a) - (x - a) f(a) + (x - a) f(b)
+                    \end{equation}
+
+                    \begin{equation}
+                        \label{eq:example}
+                            (f(x) - f(a)) (b - a) \leq - (x - a) f(a) + (x - a) f(b)
+                    \end{equation}
+
+                    \begin{equation}
+                        \label{eq:example}
+                            (f(x) - f(a)) (b - a) \leq (x - a) (f(b) - f(a))
+                    \end{equation}
+
+                    Divide both sides by $x - a$
+
+                    \begin{equation}
+                        \label{eq:example}
+                            \frac{(f(x) - f(a))}{x - a} (b - a) \leq (f(b) - f(a))
+                    \end{equation}
+
+                    Divide both sides by $b - a$
+
+                    \begin{equation}
+                        \label{eq:example}
+                            \frac{(f(x) - f(a))}{x - a}  \leq \frac{(f(b) - f(a))}{b - a}
+                    \end{equation}
+
+
+                    \begin{equation}
+                        \label{eq:example}
+                            f(x) (b - a) \leq (b - x) f(a) + (x - a) f(b)
+                    \end{equation}
+
+                    \begin{equation}
+                        \label{eq:example}
+                            f(x) (b - a) \leq (b - x) f(a) + (b - a) f(b) - (b - x) f(b)
+                    \end{equation}
+
+                    \begin{equation}
+                        \label{eq:example}
+                            (f(x) - f(b)) (b - a) \leq (b - x) (f(a) - f(b))
+                    \end{equation}
+
+                    \begin{equation}
+                        \label{eq:example}
+                            (f(b) - f(x)) (b - a) \geq (b - x) (f(b) - f(a))
+                    \end{equation}
+
+                    \begin{equation}
+                        \label{eq:example}
+                            \frac{f(b) - f(x)}{b - x} \geq \frac{f(b) - f(a)}{b - a}
+                    \end{equation}
+
+Put together we get: \newline 
+
+\begin{equation}
+                        \label{eq:example}
+                            \frac{f(x) - f(a)}{x - a}  \leq \frac{f(b) - f(a)}{b - a} \leq \frac{f(b) - f(x)}{b - x} 
+                    \end{equation}
+                    
+                    \end{solution}
+        \item[(c)] Suppose $f$ is differentiable. Use the result in (b) to show that 
+        \begin{equation}
+                        \label{eq:example}
+                            f'(a) \leq  \frac{f(b) - f(a)}{b - a} \leq f'(b)
+                    \end{equation}
+
+                \begin{solution}
+                    We know that, for a convex function, the first-order Taylor approximation is in fact a global underestimator of the function. Hence, we can say the following: \newline 
+
+                    $f(a) + f'(a) (x - a) \leq f(x)$ \newline 
+                    $f'(a) \leq \frac{f(x) - f(a)}{x - a}$ \newline 
+
+                    $f(b) + f'(b) (x - b) \leq f(x)$ \newline 
+                    $f'(b) (b - x) \geq f(b) - f(x)$ \newline 
+                    $f'(b) \geq \frac{f(b) - f(x)}{b - x}$ \newline
+                    $\frac{f(b) - f(x)}{b - x} \leq f'(b)$ \newline
+
+
+                    We know that $f'(a) \leq \frac{f(x) - f(a)}{x - a}$, $\frac{f(x) - f(a)}{x - a}  \leq \frac{f(b) - f(a)}{b - a} \leq \frac{f(b) - f(x)}{b - x}$, and $\frac{f(b) - f(x)}{b - x} \leq f'(b)$, we can say that: \newline 
+
+                    $f'(a) \leq \frac{f(x) - f(a)}{x - a}  \leq \frac{f(b) - f(a)}{b - a} \leq \frac{f(b) - f(x)}{b - x} \leq f'(b)$ \newline 
+
+                    $f'(a) \leq \frac{f(b) - f(a)}{b - a} \leq  f'(b)$ \newline 
+                \end{solution}
+
+        \item[(d)] Suppose $f$ is twice differentiable. Use the result in $(c)$ to show that $f''(a) \geq 0$ and $f''(b) \geq 0$
+
+            \begin{solution}
+                From $(c)$, we know that $f'(a) \leq \frac{f(b) - f(a)}{b - a}$ and $f'(b) \geq \frac{f(b) - f(a)}{b - a}$ and that $f'(a) \leq f'(b)$ \newline 
+
+                $(c)$ tells us that given $(a, b)$ where $a \leq b$, $f'(a) \leq f'(b)$ 
+
+                We can define the second derivative $f''(a)$ as such: \newline 
+
+                $f''(a) = \lim_{h\to 0} \frac{f'(a + h) - f'(a)}{h}$
+
+                Since the function is twice differentiable, this limit exists and we can see that when the limit is approached from the right side(i.e. when $h > 0$), both the numerator and denominator of the fraction are positive. Hence, the second derivative is positive. On the other hand, when the limit is approached from the left side(i.e. when $h < 0$), both the numerator and denominator of the fraction are negative. Hence, the limit has to be $\geq 0$ \newline 
+
+                We can define the second derivative $f''(b)$ as such: \newline 
+
+                $f''(b) = \lim_{h\to 0} \frac{f'(b + h) - f'(b)}{h}$
+
+                Since the function is twice differentiable, this limit exists and we can see that when the limit is approached from the right side(i.e. when $h > 0$), both the numerator and denominator of the fraction are positive. Hence, the second derivative is positive. On the other hand, when the limit is approached from the left side(i.e. when $h < 0$), both the numerator and denominator of the fraction are negative. Hence, the limit has to be $\geq 0$
+
+
+                This shows that $f''(a) \geq 0$ and $f''(b) \geq 0$
+                
+            \end{solution}
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+    
+\end{problem}
+
+\end{document}
+
+
+
+
+
