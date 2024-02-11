@@ -262,6 +262,78 @@ Put together we get: \newline
 \end{problem}
 
 \begin{problem}
+    Show that a continuous function $f: \mathbb{R}^n \rightarrow \mathbb{R}$ is convex if and only if for every line segment, its average value on the segment is less than or equal to the average of its values at the endpoints of the segment: For every $x, y \in \mathbb{R}^n$,
+
+    \begin{equation}
+        \label{eq:example}
+            \int_{0}^{1} f(x + \lambda(y - x)) \,d \lambda \leq \frac{f(x) + f(y)}{2}
+    \end{equation}
+
+    \begin{solution}
+        Step 1: The "Only If" Part \newline 
+        We know that $f$ is convex and that $f$ is continuous. Our goal is to prove that, for every line segment, its average value on the segment is less than or equal to the average of its values at the endpoints of the segment.  \newline 
+
+        Let's re-arrange the insides of the integral to write its mathematical equivalent: \newline 
+
+        \begin{equation}
+        \label{eq:example}
+            \int_{0}^{1} f((1 - \lambda)x + \lambda y) \,d \lambda
+    \end{equation}
+
+Based on the definition of convexity, we know that $f((1 - \lambda)x + \lambda y) \leq \lambda f(y) + (1 - \lambda) f(x)$
+    \begin{equation}
+        \label{eq:example}
+            \int_{0}^{1} f((1 - \lambda)x + \lambda y) \,d \lambda \leq \int_{0}^{1} \lambda f(y) + (1 - \lambda) f(x) \,d \lambda
+    \end{equation}
+
+Let's evaluate this integral \newline 
+\begin{equation}
+        \label{eq:example}
+            \int_{0}^{1} \lambda f(y) + (1 - \lambda) f(x) \,d \lambda =  \int_{0}^{1} \lambda f(y) \,d \lambda +  \int_{0}^{1} (1 - \lambda) f(x) \,d \lambda
+    \end{equation}
+
+    \begin{equation}
+        \label{eq:example}
+            f(y) \int_{0}^{1} \lambda \,d \lambda +  f(x) \int_{0}^{1} (1 - \lambda) \,d \lambda
+    \end{equation}
+
+    \begin{equation}
+        \label{eq:example}
+            f(y) ([\frac{\lambda^2}{2}]^1_0) +  f(x) ([\lambda - \frac{\lambda^2}{2}]^1_0)
+    \end{equation}
+
+    \begin{equation}
+        \label{eq:example}
+            f(y) (\frac{1}{2}) +  f(x) (\frac{1}{2}) = \frac{f(x) + f(y)}{2}
+    \end{equation}
+
+We have shown that: 
+    \begin{equation}
+        \label{eq:example}
+            \int_{0}^{1} f(x + \lambda(y - x)) \,d \lambda \leq \frac{f(x) + f(y)}{2}
+    \end{equation}
+
+Step 2: "If" Part \newline 
+We know that $\int_{0}^{1} f(x + \lambda(y - x)) \,d \lambda \leq \frac{f(x) + f(y)}{2}$ and that $f$ is continuous. Our task is to prove that $f$ is convex. \newline 
+
+As we have shown previously, $\int_{0}^{1} \lambda f(y) + (1 - \lambda) f(x) \,d \lambda = \frac{f(x) + f(y)}{2}$ \newline 
+
+We can now see that $\int_{0}^{1} f(x + \lambda(y - x)) \,d \lambda \leq \int_{0}^{1} \lambda f(y) + (1 - \lambda) f(x) \,d \lambda $ \newline 
+
+To make notation simpler, let $a(\lambda) = f(x + \lambda(y - x))$ and $b(\lambda)= \lambda f(y) + (1 - \lambda) f(x)$ \newline 
+
+We see that  $\int_{0}^{1} a(\lambda) \,d \lambda \leq \int_{0}^{1} b(\lambda) \,d \lambda $ \newline 
+
+Let $c(\lambda) = \frac{f(x) + f(y)}{2}$ \newline 
+$\int_{0}^{1} c(\lambda) \,d \lambda =  \frac{f(x) + f(y)}{2}$ \newline 
+
+We see that  $\int_{0}^{1} a(\lambda) \,d \lambda \leq \int_{0}^{1} c(\lambda) \,d \lambda $ \newline 
+
+Let's look at the Extreme Value Theorem. We can say that on the interval $\lambda \in [0, 1]$, $a(\lambda)$ has a minimum value of $m$ and a maximum value of $M$. \newline
+
+We know that  $m \leq \int_{0}^{1} a(\lambda) \,d \lambda \leq M$ \newline 
+        
+    \end{solution}
     
 \end{problem}
 
