@@ -316,25 +316,45 @@ We have shown that:
 Step 2: "If" Part \newline 
 We know that $\int_{0}^{1} f(x + \lambda(y - x)) \,d \lambda \leq \frac{f(x) + f(y)}{2}$ and that $f$ is continuous. Our task is to prove that $f$ is convex. \newline 
 
-As we have shown previously, $\int_{0}^{1} \lambda f(y) + (1 - \lambda) f(x) \,d \lambda = \frac{f(x) + f(y)}{2}$ \newline 
+Let's approach this proof by proving the contrapositive. Let's say that $f$ is NOT convex. This means that there exists a $\lambda_c \in [0, 1]$ where  $f((1 - \lambda_c)x + \lambda_c y) > \lambda_c f(y) + (1 - \lambda_c) f(x)$ \newline 
 
-We can now see that $\int_{0}^{1} f(x + \lambda(y - x)) \,d \lambda \leq \int_{0}^{1} \lambda f(y) + (1 - \lambda) f(x) \,d \lambda $ \newline 
+Let's define $F(\lambda) = f((1 - \lambda)x + \lambda y) - \lambda f(y) - (1 - \lambda) f(x)$. Since $f$ is continuous, we know that $F$ is continuous. 
 
-To make notation simpler, let $a(\lambda) = f(x + \lambda(y - x))$ and $b(\lambda)= \lambda f(y) + (1 - \lambda) f(x)$ \newline 
+We also know that, at $\lambda_c$, $F$ will have a positive value. Let $\lambda_b$ be the first point before $\lambda_c$ where $F$ crosses 0. Let $\lambda_d$ be the first point after $\lambda_c$ where $F$ crosses 0. \newline 
 
-We see that  $\int_{0}^{1} a(\lambda) \,d \lambda \leq \int_{0}^{1} b(\lambda) \,d \lambda $ \newline 
+On the open interval $(\lambda_b, \lambda_d)$, $F(\lambda) > 0$ \newline 
 
-Let $c(\lambda) = \frac{f(x) + f(y)}{2}$ \newline 
-$\int_{0}^{1} c(\lambda) \,d \lambda =  \frac{f(x) + f(y)}{2}$ \newline 
+Let $j = (1 - \lambda_b)x + \lambda_b y$ and $k = (1 - \lambda_d)x + \lambda_d y$ \newline 
 
-We see that  $\int_{0}^{1} a(\lambda) \,d \lambda \leq \int_{0}^{1} c(\lambda) \,d \lambda $ \newline 
-
-Let's look at the Extreme Value Theorem. We can say that on the interval $\lambda \in [0, 1]$, $a(\lambda)$ has a minimum value of $m$ and a maximum value of $M$. \newline
-
-We know that  $m \leq \int_{0}^{1} a(\lambda) \,d \lambda \leq M$ \newline 
-        
+Hence, we can say that $\int_{0}^{1} f(j + \theta(k - j)) \,d \theta > \int_{0}^{1} \theta f(k) + (1 - \theta) f(j) \,d \theta = \frac{f(j) + f(k)}{2}$
     \end{solution}
     
+\end{problem}
+
+\begin{problem}
+    Suppose $f: \mathbb{R}^n \rightarrow \mathbb{R}$ is convex with $dom f = \mathbb{R}^n$, and bounded above on $\mathbb{R}^n$. Show that $f$ is constant
+
+    \begin{solution}
+        Let's do a proof by contradiction. We will first start with the assumption that $f$ is NOT constant. So there exist $\alpha, \beta$ on the domain of $f$ such that $f(\alpha) < f(\beta)$ \newline 
+
+        Let $g(\theta) = f(\alpha + \theta(\beta - \alpha))$. Since $f$ is convex, $g$ is convex as well. We can clearly see that $g(0) < g(1)$ \newline 
+
+        Based on the definition of convex functions, we know that: \newline 
+        $g(1) \leq (1 - \frac{1}{\theta}) g(0) + \frac{1}{\theta} g(\theta)$. 
+
+        This happens whenever $\theta > 1$ \newline 
+
+        Let's rearrange the inequality: \newline 
+
+        $\frac{1}{\theta} g(\theta) \geq g(1) - (1 - \frac{1}{\theta}) g(0)$ \newline 
+        $g(\theta) \geq \theta g(1) - (\theta - 1) g(0)$ \newline 
+        $g(\theta) \geq g(0) + \theta (g(1) - g(0))$ \newline 
+
+
+        Based on this, as $\theta \rightarrow \infty$, we can see that $g(\theta)$ grows without bound. This contradicts the notion that $f$ is bounded above on $\mathbb{R}^n$
+        
+        
+    \end{solution}  
 \end{problem}
 
 \end{document}
