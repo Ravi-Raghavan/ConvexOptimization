@@ -358,7 +358,48 @@ Hence, we can say that $\int_{0}^{1} f(j + \theta(k - j)) \,d \theta > \int_{0}^
 \end{problem}
 
 \begin{problem}
+\textit{Minimizing a quadratic function.} Consider the problem of minimizing a quadratic function: \newline 
+minimize $f(x) = \frac{1}{2} x^TPx + q^Tx + r,$ \newline 
+where $P \in S^n$ (but we do not assume $P \succcurlyeq 0$)
+
+\begin{enumerate}
+    \item[(a)] Show that if P $\not\succcurlyeq$ 0, i.e., the objective function f is not convex, then the problem is unbounded below.
+
+    \begin{solution}
+        We are given that $P \not\succcurlyeq 0$. This means that $P$ is NOT positive semidefinite. \newline 
+
+        There exists a $z$ such that $z^TPz < 0$. Now, let's plug in $\lambda z$ into our equation. 
+
+        $f(\lambda z) = \frac{1}{2} (\lambda z)^TP(\lambda z) + q^T(\lambda z) + r$
+        $f(\lambda z) = \frac{\lambda^2}{2} z^TPz + \lambda q^Tz + r$ \newline 
+
+        As $\lambda \rightarrow \infty$, we see that $f(\lambda z) \rightarrow -\infty$. This means that the functions is UNBOUNDED below 
+
+    \end{solution}
+
+    \item[(b)] Now suppose that P $\succcurlyeq$ 0 (so the objective function is convex), but the optimality condition $Px^* = -q$ does not have a solution. Show that the problem is unbounded below. \newline 
+
+    Since the optimality condition $Px^* = -q$ does not have a solution, $q$ is NOT in the column space of $P$. Hence, $q$ can be expressed as $q = q_2 + q_3$ where $q_2$ is the projection of $q$ onto the column space of $P$ and $q_3$ is orthogonal to the column space. \newline 
+
+
+    Since $q_3$ is orthogonal to the column space of $P$, we can say that $q_3^TPq_3 = 0$. Let's have $\lambda q_3$. 
+
+    $f(\lambda q_3) = \frac{1}{2} (\lambda q_3)^TP(\lambda q_3) + q^T(\lambda q_3) + r$ \newline 
+
+    $f(\lambda q_3) = \frac{\lambda^2}{2} q_3^TPq_3 + \lambda q^Tq_3 + r$ \newline
+
+    $f(\lambda q_3) = \lambda q^Tq_3 + r$ \newline
+
+    $f(\lambda q_3) = \lambda (q_3 + q_2)^Tq_3 + r$ \newline
+
+    $f(\lambda q_3) = \lambda q_3^Tq_3 + \lambda q_2^Tq_3 + r$ \newline
+
+    $f(\lambda q_3) = \lambda q_3^Tq_3  + r$ \newline
+
+    This is unbounded below. 
     
+\end{enumerate}
+
 \end{problem}
 
 \end{document}
