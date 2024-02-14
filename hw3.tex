@@ -402,6 +402,31 @@ where $P \in S^n$ (but we do not assume $P \succcurlyeq 0$)
 
 \end{problem}
 
+\begin{problem}
+    \textit{Minimizing a quadratic-over-linear fractional function.} Consider the problem of minimizing the function $f: \mathbb{R}^n \rightarrow \mathbb{R}$, defined as:
+
+    \begin{equation}
+                        \label{eq:example}
+                            f(x) = \frac{\|\mathbf{Ax - b}\|^2_2}{c^Tx + d}, \enspace dom f = \{x | c^Tx + d > 0\}
+                    \end{equation}
+We assume $rank A = n$ and $b \notin R(A)$ 
+
+\begin{enumerate}
+    \item[(a)] Show that f is closed.
+    \begin{solution}
+        Based on the description, it is clear to see that the domain of $f$ is open. Hence, if we prove that for every sequence $x_i \in dom f$ such that $\lim_{i} x_i = x \in bd \enspace dom f$, we have $\lim_{i\to\infty} f(x_i) = \infty$, then we can show that $f$ is closed. \newline 
+
+        Since $b \notin R(A)$, we can see that $\|\mathbf{Ax - b}\|^2_2$ is lower bounded by a positive real number. Hence, for any given sequence $H$ where $H$ is fully contained in the domain of $f$ and the limit point of $H$ is on the boundary of the domain of $f$, we can see that as $H$ approaches its limit point, $f(x)$ will approach infinity. 
+    \end{solution}
+    \item[(b)] Show that the minimizer $x^*$ of $f$ is given by 
+    \begin{equation}
+                        \label{eq:example}
+                            x^* = x_1 + tx_2
+                    \end{equation}
+    where $x_1 = (A^TA)^{-1} A^Tb$, $x_2 = (A^TA)^{-1}c$, and $t \in \mathbb{R}$ can be calculated by solving a quadratic equation.
+\end{enumerate}
+\end{problem}
+
 \end{document}
 
 
