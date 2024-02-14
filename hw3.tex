@@ -424,6 +424,54 @@ We assume $rank A = n$ and $b \notin R(A)$
                             x^* = x_1 + tx_2
                     \end{equation}
     where $x_1 = (A^TA)^{-1} A^Tb$, $x_2 = (A^TA)^{-1}c$, and $t \in \mathbb{R}$ can be calculated by solving a quadratic equation.
+
+    \begin{solution}
+        To minimize, as we covered in the course, the first step is to take the gradient and set it to 0. \newline 
+
+        $\nabla f = \frac{2A^T (Ax - b)(c^Tx + d)}{(c^Tx + d) ^ 2} - \frac{\|\mathbf{Ax - b}\|^2_2 (c)}{(c^Tx + d) ^ 2}$ \newline 
+
+        $\nabla f = \frac{2A^T (Ax - b)}{(c^Tx + d)} - \frac{\|\mathbf{Ax - b}\|^2_2 (c)}{(c^Tx + d) ^ 2}$ \newline 
+
+        $\nabla f = \frac{2A^T A (x - x_1)}{(c^Tx + d)} - \frac{\|\mathbf{Ax - b}\|^2_2 (c)}{(c^Tx + d) ^ 2}$ \newline 
+
+        $\nabla f = \frac{2A^T A (x - x_1)}{(c^Tx + d)} - \frac{\|\mathbf{Ax - b}\|^2_2 (A^T A x_2)}{(c^Tx + d) ^ 2}$ \newline 
+
+        $\nabla f = A^T A (\frac{2 (x - x_1)}{(c^Tx + d)} - \frac{\|\mathbf{Ax - b}\|^2_2 x_2}{(c^Tx + d) ^ 2})$ \newline 
+
+        Now, let's set this gradient to 0 \newline 
+
+        $\nabla f = A^T A (\frac{2 (x - x_1)}{(c^Tx + d)} - \frac{\|\mathbf{Ax - b}\|^2_2 x_2}{(c^Tx + d) ^ 2}) = 0$ \newline 
+
+        $\nabla f = \frac{2 (x - x_1)}{(c^Tx + d)} - \frac{\|\mathbf{Ax - b}\|^2_2 x_2}{(c^Tx + d) ^ 2} = 0$ \newline 
+
+        We know that $x - x_1 = tx_2$ \newline 
+
+        $\nabla f = \frac{2 tx_2}{(c^Tx + d)} - \frac{\|\mathbf{Ax - b}\|^2_2 x_2}{(c^Tx + d) ^ 2} = 0$ \newline 
+
+         $\nabla f = x_2 (\frac{2 t}{(c^Tx + d)} - \frac{\|\mathbf{Ax - b}\|^2_2 }{(c^Tx + d) ^ 2}) = 0$ \newline 
+
+         $\nabla f = \frac{2 t}{(c^Tx + d)} - \frac{\|\mathbf{Ax - b}\|^2_2 }{(c^Tx + d) ^ 2} = 0$ \newline 
+
+         $\frac{2 t}{(c^Tx + d)}  = \frac{\|\mathbf{Ax - b}\|^2_2 }{(c^Tx + d) ^ 2}$ \newline 
+
+         $t = \frac{\|\mathbf{Ax - b}\|^2_2 }{2(c^Tx + d)}$ \newline 
+
+         $t = \frac{\|\mathbf{Ax_1 + Atx_2 - b}\|^2_2 }{2(c^Tx_1 + tc^Tx_2 + d)}$ \newline 
+
+
+         $2t^2 c^Tx_2 + 2t(c^Tx_1 + d) = t^2 \|\mathbf{Ax_2}\|^2_2 + 2t(Ax_1 - b)^T Ax_2 +  \|\mathbf{Ax_1 - b}\|^2_2 $ \newline 
+
+         $2t^2 c^Tx_2 + 2t(c^Tx_1 + d) = t^2 c^T x_2 +  \|\mathbf{Ax_1 - b}\|^2_2  = 0$ \newline 
+
+         $t^2 c^Tx_2 + 2t(c^Tx_1 + d) - \|\mathbf{Ax_1 - b}\|^2_2  = 0 $ \newline 
+
+
+         As shown, this is clearly a quadratic. We just have to solve for the value of $t$ so that $c^T(x_1 + tx_2) + d > 0$
+
+         
+        
+        
+    \end{solution}
 \end{enumerate}
 \end{problem}
 
