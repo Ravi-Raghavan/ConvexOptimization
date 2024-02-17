@@ -465,8 +465,17 @@ We assume $rank A = n$ and $b \notin R(A)$
 
          $t^2 c^Tx_2 + 2t(c^Tx_1 + d) - \|\mathbf{Ax_1 - b}\|^2_2  = 0 $ \newline 
 
+         The roots of this equation are: \newline 
 
-         As shown, this is clearly a quadratic. We just have to solve for the value of $t$ so that $c^T(x_1 + tx_2) + d > 0$
+         $t = \frac{-(c^Tx_1 + d) \pm \sqrt{(c^Tx_1 + d)^2 + c^Tx_2 \|\mathbf{Ax_1 - b}\|^2_2}}{c^Tx_2}$
+
+        As given by the domain restriction, we just need to solve for the value of $t$ such that: \newline 
+
+        $c^T(x) + d > 0$ \newline 
+        $c^T(x_1 + tx_2) + d > 0$ \newline 
+
+        This boils down to solving: \newline 
+        $\sqrt{(c^Tx_1 + d)^2 + c^Tx_2 \|\mathbf{Ax_1 - b}\|^2_2} > 0$
 
          
         
