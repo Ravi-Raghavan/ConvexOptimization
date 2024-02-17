@@ -416,7 +416,9 @@ We assume $rank A = n$ and $b \notin R(A)$
     \begin{solution}
         Based on the description, it is clear to see that the domain of $f$ is open. Hence, if we prove that for every sequence $x_i \in dom f$ such that $\lim_{i} x_i = x \in bd \enspace dom f$, we have $\lim_{i\to\infty} f(x_i) = \infty$, then we can show that $f$ is closed. \newline 
 
-        Since $b \notin R(A)$, we can see that $\|\mathbf{Ax - b}\|^2_2$ is lower bounded by a positive real number. Hence, for any given sequence $H$ where $H$ is fully contained in the domain of $f$ and the limit point of $H$ is on the boundary of the domain of $f$, we can see that as $H$ approaches its limit point, $f(x)$ will approach infinity. 
+        Since $b \notin R(A)$, we can see that $\|\mathbf{Ax - b}\|^2_2$ is lower bounded by a positive real number. Hence, for any given sequence $H$ where $H$ is fully contained in the domain of $f$ and the limit point of $H$ is on the boundary of the domain of $f$, we can see that as $H$ approaches its limit point, $f(x)$ will approach infinity. \newline 
+
+        Let's further analyze this. Clearly, the boundary of the domain is when $c^Tx + d = 0$. Since $\|\mathbf{Ax - b}\|^2_2$  is lower bounded by a positive real number, we can say that $\|\mathbf{Ax - b}\|^2_2 \geq k$ where $k$ is some positive real number. So, we can rewrite our function as  $f(x) = \frac{\|\mathbf{Ax - b}\|^2_2}{c^Tx + d} \geq \frac{k}{c^Tx + d}$. Obviously, as we approach the boundary of the domain, the denominator of $\frac{k}{c^Tx + d}$ approaches 0 and $\frac{k}{c^Tx + d}$ approaches infinity. Since $f(x) = \frac{\|\mathbf{Ax - b}\|^2_2}{c^Tx + d} \geq \frac{k}{c^Tx + d}$, $f(x)$ will approach infinity as well! 
     \end{solution}
     \item[(b)] Show that the minimizer $x^*$ of $f$ is given by 
     \begin{equation}
