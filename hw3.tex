@@ -474,7 +474,21 @@ We assume $rank A = n$ and $b \notin R(A)$
         $c^T(x) + d > 0$ \newline 
         $c^T(x_1 + tx_2) + d > 0$ \newline 
 
-        This boils down to solving: \newline 
+        Given the equation for the roots, we can proceed from there: \newline 
+
+        $t = \frac{-(c^Tx_1 + d) \pm \sqrt{(c^Tx_1 + d)^2 + c^Tx_2 \|\mathbf{Ax_1 - b}\|^2_2}}{c^Tx_2}$ \newline 
+
+        Multiply both sides by $c^Tx_2$ \newline 
+
+        $c^Tx_2 t = -(c^Tx_1 + d) \pm \sqrt{(c^Tx_1 + d)^2 + c^Tx_2 \|\mathbf{Ax_1 - b}\|^2_2}$ \newline 
+
+        $(c^Tx_1 + d) + c^Tx_2 t = \pm \sqrt{(c^Tx_1 + d)^2 + c^Tx_2 \|\mathbf{Ax_1 - b}\|^2_2}$ \newline 
+
+        $c^T(x_1 + tx_2) + d = \pm \sqrt{(c^Tx_1 + d)^2 + c^Tx_2 \|\mathbf{Ax_1 - b}\|^2_2}$
+        
+
+        Since we want $c^T(x_1 + tx_2) + d > 0$ \newline 
+        we can just say that we want  
         $\sqrt{(c^Tx_1 + d)^2 + c^Tx_2 \|\mathbf{Ax_1 - b}\|^2_2} > 0$
 
          
