@@ -238,24 +238,19 @@ Put together we get: \newline
         \item[(d)] Suppose $f$ is twice differentiable. Use the result in $(c)$ to show that $f''(a) \geq 0$ and $f''(b) \geq 0$
 
             \begin{solution}
-                From $(c)$, we know that $f'(a) \leq \frac{f(b) - f(a)}{b - a}$ and $f'(b) \geq \frac{f(b) - f(a)}{b - a}$ and that $f'(a) \leq f'(b)$ \newline 
+                The result in Part (c) shows us that $f'(a) \leq  \frac{f(b) - f(a)}{b - a} \leq f'(b)$ \newline 
 
-                $(c)$ tells us that given $(a, b)$ where $a \leq b$, $f'(a) \leq f'(b)$ 
+                From this, since $f'(a) \leq f'(b)$, we can go one step further and say that $\frac{f'(b) - f'(a)}{b - a} \geq 0$ \newline 
 
-                We can define the second derivative $f''(a)$ as such: \newline 
+                From this, we can take the limit and see that: 
 
-                $f''(a) = \lim_{h\to 0} \frac{f'(a + h) - f'(a)}{h}$
+                $f''(a) = \lim_{b\to a} \frac{f'(b) - f'(a)}{b - a} \geq 0$ \newline 
 
-                Since the function is twice differentiable, this limit exists and we can see that when the limit is approached from the right side(i.e. when $h > 0$), both the numerator and denominator of the fraction are positive. Hence, the second derivative is positive. On the other hand, when the limit is approached from the left side(i.e. when $h < 0$), both the numerator and denominator of the fraction are negative. Hence, the limit has to be $\geq 0$ \newline 
+                By extension, we can say that
 
-                We can define the second derivative $f''(b)$ as such: \newline 
-
-                $f''(b) = \lim_{h\to 0} \frac{f'(b + h) - f'(b)}{h}$
-
-                Since the function is twice differentiable, this limit exists and we can see that when the limit is approached from the right side(i.e. when $h > 0$), both the numerator and denominator of the fraction are positive. Hence, the second derivative is positive. On the other hand, when the limit is approached from the left side(i.e. when $h < 0$), both the numerator and denominator of the fraction are negative. Hence, the limit has to be $\geq 0$
-
-
-                This shows that $f''(a) \geq 0$ and $f''(b) \geq 0$
+                $f''(b) = \lim_{a\to b} \frac{f'(b) - f'(a)}{b - a} \geq 0$
+                
+                
                 
             \end{solution}
     \end{enumerate}
