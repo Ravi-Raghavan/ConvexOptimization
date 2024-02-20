@@ -176,6 +176,8 @@
                             \frac{(f(x) - f(a))}{x - a}  \leq \frac{(f(b) - f(a))}{b - a}
                     \end{equation}
 
+Now, let's start with the same inequality, $f(x) (b - a) \leq (b - x) f(a) + (x - a) f(b)$, and work it in a new direction
+
 
                     \begin{equation}
                         \label{eq:example}
@@ -197,6 +199,8 @@
                             (f(b) - f(x)) (b - a) \geq (b - x) (f(b) - f(a))
                     \end{equation}
 
+Multiply each side by $\frac{1}{(b - x)(b - a)}$
+
                     \begin{equation}
                         \label{eq:example}
                             \frac{f(b) - f(x)}{b - x} \geq \frac{f(b) - f(a)}{b - a}
@@ -208,8 +212,19 @@ Put together we get: \newline
                         \label{eq:example}
                             \frac{f(x) - f(a)}{x - a}  \leq \frac{f(b) - f(a)}{b - a} \leq \frac{f(b) - f(x)}{b - x} 
                     \end{equation}
+
+Note: The sketch is on the next page. 
+\newpage 
+                    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=\textwidth]{1B.jpg}
+        \caption{Sketch of Inequality in (B)}
+    \end{figure}  
+
+    Geometrically, this sketch depicts the inequality in Part (B). It shows that the slope of the line connecting points $(a, f(a))$ and $(b, f(b))$ is GREATER than the slope of the line connecting points $(a, f(a))$ and $(x, f(x))$. The sketch also shows that slope of the line connecting points $(a, f(a))$ and $(b, f(b))$ is LESS than the slope of the line connecting points $(x, f(x))$ and $(b, f(b))$
                     
                     \end{solution}
+                    
         \item[(c)] Suppose $f$ is differentiable. Use the result in (b) to show that 
         \begin{equation}
                         \label{eq:example}
@@ -321,7 +336,11 @@ On the open interval $(\lambda_b, \lambda_d)$, $F(\lambda) > 0$ \newline
 
 Let $j = (1 - \lambda_b)x + \lambda_b y$ and $k = (1 - \lambda_d)x + \lambda_d y$ \newline 
 
-Hence, we can say that $\int_{0}^{1} f(j + \theta(k - j)) \,d \theta > \int_{0}^{1} \theta f(k) + (1 - \theta) f(j) \,d \theta = \frac{f(j) + f(k)}{2}$
+$f(j) = f(k) = 0$
+
+Hence, we can say that $\int_{0}^{1} f(j + \theta(k - j)) \,d \theta > \frac{f(j) + f(k)}{2}$
+
+By proving the contrapositive, we have completed the proof
     \end{solution}
     
 \end{problem}
