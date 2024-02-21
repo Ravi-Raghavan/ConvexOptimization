@@ -232,7 +232,27 @@ Note: The sketch is on the next page.
                     \end{equation}
 
                 \begin{solution}
-                    We know that, for a convex function, the first-order Taylor approximation is in fact a global underestimator of the function. Hence, we can say the following: \newline 
+
+                In Part (b) we proved that $\frac{f(x) - f(a)}{x - a}  \leq \frac{f(b) - f(a)}{b - a} \leq \frac{f(b) - f(x)}{b - x}$ \newline 
+
+                Let's decompose this inequality into its two components: \newline 
+
+                Component 1: $\frac{f(x) - f(a)}{x - a}  \leq \frac{f(b) - f(a)}{b - a}$ 
+
+                Component 2: $\frac{f(b) - f(a)}{b - a} \leq \frac{f(b) - f(x)}{b - x}$
+
+                If we take the limit as $x \rightarrow a$ for Component 1, we see that: \newline 
+
+                $f'(a) \leq \frac{f(b) - f(a)}{b - a}$ \newline 
+
+                If we take the limit as $x \rightarrow b$ for Component 2, we see that: \newline 
+
+                $\frac{f(b) - f(a)}{b - a} \leq f'(b)$ \newline 
+
+                Putting these results together, we get: $f'(a) \leq  \frac{f(b) - f(a)}{b - a} \leq f'(b)$
+
+                We can also prove this result via a property of Convex Functions: \newline 
+                We know that, for a convex function, the first-order Taylor approximation is in fact a global underestimator of the function. Hence, we can say the following: \newline 
 
                     $f(a) + f'(a) (x - a) \leq f(x)$ \newline 
                     $f'(a) \leq \frac{f(x) - f(a)}{x - a}$ \newline 
@@ -281,9 +301,7 @@ Note: The sketch is on the next page.
 
     \begin{solution}
         Step 1: The "Only If" Part \newline 
-        We know that $f$ is convex and that $f$ is continuous. Our goal is to prove that, for every line segment, its average value on the segment is less than or equal to the average of its values at the endpoints of the segment.  \newline 
-
-        Let's re-arrange the insides of the integral to write its mathematical equivalent: \newline 
+        We know that $f$ is convex and that $f$ is continuous. Our goal is to prove that, for every line segment, its average value on the segment is less than or equal to the average of its values at the endpoints of the segment. Let's re-arrange the insides of the integral to write its mathematical equivalent: 
 
         \begin{equation}
         \label{eq:example}
@@ -324,21 +342,19 @@ We have shown that:
     \end{equation}
 
 Step 2: "If" Part \newline 
-We know that $\int_{0}^{1} f(x + \lambda(y - x)) \,d \lambda \leq \frac{f(x) + f(y)}{2}$ and that $f$ is continuous. Our task is to prove that $f$ is convex. \newline 
+We know that $\int_{0}^{1} f(x + \lambda(y - x)) \,d \lambda \leq \frac{f(x) + f(y)}{2}$ and that $f$ is continuous. Our task is to prove that $f$ is convex. Let's approach this proof by proving the contrapositive. Let's say that $f$ is NOT convex. This means that there exists a $\lambda_c \in [0, 1]$, for some $x$ and $y$, where  $f((1 - \lambda_c)x + \lambda_c y) > \lambda_c f(y) + (1 - \lambda_c) f(x)$ 
 
-Let's approach this proof by proving the contrapositive. Let's say that $f$ is NOT convex. This means that there exists a $\lambda_c \in [0, 1]$ where  $f((1 - \lambda_c)x + \lambda_c y) > \lambda_c f(y) + (1 - \lambda_c) f(x)$ \newline 
+Let's define $F(\lambda) = f((1 - \lambda)x + \lambda y) - \lambda f(y) - (1 - \lambda) f(x)$. Since $f$ is continuous, we know that $F$ is continuous. We also know that, at $\lambda_c$, $F$ will have a positive value. Let $\lambda_b$ be the first point before $\lambda_c$ where $F$ attains a value of 0. Let $\lambda_d$ be the first point after $\lambda_c$ where $F$ attains a value of 0. 
 
-Let's define $F(\lambda) = f((1 - \lambda)x + \lambda y) - \lambda f(y) - (1 - \lambda) f(x)$. Since $f$ is continuous, we know that $F$ is continuous. 
+We can clearly see that, on the open interval $(\lambda_b, \lambda_d)$, $F(\lambda) > 0$. This means that for all $\lambda$ on the open interval $(\lambda_b, \lambda_d)$,  we can see that $f((1 - \lambda)x + \lambda y) > \lambda f(y) + (1 - \lambda) f(x)$
 
-We also know that, at $\lambda_c$, $F$ will have a positive value. Let $\lambda_b$ be the first point before $\lambda_c$ where $F$ crosses 0. Let $\lambda_d$ be the first point after $\lambda_c$ where $F$ crosses 0. \newline 
+Let $j = (1 - \lambda_b)x + \lambda_b y$ and $k = (1 - \lambda_d)x + \lambda_d y$ \newline
+$\int_{\lambda_b}^{\lambda_d} f((1 - \lambda)x + \lambda y) \,d \lambda > \int_{\lambda_b}^{\lambda_d} \lambda f(y) + (1 - \lambda) f(x) \,d \lambda$ \newline 
+Hence, we can say that, if we make $\theta \in [0, 1]$,  $\int_{0}^{1} f(j + \theta(k - j)) \,d \theta > \int_{0}^{1} \theta f(k) + (1 - \theta) f(j) \,d \theta$
 
-On the open interval $(\lambda_b, \lambda_d)$, $F(\lambda) > 0$ \newline 
+Since we know, from our previous work in Step 1, that $\int_{0}^{1} \theta f(k) + (1 - \theta) f(j) \,d \theta = \frac{f(j) + f(k)}{2}$
 
-Let $j = (1 - \lambda_b)x + \lambda_b y$ and $k = (1 - \lambda_d)x + \lambda_d y$ \newline 
-
-$f(j) = f(k) = 0$
-
-Hence, we can say that $\int_{0}^{1} f(j + \theta(k - j)) \,d \theta > \frac{f(j) + f(k)}{2}$
+Hence, we can see that $\int_{0}^{1} f(j + \theta(k - j)) \,d \theta > \frac{f(j) + f(k)}{2}$
 
 By proving the contrapositive, we have completed the proof
     \end{solution}
@@ -349,14 +365,12 @@ By proving the contrapositive, we have completed the proof
     Suppose $f: \mathbb{R}^n \rightarrow \mathbb{R}$ is convex with $dom f = \mathbb{R}^n$, and bounded above on $\mathbb{R}^n$. Show that $f$ is constant
 
     \begin{solution}
-        Let's do a proof by contradiction. We will first start with the assumption that $f$ is NOT constant. So there exist $\alpha, \beta$ on the domain of $f$ such that $f(\alpha) < f(\beta)$ \newline 
-
-        Let $g(\theta) = f(\alpha + \theta(\beta - \alpha))$. Since $f$ is convex, $g$ is convex as well. We can clearly see that $g(0) < g(1)$ \newline 
+        Let's do a proof by contradiction. We will first start with the assumption that $f$ is NOT constant. So there exist $\alpha, \beta$ on the domain of $f$ such that $f(\alpha) < f(\beta)$. Let $g(\theta) = f(\alpha + \theta(\beta - \alpha))$. We know that $f$ is convex. Furthermore, we learned that convex functions, when restricted to any line in its domain is convex as well. Hence, we can clearly see that $g$ is convex as well. We can also clearly see that $g(0) < g(1)$ \newline 
 
         Based on the definition of convex functions, we know that: \newline 
         $g(1) \leq (1 - \frac{1}{\theta}) g(0) + \frac{1}{\theta} g(\theta)$. 
 
-        This happens whenever $\theta > 1$ \newline 
+        for values of $\theta$ that satisfy $\theta > 1$ \newline 
 
         Let's rearrange the inequality: \newline 
 
@@ -364,6 +378,8 @@ By proving the contrapositive, we have completed the proof
         $g(\theta) \geq \theta g(1) - (\theta - 1) g(0)$ \newline 
         $g(\theta) \geq g(0) + \theta (g(1) - g(0))$ \newline 
 
+
+        Since $g(1) > g(0)$, we know that $g(1) - g(0)$ is positive. Hence, the term $g(0) + \theta (g(1) - g(0))$, as $\theta$ gets larger and larger, will become larger and larger. 
 
         Based on this, as $\theta \rightarrow \infty$, we can see that $g(\theta)$ grows without bound. This contradicts the notion that $f$ is bounded above on $\mathbb{R}^n$
         
@@ -382,10 +398,13 @@ where $P \in S^n$ (but we do not assume $P \succcurlyeq 0$)
     \begin{solution}
         We are given that $P \not\succcurlyeq 0$. This means that $P$ is NOT positive semidefinite. \newline 
 
-        There exists a $z$ such that $z^TPz < 0$. Now, let's plug in $\lambda z$ into our equation. 
+        There exists a $z$ such that $z^TPz < 0$. Let's say we have a constant $\lambda \in \mathbb{R}^n$ and let's plug in $\lambda z$ into our equation. 
 
         $f(\lambda z) = \frac{1}{2} (\lambda z)^TP(\lambda z) + q^T(\lambda z) + r$
-        $f(\lambda z) = \frac{\lambda^2}{2} z^TPz + \lambda q^Tz + r$ \newline 
+        
+        $f(\lambda z) = \frac{\lambda^2}{2} z^TPz + \lambda q^Tz + r$ \newline
+
+        Since the quadratic term dominates and  $z^TPz < 0$, we can see that as $\lambda$ gets larger, this function's value will get closer and closer to $-\infty$
 
         As $\lambda \rightarrow \infty$, we see that $f(\lambda z) \rightarrow -\infty$. This means that the functions is UNBOUNDED below 
 
@@ -396,21 +415,28 @@ where $P \in S^n$ (but we do not assume $P \succcurlyeq 0$)
     Since the optimality condition $Px^* = -q$ does not have a solution, $q$ is NOT in the column space of $P$. Hence, $q$ can be expressed as $q = q_2 + q_3$ where $q_2$ is the projection of $q$ onto the column space of $P$ and $q_3$ is orthogonal to the column space. \newline 
 
 
-    Since $q_3$ is orthogonal to the column space of $P$, we can say that $q_3^TPq_3 = 0$. Let's have $\lambda q_3$. 
+    Since $q_3$ is orthogonal to the column space of $P$, we can say that $q_3^TPq_3 = 0$. Let's have $\lambda q_3$ for some constant $\lambda \in \mathbb{R}^n$. 
 
     $f(\lambda q_3) = \frac{1}{2} (\lambda q_3)^TP(\lambda q_3) + q^T(\lambda q_3) + r$ \newline 
 
     $f(\lambda q_3) = \frac{\lambda^2}{2} q_3^TPq_3 + \lambda q^Tq_3 + r$ \newline
 
+    We know that $q_3^TPq_3 = 0$. Let's further simplify \newline 
+
     $f(\lambda q_3) = \lambda q^Tq_3 + r$ \newline
+
+    We know that $q = q_3 + q_2$. Let's substitute this for $q$ \newline 
+
 
     $f(\lambda q_3) = \lambda (q_3 + q_2)^Tq_3 + r$ \newline
 
     $f(\lambda q_3) = \lambda q_3^Tq_3 + \lambda q_2^Tq_3 + r$ \newline
 
+    We know that $q_2$ and $q_3$ are orthogonal. Hence, $q_2^Tq_3 = 0$ \newline 
+
     $f(\lambda q_3) = \lambda q_3^Tq_3  + r$ \newline
 
-    This is unbounded below. 
+    This is unbounded below. As $\lambda \rightarrow -\infty$, we see that $f(\lambda q_3) \rightarrow -\infty$
     
 \end{enumerate}
 
@@ -442,42 +468,53 @@ We assume $rank A = n$ and $b \notin R(A)$
     where $x_1 = (A^TA)^{-1} A^Tb$, $x_2 = (A^TA)^{-1}c$, and $t \in \mathbb{R}$ can be calculated by solving a quadratic equation.
 
     \begin{solution}
-        To minimize, as we covered in the course, the first step is to take the gradient and set it to 0. \newline 
+    To find the value of $x^*$ that minimizes $f$, we know that $\nabla f(x^*) = 0$ \newline 
 
-        $\nabla f = \frac{2A^T (Ax - b)(c^Tx + d)}{(c^Tx + d) ^ 2} - \frac{\|\mathbf{Ax - b}\|^2_2 (c)}{(c^Tx + d) ^ 2}$ \newline 
+        $\nabla f(x^*) = \frac{2A^T (Ax^* - b)(c^Tx^* + d)}{(c^Tx^* + d) ^ 2} - \frac{\|\mathbf{Ax^* - b}\|^2_2 (c)}{(c^Tx^* + d) ^ 2}$ \newline 
 
-        $\nabla f = \frac{2A^T (Ax - b)}{(c^Tx + d)} - \frac{\|\mathbf{Ax - b}\|^2_2 (c)}{(c^Tx + d) ^ 2}$ \newline 
+        $\nabla f(x^*) = \frac{2A^T (Ax^* - b)}{(c^Tx^* + d)} - \frac{\|\mathbf{Ax^* - b}\|^2_2 (c)}{(c^Tx^* + d) ^ 2}$ \newline 
 
-        $\nabla f = \frac{2A^T A (x - x_1)}{(c^Tx + d)} - \frac{\|\mathbf{Ax - b}\|^2_2 (c)}{(c^Tx + d) ^ 2}$ \newline 
 
-        $\nabla f = \frac{2A^T A (x - x_1)}{(c^Tx + d)} - \frac{\|\mathbf{Ax - b}\|^2_2 (A^T A x_2)}{(c^Tx + d) ^ 2}$ \newline 
+        Here is my proposed strategy for the rest of this proof: \newline 
+        To show that $x^* = x_1 + tx_2$ is a valid minimizer, we will substitute the given values of $x_1$ and $x_2$ and show that there is a valid value of $t$ such that $\nabla f(x^*) = 0$ \newline 
 
-        $\nabla f = A^T A (\frac{2 (x - x_1)}{(c^Tx + d)} - \frac{\|\mathbf{Ax - b}\|^2_2 x_2}{(c^Tx + d) ^ 2})$ \newline 
+        $\nabla f(x^*) = \frac{2(A^TA(x_1 + tx_2) - A^Tb)}{(c^T(x_1 + tx_2) + d)} - \frac{\|\mathbf{A(x_1 + tx_2) - b}\|^2_2 (c)}{(c^T(x_1 + tx_2) + d) ^ 2}$ \newline 
 
+        $A^TAx_1 = A^Tb$. We can use that to our advantage and substitute it in our expression
+
+        $\nabla f(x^*) = \frac{2(A^Tb + tA^TAx_2 - A^Tb)}{(c^T(x_1 + tx_2) + d)} - \frac{\|\mathbf{A(x_1 + tx_2) - b}\|^2_2 (c)}{(c^T(x_1 + tx_2) + d) ^ 2}$ \newline 
+
+        $\nabla f(x^*) = \frac{2tA^TAx_2}{(c^T(x_1 + tx_2) + d)} - \frac{\|\mathbf{A(x_1 + tx_2) - b}\|^2_2 (c)}{(c^T(x_1 + tx_2) + d) ^ 2}$ \newline 
+
+        $A^TAx_2 = c$. We can use that to our advantage and substitute it in our expression \newline 
+
+        $\nabla f(x^*) = \frac{2tA^TAx_2}{(c^T(x_1 + tx_2) + d)} - \frac{\|\mathbf{A(x_1 + tx_2) - b}\|^2_2 (A^TAx_2)}{(c^T(x_1 + tx_2) + d) ^ 2}$ \newline 
+
+        $\nabla f(x^*) = A^TAx_2 (\frac{2t}{(c^T(x_1 + tx_2) + d)} - \frac{\|\mathbf{A(x_1 + tx_2) - b}\|^2_2}{(c^T(x_1 + tx_2) + d) ^ 2})$ \newline 
+
+
+        Now, we must show that, there is a valid value of $t$ that makes this gradient 0. \newline 
+
+        
         Now, let's set this gradient to 0 \newline 
 
-        $\nabla f = A^T A (\frac{2 (x - x_1)}{(c^Tx + d)} - \frac{\|\mathbf{Ax - b}\|^2_2 x_2}{(c^Tx + d) ^ 2}) = 0$ \newline 
+        $A^TAx_2 (\frac{2t}{(c^T(x_1 + tx_2) + d)} - \frac{\|\mathbf{A(x_1 + tx_2) - b}\|^2_2}{(c^T(x_1 + tx_2) + d) ^ 2}) = 0$ \newline 
 
-        $\nabla f = \frac{2 (x - x_1)}{(c^Tx + d)} - \frac{\|\mathbf{Ax - b}\|^2_2 x_2}{(c^Tx + d) ^ 2} = 0$ \newline 
-
-        We know that $x - x_1 = tx_2$ \newline 
-
-        $\nabla f = \frac{2 tx_2}{(c^Tx + d)} - \frac{\|\mathbf{Ax - b}\|^2_2 x_2}{(c^Tx + d) ^ 2} = 0$ \newline 
-
-         $\nabla f = x_2 (\frac{2 t}{(c^Tx + d)} - \frac{\|\mathbf{Ax - b}\|^2_2 }{(c^Tx + d) ^ 2}) = 0$ \newline 
-
-         $\nabla f = \frac{2 t}{(c^Tx + d)} - \frac{\|\mathbf{Ax - b}\|^2_2 }{(c^Tx + d) ^ 2} = 0$ \newline 
-
-         $\frac{2 t}{(c^Tx + d)}  = \frac{\|\mathbf{Ax - b}\|^2_2 }{(c^Tx + d) ^ 2}$ \newline 
-
-         $t = \frac{\|\mathbf{Ax - b}\|^2_2 }{2(c^Tx + d)}$ \newline 
+        $\frac{2t}{(c^T(x_1 + tx_2) + d)} - \frac{\|\mathbf{A(x_1 + tx_2) - b}\|^2_2}{(c^T(x_1 + tx_2) + d) ^ 2} = 0$ \newline 
 
          $t = \frac{\|\mathbf{Ax_1 + Atx_2 - b}\|^2_2 }{2(c^Tx_1 + tc^Tx_2 + d)}$ \newline 
 
 
          $2t^2 c^Tx_2 + 2t(c^Tx_1 + d) = t^2 \|\mathbf{Ax_2}\|^2_2 + 2t(Ax_1 - b)^T Ax_2 +  \|\mathbf{Ax_1 - b}\|^2_2 $ \newline 
 
-         $2t^2 c^Tx_2 + 2t(c^Tx_1 + d) = t^2 c^T x_2 +  \|\mathbf{Ax_1 - b}\|^2_2  = 0$ \newline 
+         We can make some key observations here that allow us to simplify this expression
+         
+         \begin{itemize}
+             \item $||Ax_2||^2_2 = (Ax_2)^T(Ax_2) = x_2A^TAx_2 = (A^TAx_2)^T x_2 = c^T x_2$
+             \item $2t(Ax_1 - b)^TAx_2 = 2t(x_1^TA^T - b^T)Ax_2 = 2t(x_1^TA^TAx_2 - b^TAx_2) = 2t((A^TAx_1)^Tx_2 - b^TAx_2) = 2t((A^Tb)^Tx_2 - b^TAx_2) = 2t(b^TAx_2 - b^TAx_2) = 0$
+         \end{itemize}
+
+         $2t^2 c^Tx_2 + 2t(c^Tx_1 + d) = t^2 c^T x_2 +  \|\mathbf{Ax_1 - b}\|^2_2 $ \newline 
 
          $t^2 c^Tx_2 + 2t(c^Tx_1 + d) - \|\mathbf{Ax_1 - b}\|^2_2  = 0 $ \newline 
 
@@ -487,7 +524,7 @@ We assume $rank A = n$ and $b \notin R(A)$
 
         As given by the domain restriction, we just need to solve for the value of $t$ such that: \newline 
 
-        $c^T(x) + d > 0$ \newline 
+        $c^T(x^*) + d > 0$ \newline 
         $c^T(x_1 + tx_2) + d > 0$ \newline 
 
         Given the equation for the roots, we can proceed from there: \newline 
@@ -501,13 +538,22 @@ We assume $rank A = n$ and $b \notin R(A)$
         $(c^Tx_1 + d) + c^Tx_2 t = \pm \sqrt{(c^Tx_1 + d)^2 + c^Tx_2 \|\mathbf{Ax_1 - b}\|^2_2}$ \newline 
 
         $c^T(x_1 + tx_2) + d = \pm \sqrt{(c^Tx_1 + d)^2 + c^Tx_2 \|\mathbf{Ax_1 - b}\|^2_2}$
-        
 
-        Since we want $c^T(x_1 + tx_2) + d > 0$ \newline 
-        we can just say that we want  
-        $\sqrt{(c^Tx_1 + d)^2 + c^Tx_2 \|\mathbf{Ax_1 - b}\|^2_2} > 0$
+        As I showed earlier, $||Ax_2||^2_2 = (Ax_2)^T(Ax_2) = x_2A^TAx_2 = (A^TAx_2)^T x_2 = c^T x_2$. Hence, I can rewrite the square root as such: \newline 
 
-         
+        $c^T(x_1 + tx_2) + d = \pm \sqrt{(c^Tx_1 + d)^2 + ||Ax_2||^2_2 \|\mathbf{Ax_1 - b}\|^2_2}$
+
+        The inside of the square root, clearly, must be $\geq 0$. Hence, the square root will evaluate to a real number! This is good news for us. 
+
+        Since we want $c^T(x_1 + tx_2) + d > 0$, we can just say that we want  
+        $c^T(x_1 + tx_2) + d =  \sqrt{(c^Tx_1 + d)^2 + ||Ax_2||^2_2 \|\mathbf{Ax_1 - b}\|^2_2}$ \newline 
+
+        $c^T(x_1 + tx_2) + d =  \sqrt{(c^Tx_1 + d)^2 + c^Tx_2 \|\mathbf{Ax_1 - b}\|^2_2}$ \newline 
+
+
+        This means that $t = \frac{-(c^Tx_1 + d) + \sqrt{(c^Tx_1 + d)^2 + c^Tx_2 \|\mathbf{Ax_1 - b}\|^2_2}}{c^Tx_2}$ is both guaranteed to be a valid real number that also satisfies our domain constraint! 
+
+        This completes the proof. 
         
         
     \end{solution}
