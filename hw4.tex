@@ -104,7 +104,41 @@
 
 \bigskip
 
-\begin{problem} 
+\begin{problem} \textit{Initial point and sublevel set condition.} Consider the function $f(x) = x_1^2 + x_2^2$ with domain $dom f = \{ (x_1, x_2) | x_1 > 1\}.$
+
+\begin{enumerate}
+    \item[(a)] What is $p^*$ and is it attained by any $x \in dom(f)$?
+    \begin{solution}
+        $p^* = \inf_x f(x) = \lim_{x\to (1, 0)} f(x) = 1$. Unfortunately, this is NOT attained by any $x \in dom(f)$
+    \end{solution}
+    \item[(b)] Draw the sublevel set $S = \{x | f(x) \leq f(x^{(0)})\}$ for $x^{(0)} = (2, 2)$. Is the sublevel set $S$ closed? Is $f$ strongly convex on $S$?
+    \begin{solution}
+        \begin{figure}[h!]
+        \centering
+        \includegraphics[width=\textwidth]{1b.jpg}
+        \caption{Sketch of Sublevel Set}
+    \end{figure}  
+    \end{solution}
+
+    This sublevel set is NOT closed. Let's look at the sequence $(\frac{t + 1}{t}, 1)$ for $t \in \mathbb{N}$. This sequence is contained within the sublevel set but, the limit point of $(1, 1)$ is NOT in the sublevel set
+    
+    $f$ IS strongly convex on $S$. 
+
+    \item[(c)] What happens if we apply the gradient method with backtracking line search, starting at $x^{(0)}$? Does $f(x^{(k)})$ converge to $p^*$? 
+
+    \begin{solution}
+    We can see that $\nabla f(x) = \begin{pmatrix}
+2x_1 \\
+2x_2
+\end{pmatrix}$, $-\nabla f(x) = \begin{pmatrix}
+-2x_1 \\
+-2x_2
+\end{pmatrix}$
+
+Since $f$ is strongly convex on $S$, if we apply the backtracking line search starting at $x^{(0)}$, $f(x^{(k)})$ should converge to $p^*$
+ 
+    \end{solution}
+\end{enumerate}
 
     
 \end{problem}
