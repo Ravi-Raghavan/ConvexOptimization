@@ -120,9 +120,15 @@
     \end{figure}  
     \end{solution} Note: The sketch is on the next page
 
-    This sublevel set is NOT closed. Let's look at the sequence $(\frac{t + 1}{t}, 1)$ for $t \in \mathbb{N}$. This sequence is contained within the sublevel set but, the limit point of $(1, 1)$ is NOT in the sublevel set
+    This sublevel set is NOT closed. Let's look at the sequence $(\frac{t + 1}{t}, 1)$ for $t \in \mathbb{N}$. Please note that, in this definition, the Natural Numbers are $1, 2, 3, .....$. It DOES NOT include 0.  This sequence is contained within the sublevel set but, the limit point of $(1, 1)$ is NOT in the sublevel set
     
-    $f$ IS strongly convex on $S$. 
+    $f$ IS strongly convex on $S$. $\nabla f(x) = \begin{pmatrix}
+2x_1 \\
+2x_2
+\end{pmatrix}$, $\nabla^2 f(x) = \begin{pmatrix}
+2 & 0 \\
+0 & 2
+\end{pmatrix}$. Hence, we can clearly find an $m$ and $M$ such that $mI \preceq \nabla^2 f(x) \preceq MI$
 
     \item[(c)] What happens if we apply the gradient method with backtracking line search, starting at $x^{(0)}$? Does $f(x^{(k)})$ converge to $p^*$? 
 
