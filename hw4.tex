@@ -141,7 +141,15 @@
 -2x_2
 \end{pmatrix}$
 
-Since $f$ is strongly convex on $S$, if we apply the backtracking line search starting at $x^{(0)}$, $f(x^{(k)})$ should converge to $p^*$
+We start our iteration at $(2, 2)$. When $x_1 = x_2$, it is clear to see that $\frac{\partial{f}}{\partial{x_1}} = \frac{\partial{f}}{\partial{x_2}}$. Let $x^{(k)}$ represent iterate at the end of iteration $k$. 
+
+Hence, we know that $x^{(k + 1)} = x^{(k)} + t \Delta x^{(k)}$. Since we are doing the gradient method with backtracking line search, we can further say that  $x^{(k + 1)} = x^{(k)} - t \nabla f(x^{(k)})$
+
+Since, for $x^{(0)}$,  $x_1 = x_2$, and we know that when $x_1 = x_2$, $\frac{\partial{f}}{\partial{x_1}} = \frac{\partial{f}}{\partial{x_2}}$, we can say that for $x^{(k + 1)}$, $x_1$ will equal $x_2$. 
+
+Hence, it is clear to see that our descent is continuing along the line $x_1 = x_2$. It is also clear to see that the iterate sequence is converging to $(1, 1)$.   
+
+We can state that $\lim_{k \to \infty} x^{(k)} = (1, 1)$ and $\lim_{k \to \infty} f(x^{(k)}) = 2$. It is clear to see that $f(x^{(k)})$ does NOT converge to $p^*$
  
     \end{solution}
 \end{enumerate}
