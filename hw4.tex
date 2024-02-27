@@ -118,7 +118,7 @@
         \includegraphics[width=\textwidth]{1b.jpg}
         \caption{Sketch of Sublevel Set}
     \end{figure}  
-    \end{solution}
+    \end{solution} Note: The sketch is on the next page
 
     This sublevel set is NOT closed. Let's look at the sequence $(\frac{t + 1}{t}, 1)$ for $t \in \mathbb{N}$. This sequence is contained within the sublevel set but, the limit point of $(1, 1)$ is NOT in the sublevel set
     
@@ -143,6 +143,7 @@ Since $f$ is strongly convex on $S$, if we apply the backtracking line search st
     
 \end{problem}
 
+\newpage
 \begin{problem} \textit{Backtracking Line Search} Suppose $f$ is strongly convex with $mI \preceq \nabla^2f(x) \preceq MI$. Let $\Delta x$ be a descent direction at $x$. Show that the backtracking stopping condition holds for
 
 \begin{equation}
@@ -209,6 +210,7 @@ Since $\alpha \in (0, 0.5)$, we can see that $\frac{2(\alpha - 1) \nabla f(x)^T 
 Hence, we see that $0 < t \leq -\frac{\nabla f(x)^T \Delta x}{M ||\Delta x||^2_2}$
 
 Let $t_1 = -\frac{\nabla f(x)^T \Delta x}{M ||\Delta x||^2_2}$ \newline
+
 For an upper bound on the number of backtracking iterations, we need: \newline 
 $\beta^k \leq t_1$ \newline
 $k \geq \log _{\beta}(t_1)$ \newline
@@ -219,13 +221,9 @@ $k \geq \log _{\beta}(t_1)$ \newline
 \begin{problem} \textit{Quadratic problem in } $\mathbb{R}^2.$  Verify the expressions for the iterates $x^{(k)}$ in the first example of 9.3.2
 
 \begin{solution} 
-$f(x) = \frac{1}{2} (x_1^2 + \gamma x_2^2)$\newline 
+$f(x) = \frac{1}{2} (x_1^2 + \gamma x_2^2)$, $\frac{\partial{f}}{\partial{x_1}} = x_1$ and $\frac{\partial{f}}{\partial{x_2}} = \gamma x_2$, $\nabla f(x) = (x_1, \gamma x_2)$ \newline 
 
-$\frac{\partial{f}}{\partial{x_1}} = x_1$ and $\frac{\partial{f}}{\partial{x_2}} = \gamma x_2$ \newline 
-
-$\nabla f(x) = (x_1, \gamma x_2)$ \newline 
-
-At $k = 0$, $x^0 = (\gamma, 1)$ \newline 
+We know that, at $k = 0$, $x^0 = (\gamma, 1)$ \newline 
 
 
 $x^{(k)} - \alpha \nabla f(x^{(k)}) = \begin{pmatrix}
@@ -233,7 +231,8 @@ $x^{(k)} - \alpha \nabla f(x^{(k)}) = \begin{pmatrix}
 (1 - \alpha \gamma) x_2
 \end{pmatrix}$
 
-Let's verify the expressions for the iterates $x^{(k)}$. In the book, the iterate expressions are given as follows: \newline 
+\textbf{\underline{Exact Line Search:}} \newline 
+Given the expressions for the iterates $x^{(k)}$, let's conduct exact line search. In the book, the iterate expressions are given as follows: \newline 
 
 $x_1^{(k)} = \gamma (\frac{\gamma - 1}{\gamma + 1})^k$ and $x_1^{(k)} = (-\frac{\gamma - 1}{\gamma + 1})^k$
 
@@ -251,7 +250,7 @@ $f(x^{(k)} - \alpha \nabla f(x^{(k)})) = \frac{1}{2} (\frac{\gamma - 1}{\gamma +
 
 To minimize $g(\alpha) = f(x^{(k)} - \alpha \nabla f(x^{(k)}))$, it is clear that we must minimize $((1 - \alpha)^2 \gamma^2 + \gamma (1 - \alpha \gamma)^2)$
 
-$\frac{d}{d\alpha}((1 - \alpha)^2 \gamma^2 + \gamma (1 - \alpha \gamma)^2) = -2(1 - \alpha)\gamma^2 -2\gamma^2 (1 - \alpha \gamma)$
+$\frac{d}{d\alpha}((1 - \alpha)^2 \gamma^2 + \gamma (1 - \alpha \gamma)^2) = -2(1 - \alpha)\gamma^2 -2\gamma^2 (1 - \alpha \gamma)$ \newline 
 
 Setting this derivative equal to 0 gives us: \newline 
 $-2(1 - \alpha)\gamma^2 -2\gamma^2 (1 - \alpha \gamma) = 0$ \newline 
@@ -264,29 +263,40 @@ $\alpha = \frac{2}{1 + \gamma}$ \newline
 
 Substituting the value of alpha, we get: \newline
 $x^{(k + 1)} = x^{(k)} - \alpha \nabla f(x^{(k)}) = \begin{pmatrix}
-(1 - \alpha) x_1^k \\
-(1 - \alpha \gamma) x_2^k
+(1 - \alpha) x_1^{(k)} \\
+(1 - \alpha \gamma) x_2^{(k)}
 \end{pmatrix} = \begin{pmatrix}
-\frac{\gamma - 1}{\gamma + 1} x_1^k \\
-\frac{1 - \gamma}{\gamma + 1} x_2^k
+\frac{\gamma - 1}{\gamma + 1} x_1^{(k)} \\
+\frac{1 - \gamma}{\gamma + 1} x_2^{(k)}
 \end{pmatrix}$ \newline 
 
 
-\textbf{\underline{Verification via Induction:}} \newline 
-$x_1^0 = \gamma = \gamma (\frac{\gamma - 1}{\gamma + 1})^0$, $x_2^0 = 1 =(-\frac{\gamma - 1}{\gamma + 1})^0$
+\textbf{\underline{Verification:}} \newline 
+First, we show that the closed form expressions are TRUE for $k = 0$ \newline
+$x_1^{(0)} = \gamma = \gamma (\frac{\gamma - 1}{\gamma + 1})^0$, $x_2^{(0)} = 1 =(-\frac{\gamma - 1}{\gamma + 1})^0$, $f(x^{(0)}) = \frac{1}{2} (\gamma^2 + \gamma) = \frac{\gamma (\gamma + 1)}{2} = \frac{\gamma (\gamma + 1)}{2} (\frac{\gamma - 1}{\gamma + 1})^{(2 * 0)} = \frac{\gamma (\gamma + 1)}{2} (\frac{\gamma - 1}{\gamma + 1})^{0}$ \newline 
 
+
+Now, assuming the closed form expressions are TRUE for $k$, show that they must be true for $k + 1$ \newline 
 $x^{(k + 1)} = x^{(k)} - \alpha \nabla f(x^{(k)}) = \begin{pmatrix}
-\frac{\gamma - 1}{\gamma + 1} x_1^k \\
-\frac{1 - \gamma}{\gamma + 1} x_2^k
+\frac{\gamma - 1}{\gamma + 1} x_1^{(k)} \\
+\frac{1 - \gamma}{\gamma + 1} x_2^{(k)}
 \end{pmatrix} = \frac{\gamma - 1}{\gamma + 1} \begin{pmatrix}
-    x_1^k \\
-    -x_2^k
+    x_1^{(k)} \\
+    -x_2^{(k)}
 \end{pmatrix}$
 
-$x_1^{(k + 1)} = \frac{\gamma - 1}{\gamma + 1} x_1^k = \frac{\gamma - 1}{\gamma + 1} (\gamma (\frac{\gamma - 1}{\gamma + 1})^k) = \gamma (\frac{\gamma - 1}{\gamma + 1})^{(k + 1)}$
+$x_1^{(k + 1)} = \frac{\gamma - 1}{\gamma + 1} x_1^{(k)} = \frac{\gamma - 1}{\gamma + 1} (\gamma (\frac{\gamma - 1}{\gamma + 1})^k) = \gamma (\frac{\gamma - 1}{\gamma + 1})^{(k + 1)}$
 
-$x_2^{(k + 1)} = \frac{\gamma - 1}{\gamma + 1} (-x_2^k) = -\frac{\gamma - 1}{\gamma + 1} (-\frac{\gamma - 1}{\gamma + 1})^k = (-\frac{\gamma - 1}{\gamma + 1})^{(k + 1)}$
+$x_2^{(k + 1)} = \frac{\gamma - 1}{\gamma + 1} (-x_2^{(k)}) = -\frac{\gamma - 1}{\gamma + 1} (-\frac{\gamma - 1}{\gamma + 1})^k = (-\frac{\gamma - 1}{\gamma + 1})^{(k + 1)}$
 
+$f(x^{(k + 1)}) = \frac{1}{2} (\frac{\gamma - 1}{\gamma + 1})^{2(k + 1)} (\gamma^2 + \gamma) = \frac{\gamma (\gamma + 1)}{2} (\frac{\gamma - 1}{\gamma + 1})^{2(k + 1)}$ \newline 
+
+
+
+This completes the verification and shows that the following are TRUE: \newline 
+$x_1^{(k)} = \gamma (\frac{\gamma - 1}{\gamma + 1})^{(k)}$ \newline 
+$x_2^{(k)} = (-\frac{\gamma - 1}{\gamma + 1})^{(k)}$ \newline 
+$f(x^{(k)}) = \frac{\gamma (\gamma + 1)}{2} (\frac{\gamma - 1}{\gamma + 1})^{2k}$
 
 \end{solution}
 \end{problem}
