@@ -212,20 +212,17 @@ $0 \geq t[(1 - \alpha) \nabla f(x)^T (\Delta x) + \frac{Mt}{2} ||\Delta x||^2_2]
 We must have $t > 0$ AND $(1 - \alpha) \nabla f(x)^T (\Delta x) + \frac{Mt}{2} ||\Delta x||^2_2 \leq 0$
 
 $(1 - \alpha) \nabla f(x)^T (\Delta x) + \frac{Mt}{2} ||\Delta x||^2_2 \leq 0$ \newline 
-
 $\frac{Mt}{2} ||\Delta x||^2_2 \leq (\alpha - 1) \nabla f(x)^T (\Delta x)$ \newline 
-
 $t \leq \frac{2(\alpha - 1) \nabla f(x)^T (\Delta x)}{M||\Delta x||^2_2}$ \newline 
 
+Hence, we are guaranteed for the backtracking condition to hold when $t \leq \frac{2(\alpha - 1) \nabla f(x)^T (\Delta x)}{M||\Delta x||^2_2}$ \newline 
 
+Since $\alpha \in (0, 0.5)$, we can see that $\frac{2(\alpha - 1) \nabla f(x)^T (\Delta x)}{M||\Delta x||^2_2} \geq -\frac{\nabla f(x)^T \Delta x}{M ||\Delta x||^2_2}$ \newline 
 
-Since $\alpha \in (0, 0.5)$, we can see that $\frac{2(\alpha - 1) \nabla f(x)^T (\Delta x)}{M||\Delta x||^2_2} < -\frac{\nabla f(x)^T \Delta x}{M ||\Delta x||^2_2}$ \newline 
+Hence, we see that, when $0 < t \leq -\frac{\nabla f(x)^T \Delta x}{M ||\Delta x||^2_2}$, the backtracking stopping condition holds. 
 
-Hence, we see that $0 < t \leq -\frac{\nabla f(x)^T \Delta x}{M ||\Delta x||^2_2}$
-
-Let $t_1 = -\frac{\nabla f(x)^T \Delta x}{M ||\Delta x||^2_2}$ \newline
-
-For an upper bound on the number of backtracking iterations, we need: \newline 
+Let $t_1 = \frac{2(\alpha - 1) \nabla f(x)^T (\Delta x)}{M||\Delta x||^2_2}$ \newline
+For an upper bound on the number of backtracking iterations, assuming $t_1 \leq 1 $, we need: \newline 
 $\beta^k \leq t_1$ \newline
 $k \geq \log _{\beta}(t_1)$ \newline
 
@@ -248,7 +245,9 @@ $x^{(k)} - \alpha \nabla f(x^{(k)}) = \begin{pmatrix}
 \textbf{\underline{Exact Line Search:}} \newline 
 Given the expressions for the iterates $x^{(k)}$, let's conduct exact line search. In the book, the iterate expressions are given as follows: \newline 
 
-$x_1^{(k)} = \gamma (\frac{\gamma - 1}{\gamma + 1})^k$ and $x_1^{(k)} = (-\frac{\gamma - 1}{\gamma + 1})^k$
+$x_1^{(k)} = \gamma (\frac{\gamma - 1}{\gamma + 1})^k$ and $x_2^{(k)} = (-\frac{\gamma - 1}{\gamma + 1})^k$
+
+The book states that $f(x^{(k)}) = \frac{\gamma (\gamma + 1)}{2} (\frac{\gamma - 1}{\gamma + 1})^{(2k)}$
 
 Substituting these expressions into $x^{(k)} - \alpha \nabla f(x^{(k)})$ gives us: \newline 
 
