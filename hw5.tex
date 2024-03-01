@@ -1,0 +1,233 @@
+\documentclass{article}
+
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+%=====================================================
+% Add PACKAGES Here (You typically would not need to):
+%=====================================================
+
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}  % Include the amsmath and amssymb packages for mathematical symbols
+
+%=====================================================
+% Ignore This Part (But Do NOT Delete It:)
+%=====================================================
+
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem*{fun}{Fun with Algorithms}
+\newtheorem*{challenge}{Challenge Yourself}
+\def\fline{\rule{0.75\linewidth}{0.5pt}}
+\newcommand{\finishline}{\begin{center}\fline\end{center}}
+\newtheorem*{solution*}{Solution}
+\newenvironment{solution}{\begin{solution*}}{{\finishline} \end{solution*}}
+\newcommand{\grade}[1]{\hfill{\textbf{($\mathbf{#1}$ points)}}}
+\newcommand{\thisdate}{March 7, 2024}
+\newcommand{\thissemester}{\textbf{Rutgers: Spring 2024}}
+\newcommand{\thiscourse}{ECE 509: Convex Optimization} 
+\newcommand{\thishomework}{Number} 
+\newcommand{\thisname}{Name} 
+\newcommand{\thisextension}{Yes/No} 
+
+\headheight 40pt              
+\headsep 10pt
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
+
+\newcommand{\thisheading}{
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { \textbf{\thiscourse \hfill \thissemester} }
+       \vspace{4mm}
+       \hbox to 6.28in { {\Large \hfill Homework \#\thishomework \hfill} }
+       \vspace{2mm}
+         \hbox to 6.28in { { \hfill \thisdate  \hfill} }
+       \vspace{2mm}
+       \hbox to 6.28in { \emph{Name: \thisname \hfill Extension: \thisextension}}
+      \vspace{2mm}}
+      }
+   \end{center}
+   \bigskip
+}
+
+%=====================================================
+% Some useful MACROS (you can define your own in the same exact way also)
+%=====================================================
+
+
+\newcommand{\ceil}[1]{{\left\lceil{#1}\right\rceil}}
+\newcommand{\floor}[1]{{\left\lfloor{#1}\right\rfloor}}
+\newcommand{\prob}[1]{\Pr\paren{#1}}
+\newcommand{\expect}[1]{\Exp\bracket{#1}}
+\newcommand{\var}[1]{\textnormal{Var}\bracket{#1}}
+\newcommand{\set}[1]{\ensuremath{\left\{ #1 \right\}}}
+\newcommand{\poly}{\mbox{\rm poly}}
+
+
+%=====================================================
+% Fill Out This Part With Your Own Information:
+%=====================================================
+
+
+\renewcommand{\thishomework}{5} %Homework number
+\renewcommand{\thisname}{Ravi Raghavan} % Enter your name here
+\renewcommand{\thisextension}{No} % Pick only one of the two options accordingly
+
+\begin{document}
+
+\thisheading
+\vspace{-0.75cm}
+
+
+%=====================================================
+% LaTeX Tip: You can erase this part from here.... 
+%=====================================================		
+
+\finishline
+
+%=====================================================
+% LaTeX Tip: ... to here
+%=====================================================	
+
+
+\bigskip
+
+\begin{problem} \textit{Steepest descent method in $l_{\infty}$-norm. Explain how to find a steepest descent direction in the $l_{\infty}$-norm, and give a simple interpretation.}
+
+\begin{solution}
+    $\Delta x_{sd} = ||\nabla f(x)||_* \Delta x_{nsd}$ \newline 
+    $x_{nsd} = argmin \{\nabla f(x)^T x \enspace | \enspace ||x||_{\infty} \leq 1 \}$ \newline 
+    $||\nabla f(x)||_* = sup \{\nabla f(x)^T x \enspace | \enspace ||x||_{\infty} \leq 1\}$ \newline 
+
+    We know that the dual norm of the $l_{\infty}$-norm is just the $l_{1}$-norm. Hence, we can say that $||\nabla f(x)||_*$, under the $l_{\infty}$-norm, is just $||\nabla f(x)||_1$
+
+    When analyzing the normalized steepest descent direction, it is clear to see that $x_{nsd} = -sign(\nabla f(x))$. To clarify, the $sign$ function is applied component-wise to $\nabla f(x)$ 
+
+    Hence, the unnormalized steepest descent direction is just $\Delta x_{sd} = -||\nabla f(x)||_1 sign(\nabla f(x))$ \newline
+
+
+    \textbf{\underline{Simple Interpretation:}} If the partial derivative of the function $f$ with respect to $x_i$ is positive, we will have to reduce $x_i$. This makes sense because it will be like reducing $f$ as well. On the other hand, if the partial derivative of the function $f$ with respect to $x_i$ is negative, we will increase $x_i$. This makes sense because it will be like reducing $f$ as well. 
+    
+\end{solution}
+
+\end{problem}
+
+\begin{problem} \textit{The pure Newton method.} Newton’s method with fixed step size $t = 1$ can diverge if the initial point is not close to $x^*$. In this problem we consider two examples. Plot f and f', and show the first few iterates.
+\begin{enumerate}
+    \item[(a)] $f(x) = \log{(e^x + e^{-x})}$ has a unique minimizer $x^* = 0$. Run Newton’s method with fixed step size $t = 1$, starting at $x^{(0)} = 1$ and at $x^{(0)} = 1.1$
+    \begin{solution}
+
+    $\nabla(f(x)) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$ \newline 
+    $\nabla^2(f(x)) = \frac{(e^x + e^{-x})^2 - (e^x - e^{-x})^2}{(e^x + e^{-x})^2} = \frac{4}{(e^x + e^{-x})^2}$
+
+    $x^{(0)} = 1$ \newline 
+    $\Delta x_{nt} = -\frac{\nabla(f(x))}{\nabla^2(f(x))}$ \newline 
+
+    $\Delta x_{nt} = -\frac{\nabla(f(x^{(0)}))}{\nabla^2(f(x^{(0)}))} = - \frac{0.761594155956}{0.419974341614} = -1.81343020392$ \newline 
+
+    $x^{(1)} = x^{(0)} + \Delta x_{nt} = 1 - 1.81343020392 = -0.813430203924 = -8.134 \cdot 10^{-1}$
+
+    $x^{(2)} = x^{(1)} + \Delta x_{nt} = -0.813430203924 + 1.22283252051 = 0.409402316586 = 4.094 \cdot 10^{-1}$
+
+    $x^{(3)} = x^{(2)} + \Delta x_{nt} = 0.409402316586 - 0.456707233043 = - 0.047304916457 = -4.730 \cdot 10^{-2}$
+
+    $x^{(4)} = x^{(3)} + \Delta x_{nt} = -0.047304916457 + 0.0473755192607 = 0.0000706028 = 7.060 \cdot 10^{-5}$
+    
+    $x^{(5)} = x^{(4)} + \Delta x_{nt} = 0.0000706028 - 0.0000706028039346 = -2.346 \cdot 10^{-13}$
+
+    \begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        k & $x^{(k)}$ & $f(x^{(k)})$ & $f(x^{(k)}) - p^*$ \\
+        \hline
+        1 & $-8.134 \cdot 10^{-1}$ & 0.992869009359 & 0.299721828799 \\
+        2 & $4.094 \cdot 10^{-1}$ & 0.774710796746 & 0.0815636161863\\
+        3 & $-4.730 \cdot 10^{-2}$ & 0.694265641074 & 0.00111846051368\\
+        4 & $7.060 \cdot 10^{-5}$ & 0.693147183052 & $2.4923778597 \cdot 10^{-9}$\\
+        5 & $-2.346 \cdot 10^{-13}$ & 0.69314718056 & $5.4733995 \cdot 10^{-14}$\\
+        \hline
+    \end{tabular}
+    \caption{Newton's Method: $x^{(0)} = 1$}
+    \label{tab:mytable}
+\end{table}
+
+
+Now, let's change $x^{(0)} = 1.1$ 
+
+$x^{(1)} = x^{(0)} + \Delta x_{nt} = - 1.12855258527$
+
+    $x^{(2)} = x^{(1)} + \Delta x_{nt} = 1.23413113304$
+
+    $x^{(3)} = x^{(2)} + \Delta x_{nt} = - 1.69516597992$
+
+    $x^{(4)} = x^{(3)} + \Delta x_{nt} = 5.71536010038$
+    
+    $x^{(5)} = x^{(4)} + \Delta x_{nt} = - 23021.3564857$
+
+    \begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        k & $x^{(k)}$ & $f(x^{(k)})$ & $f(x^{(k)}) - p^*$ \\
+        \hline
+        1 & $- 1.12855258527$ & 1.22808384311 & 0.534936662546 \\
+        2 & $1.23413113304$ & 1.31546405981 & 0.622316879246\\
+        3 & $- 1.69516597992$ & 1.72830814921 & 1.03516096865\\
+        4 & $5.71536010038$ & 5.71537095711 & $5.02222377655$\\
+        5 & $- 23021.3564857$ & $23021.3564857$ & $23020.6633385$\\
+        \hline
+    \end{tabular}
+    \caption{Newton's Method: $x^{(0)} = 1$}
+    \label{tab:mytable}
+\end{table}
+        
+    \end{solution}
+    \item[(b)] $f(x) = -\log{(x)} + x$ has a unique minimizer $x^* = 1$. Run Newton’s method with fixed step size $t = 1$, starting at $x^{(0)} = 3$
+
+    \begin{solution}
+        $\nabla(f(x)) = \frac{-1}{x} + 1 = \frac{x - 1}{x}$ \newline 
+    $\nabla^2(f(x)) = \frac{1}{x^2}$
+
+    $\Delta x_{nt} = -\frac{\nabla(f(x))}{\nabla^2(f(x))} = -(x - 1) x$ \newline 
+
+    We know that $x^{(0)} = 3$ \newline 
+    
+$x^{(1)} = x^{(0)} + \Delta x_{nt} = -3$
+
+Since $f(x) = -\log{(x)} + x$, we can see that $dom f = \{ x \in (0, \infty)\}$
+When we apply Newton's Method, we are already outside the domain.
+    
+    \end{solution}
+    
+\end{enumerate}
+\end{problem}
+
+\begin{problem} \textit{Gradient and Newton methods for composition functions.} Suppose $\phi: \mathbb{R} \rightarrow \mathbb{R}$ is increasing and convex, and $f: \mathbb{R}^n \rightarrow \mathbb{R}$ is convex, so $g(x) = \phi(f(x))$ is convex. (We assume that f and g are twice differentiable.) The problems of minimizing f and minimizing g are clearly equivalent. \newline 
+Compare the gradient method and Newton’s method, applied to f and g. How are the
+search directions related? How are the methods related if an exact line search is used?
+Hint. Use the matrix inversion lemma
+
+\begin{solution} Analysis
+
+\textbf{\underline{Gradient Descent:}} \newline 
+    $\nabla g(x) = \phi'(f(x)) \nabla f(x)$. It is clear to see that the $\nabla g(x)$ is a positive multiple of $\nabla f(x)$. Hence, if we use exact line search, the iterates of gradient descent will be the same. However, if we use another method such as backtracking search, it may not be the same. 
+\end{solution}
+\end{problem}
+
+
+\end{document}
+
+
+
+
+
