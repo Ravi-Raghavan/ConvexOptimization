@@ -217,10 +217,68 @@ Compare the gradient method and Newton’s method, applied to f and g. How are t
 search directions related? How are the methods related if an exact line search is used?
 Hint. Use the matrix inversion lemma
 
-\begin{solution} Analysis
+\begin{solution} Analysis of Gradient Descent and Newton's Method
 
 \textbf{\underline{Gradient Descent:}} \newline 
     $\nabla g(x) = \phi'(f(x)) \nabla f(x)$. It is clear to see that the $\nabla g(x)$ is a positive multiple of $\nabla f(x)$. Hence, if we use exact line search, the iterates of gradient descent will be the same. However, if we use another method such as backtracking search, it may not be the same. 
+
+\textbf{\underline{Newton's Method:}} \newline 
+$\nabla^2g(x) = \phi^{''}(f(x)) \nabla f(x) \nabla f(x)^T + \phi^{'}(f(x))\nabla^2f(x)$
+
+Search Direction when Newton's Method is applied to $f$: $\Delta x_{nt} = -\nabla^2f(x)^{-1} \nabla f(x)$
+
+Search Direction when Newton's Method is applied to $g$: $\Delta x_{nt} = -\nabla^2g(x)^{-1} \nabla g(x) = -(\phi^{''}(f(x)) \nabla f(x) \nabla f(x)^T + \phi^{'}(f(x))\nabla^2f(x))^{-1} ( \phi'(f(x)) \nabla f(x))$
+
+
+According to the Matrix Inversion Lemma, we know that $(A + BC)^{-1} = A^{-1} - A^{-1}B (I + CA^{-1}B)^{-1} CA^{-1}$ \newline 
+
+We see that $\Delta x_{nt} = -(\phi^{''}(f(x)) \nabla f(x) \nabla f(x)^T + \phi^{'}(f(x))\nabla^2f(x))^{-1} ( \phi'(f(x)) \nabla f(x))$ \newline 
+
+$A = \phi^{'}(f(x))\nabla^2f(x)$ \newline 
+$B = \phi^{''}(f(x))  \nabla f(x)$ \newline 
+$C = \nabla f(x)^T$
+
+Let's simplify $(\phi^{''}(f(x)) \nabla f(x) \nabla f(x)^T + \phi^{'}(f(x))\nabla^2f(x))^{-1}$ \newline 
+
+$A^{-1} - A^{-1}B (I + CA^{-1}B)^{-1} CA^{-1}$ \newline 
+$C = \frac{1}{\phi^{''}(f(x))} B^T$ \newline 
+
+
+$A^{-1} - A^{-1}B (I + \frac{1}{\phi^{''}(f(x))} B^TA^{-1}B)^{-1} \frac{1}{\phi^{''}(f(x))} B^TA^{-1}$ \newline 
+
+We know that $B$ is a column vector. We also know that $\phi^{'}(f(x))$ is positive and $\nabla^2f(x)$ is positive definite. Hence, $A$ is positive definite.
+
+Furthermore, since $\phi(x)$ is a convex function, $\phi^{''}(f(x)) \geq 0$. This means that $\frac{1}{\phi^{''}(f(x))} B^TA^{-1}B$ is a positive number. Subsequently, $(I + \frac{1}{\phi^{''}(f(x))} B^TA^{-1}B)^{-1}$ is a positive number as well. Hence, we can represent this positive number as $k_1$. We can see that $k_1 < 1$
+
+$A^{-1} - k_1 A^{-1}B \frac{1}{\phi^{''}(f(x))} B^TA^{-1}$ \newline 
+$A^{-1} - \frac{k_1}{\phi^{''}(f(x))} A^{-1}B  B^TA^{-1}$ \newline 
+
+$x_{nt} = -(A^{-1} - \frac{k_1}{\phi^{''}(f(x))} A^{-1}B  B^TA^{-1}) ( \phi'(f(x)) \nabla f(x))$
+
+$x_{nt} = -(A^{-1} - \frac{k_1}{\phi^{''}(f(x))} A^{-1}B  B^TA^{-1}) ( \frac{\phi^{'}(f(x))}{\phi^{''}(f(x))} B)$
+
+$x_{nt} = -(\frac{\phi^{'}(f(x))}{\phi^{''}(f(x))} A^{-1}B - \frac{k_1 \phi^{'}(f(x))}{(\phi^{''}(f(x)))^2} A^{-1}B  B^TA^{-1}B)$
+
+Since $A$ is positive definite, $B^TA^{-1}B = k_2$ where $k_2$ is a positive constant
+
+$x_{nt} = -(\frac{\phi^{'}(f(x))}{\phi^{''}(f(x))} A^{-1}B - \frac{k_1 k_2 \phi^{'}(f(x))}{(\phi^{''}(f(x)))^2} A^{-1}B)$
+
+$x_{nt} = -( (\frac{\phi^{'}(f(x))}{\phi^{''}(f(x))} - \frac{k_1 k_2 \phi^{'}(f(x))}{(\phi^{''}(f(x)))^2}) (A^{-1}B))$
+
+$x_{nt} = -((\frac{\phi^{'}(f(x))}{\phi^{''}(f(x))} - \frac{k_1 k_2 \phi^{'}(f(x))}{(\phi^{''}(f(x)))^2}) (\frac{\phi^{''}(f(x))}{\phi^{'}(f(x))} \nabla^2f(x)^{-1} \nabla f(x)))$
+
+
+$x_{nt} = -(\nabla^2f(x)^{-1} \nabla f(x) ( 1 - \frac{k_1 k_2}{\phi^{''}(f(x))}))$
+
+$x_{nt} = -\nabla^2f(x)^{-1} \nabla f(x) (1 - \frac{k_1 k_2}{\phi^{''}(f(x))})$
+
+Let $k_3 = \frac{k_2}{\phi^{''}(f(x))}$. We see that $k_1 = (1 + k_3)^{-1}$. Hence, $k_1k_3 < 1$. This means that $x_{nt}$, when Newton's method is applied on $g$, is a positive multiple of $x_{nt}$, when Newton's method is applied on $f$.
+
+This indicates to us that, when we perform exact line search, the iterates should be the same for both $f$ and $g$. 
+
+However, this is NOT guaranteed when we do backtracking line search. 
+
+
 \end{solution}
 \end{problem}
 
