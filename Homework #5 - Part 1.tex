@@ -101,11 +101,11 @@
 
 \bigskip
 
-\begin{problem} \textit{Steepest descent method in $l_{\infty}$-norm. Explain how to find a steepest descent direction in the $l_{\infty}$-norm, and give a simple interpretation.}
+\begin{problem} \textit{Steepest descent method in $l_{\infty}$-norm.} Explain how to find a steepest descent direction in the $l_{\infty}$-norm, and give a simple interpretation.
 
 \begin{solution}
     $\Delta x_{sd} = ||\nabla f(x)||_* \Delta x_{nsd}$ \newline 
-    $x_{nsd} = argmin \{\nabla f(x)^T x \enspace | \enspace ||x||_{\infty} \leq 1 \}$ \newline 
+    $x_{nsd} = \arg \min_{x} \{\nabla f(x)^T x \enspace | \enspace ||x||_{\infty} \leq 1 \}$ \newline 
     $||\nabla f(x)||_* = sup \{\nabla f(x)^T x \enspace | \enspace ||x||_{\infty} \leq 1\}$ \newline 
 
     We know that the dual norm of the $l_{\infty}$-norm is just the $l_{1}$-norm. Hence, we can say that $||\nabla f(x)||_*$, under the $l_{\infty}$-norm, is just $||\nabla f(x)||_1$
@@ -121,28 +121,28 @@
 
 \end{problem}
 
-\begin{problem} \textit{The pure Newton method.} Newton’s method with fixed step size $t = 1$ can diverge if the initial point is not close to $x^*$. In this problem we consider two examples. Plot f and f', and show the first few iterates.
+\begin{problem} \textit{The pure Newton method.} Newton’s method with fixed step size $t = 1$ can diverge if the initial point is not close to $x^*$. In this problem we consider two examples. 
 \begin{enumerate}
     \item[(a)] $f(x) = \log{(e^x + e^{-x})}$ has a unique minimizer $x^* = 0$. Run Newton’s method with fixed step size $t = 1$, starting at $x^{(0)} = 1$ and at $x^{(0)} = 1.1$
-    \begin{solution}
+    \begin{solution} $x^{*} = 0$, $p^{*} = f(x^{*}) = 0.6931471805599453$
 
     $\nabla(f(x)) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$ \newline 
     $\nabla^2(f(x)) = \frac{(e^x + e^{-x})^2 - (e^x - e^{-x})^2}{(e^x + e^{-x})^2} = \frac{4}{(e^x + e^{-x})^2}$
 
     $x^{(0)} = 1$ \newline 
-    $\Delta x_{nt} = -\frac{\nabla(f(x))}{\nabla^2(f(x))}$ \newline 
+    $\Delta x_{nt} = -\frac{\nabla(f(x))}{\nabla^2(f(x))} = h(x)$ \newline 
 
-    $\Delta x_{nt} = -\frac{\nabla(f(x^{(0)}))}{\nabla^2(f(x^{(0)}))} = - \frac{0.761594155956}{0.419974341614} = -1.81343020392$ \newline 
+    $h(0) = -\frac{\nabla(f(x^{(0)}))}{\nabla^2(f(x^{(0)}))} = - \frac{0.761594155956}{0.419974341614} = -1.81343020392$ \newline 
 
-    $x^{(1)} = x^{(0)} + \Delta x_{nt} = 1 - 1.81343020392 = -0.813430203924 = -8.134 \cdot 10^{-1}$
+    $x^{(1)} = x^{(0)} + h(x^{(0})) = 1 - 1.81343020392 = -0.813430203924 = -8.134 \cdot 10^{-1}$
 
-    $x^{(2)} = x^{(1)} + \Delta x_{nt} = -0.813430203924 + 1.22283252051 = 0.409402316586 = 4.094 \cdot 10^{-1}$
+    $x^{(2)} = x^{(1)} + h(x^{(1})) = -0.813430203924 + 1.22283252051 = 0.409402316586 = 4.094 \cdot 10^{-1}$
 
-    $x^{(3)} = x^{(2)} + \Delta x_{nt} = 0.409402316586 - 0.456707233043 = - 0.047304916457 = -4.730 \cdot 10^{-2}$
+    $x^{(3)} = x^{(2)} + h(x^{(2})) = 0.409402316586 - 0.456707233043 = - 0.047304916457 = -4.730 \cdot 10^{-2}$
 
-    $x^{(4)} = x^{(3)} + \Delta x_{nt} = -0.047304916457 + 0.0473755192607 = 0.0000706028 = 7.060 \cdot 10^{-5}$
+    $x^{(4)} = x^{(3)} + h(x^{(3})) = -0.047304916457 + 0.0473755192607 = 0.0000706028 = 7.060 \cdot 10^{-5}$
     
-    $x^{(5)} = x^{(4)} + \Delta x_{nt} = 0.0000706028 - 0.0000706028039346 = -2.346 \cdot 10^{-13}$
+    $x^{(5)} = x^{(4)} + h(x^{(4})) = 0.0000706028 - 0.0000706028039346 = -2.347 \cdot 10^{-13}$
 
     \begin{table}[h]
     \centering
@@ -150,11 +150,12 @@
         \hline
         k & $x^{(k)}$ & $f(x^{(k)})$ & $f(x^{(k)}) - p^*$ \\
         \hline
-        1 & $-8.134 \cdot 10^{-1}$ & 0.992869009359 & 0.299721828799 \\
-        2 & $4.094 \cdot 10^{-1}$ & 0.774710796746 & 0.0815636161863\\
-        3 & $-4.730 \cdot 10^{-2}$ & 0.694265641074 & 0.00111846051368\\
-        4 & $7.060 \cdot 10^{-5}$ & 0.693147183052 & $2.4923778597 \cdot 10^{-9}$\\
-        5 & $-2.346 \cdot 10^{-13}$ & 0.69314718056 & $5.4733995 \cdot 10^{-14}$\\
+        0 & $1$ & 1.1269280110429725 & 0.4337808304830272 \\
+        1 & $-8.134 \cdot 10^{-1}$ & 0.9928690093583381 & 0.2997218287983928 \\
+        2 & $4.094 \cdot 10^{-1}$ & 0.7747107967452456 & 0.08156361618530028\\
+        3 & $-4.730 \cdot 10^{-2}$ & 0.6942656410735625 & 0.0011184605136171921\\
+        4 & $7.060 \cdot 10^{-5}$ & 0.6931471830523231 & $2.4923778597 \cdot 10^{-9}$\\
+        5 & $-2.347 \cdot 10^{-13}$ & 0.6931471805599453 & $5.4733995 \cdot 10^{-14}$\\
         \hline
     \end{tabular}
     \caption{Newton's Method: $x^{(0)} = 1$}
@@ -164,15 +165,15 @@
 
 Now, let's change $x^{(0)} = 1.1$ 
 
-$x^{(1)} = x^{(0)} + \Delta x_{nt} = - 1.12855258527$
+$x^{(1)} = x^{(0)} + h(x^{(0})) = - 1.12855258527$
 
-    $x^{(2)} = x^{(1)} + \Delta x_{nt} = 1.23413113304$
+    $x^{(2)} = x^{(1)} + h(x^{(1})) = 1.23413113304$
 
-    $x^{(3)} = x^{(2)} + \Delta x_{nt} = - 1.69516597992$
+    $x^{(3)} = x^{(2)} + h(x^{(2})) = - 1.69516597992$
 
-    $x^{(4)} = x^{(3)} + \Delta x_{nt} = 5.71536010038$
+    $x^{(4)} = x^{(3)} + h(x^{(3})) = 5.71536010038$
     
-    $x^{(5)} = x^{(4)} + \Delta x_{nt} = - 23021.3564857$
+    $x^{(5)} = x^{(4)} + h(x^{(4})) = - 23021.3564857$
 
     \begin{table}[h]
     \centering
@@ -180,6 +181,7 @@ $x^{(1)} = x^{(0)} + \Delta x_{nt} = - 1.12855258527$
         \hline
         k & $x^{(k)}$ & $f(x^{(k)})$ & $f(x^{(k)}) - p^*$ \\
         \hline
+        0 & $1.1$ & 1.205083319768696 & 0.5119361392087508 \\
         1 & $- 1.12855258527$ & 1.22808384311 & 0.534936662546 \\
         2 & $1.23413113304$ & 1.31546405981 & 0.622316879246\\
         3 & $- 1.69516597992$ & 1.72830814921 & 1.03516096865\\
@@ -190,28 +192,56 @@ $x^{(1)} = x^{(0)} + \Delta x_{nt} = - 1.12855258527$
     \caption{Newton's Method: $x^{(0)} = 1$}
     \label{tab:mytable}
 \end{table}
+
+\begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.7\textwidth]{HW5-9-10(a).png}
+        \caption{Plot of $f(x)$}
+    \end{figure}  
+
+\begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.7\textwidth]{HW5-9-10(a)-Derivative.png}
+        \caption{Plot of $f^{'}(x)$}
+    \end{figure}  
         
     \end{solution}
+\newpage 
     \item[(b)] $f(x) = -\log{(x)} + x$ has a unique minimizer $x^* = 1$. Run Newton’s method with fixed step size $t = 1$, starting at $x^{(0)} = 3$
 
     \begin{solution}
         $\nabla(f(x)) = \frac{-1}{x} + 1 = \frac{x - 1}{x}$ \newline 
     $\nabla^2(f(x)) = \frac{1}{x^2}$
 
-    $\Delta x_{nt} = -\frac{\nabla(f(x))}{\nabla^2(f(x))} = -(x - 1) x$ \newline 
+    $\Delta x_{nt} = h(x) = -\frac{\nabla(f(x))}{\nabla^2(f(x))} = -(x - 1) x$ \newline 
 
     We know that $x^{(0)} = 3$ \newline 
     
-$x^{(1)} = x^{(0)} + \Delta x_{nt} = -3$
+$x^{(1)} = x^{(0)} + h(x^{(0)}) = -3$
 
 Since $f(x) = -\log{(x)} + x$, we can see that $dom f = \{ x \in (0, \infty)\}$
 When we apply Newton's Method, we are already outside the domain.
+
+\begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.7\textwidth]{HW5-9-10(b).png}
+        \caption{Plot of $f(x)$}
+    \end{figure}  
+
+\begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.7\textwidth]{HW5-9-10(b)-Derivative.png}
+        \caption{Plot of $f^{'}(x)$}
+    \end{figure}  
     
     \end{solution}
     
 \end{enumerate}
+
+Plot $f$ and $f^{'}$, and show the first few iterates.
 \end{problem}
 
+\newpage 
 \begin{problem} \textit{Gradient and Newton methods for composition functions.} Suppose $\phi: \mathbb{R} \rightarrow \mathbb{R}$ is increasing and convex, and $f: \mathbb{R}^n \rightarrow \mathbb{R}$ is convex, so $g(x) = \phi(f(x))$ is convex. (We assume that f and g are twice differentiable.) The problems of minimizing f and minimizing g are clearly equivalent. \newline 
 Compare the gradient method and Newton’s method, applied to f and g. How are the
 search directions related? How are the methods related if an exact line search is used?

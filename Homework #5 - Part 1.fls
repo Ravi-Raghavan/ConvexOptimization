@@ -296,6 +296,26 @@ INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmsl10.tfm
 OUTPUT Homework #5 - Part 1.pdf
 INPUT /usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map
+INPUT ./HW5-9-10(a).png
+INPUT ./HW5-9-10(a).png
+INPUT HW5-9-10(a).png
+INPUT ./HW5-9-10(a).png
+INPUT ./HW5-9-10(a).png
+INPUT ./HW5-9-10(a)-Derivative.png
+INPUT ./HW5-9-10(a)-Derivative.png
+INPUT HW5-9-10(a)-Derivative.png
+INPUT ./HW5-9-10(a)-Derivative.png
+INPUT ./HW5-9-10(a)-Derivative.png
+INPUT ./HW5-9-10(b).png
+INPUT ./HW5-9-10(b).png
+INPUT HW5-9-10(b).png
+INPUT ./HW5-9-10(b).png
+INPUT ./HW5-9-10(b).png
+INPUT ./HW5-9-10(b)-Derivative.png
+INPUT ./HW5-9-10(b)-Derivative.png
+INPUT HW5-9-10(b)-Derivative.png
+INPUT ./HW5-9-10(b)-Derivative.png
+INPUT ./HW5-9-10(b)-Derivative.png
 INPUT Homework #5 - Part 1.aux
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
