@@ -1,0 +1,246 @@
+\documentclass{article}
+
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+%=====================================================
+% Add PACKAGES Here (You typically would not need to):
+%=====================================================
+
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}  % Include the amsmath and amssymb packages for mathematical symbols
+
+%=====================================================
+% Ignore This Part (But Do NOT Delete It:)
+%=====================================================
+
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem*{fun}{Fun with Algorithms}
+\newtheorem*{challenge}{Challenge Yourself}
+\def\fline{\rule{0.75\linewidth}{0.5pt}}
+\newcommand{\finishline}{\begin{center}\fline\end{center}}
+\newtheorem*{solution*}{Solution}
+\newenvironment{solution}{\begin{solution*}}{{\finishline} \end{solution*}}
+\newcommand{\grade}[1]{\hfill{\textbf{($\mathbf{#1}$ points)}}}
+\newcommand{\thisdate}{March 21, 2024}
+\newcommand{\thissemester}{\textbf{Rutgers: Spring 2024}}
+\newcommand{\thiscourse}{ECE 509: Convex Optimization} 
+\newcommand{\thishomework}{Number} 
+\newcommand{\thisname}{Name} 
+\newcommand{\thisextension}{Yes/No} 
+
+\headheight 40pt              
+\headsep 10pt
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
+
+\newcommand{\thisheading}{
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { \textbf{\thiscourse \hfill \thissemester} }
+       \vspace{4mm}
+       \hbox to 6.28in { {\Large \hfill Homework \#\thishomework \hfill} }
+       \vspace{2mm}
+         \hbox to 6.28in { { \hfill \thisdate  \hfill} }
+       \vspace{2mm}
+       \hbox to 6.28in { \emph{Name: \thisname \hfill Extension: \thisextension}}
+      \vspace{2mm}}
+      }
+   \end{center}
+   \bigskip
+}
+
+%=====================================================
+% Some useful MACROS (you can define your own in the same exact way also)
+%=====================================================
+
+
+\newcommand{\ceil}[1]{{\left\lceil{#1}\right\rceil}}
+\newcommand{\floor}[1]{{\left\lfloor{#1}\right\rfloor}}
+\newcommand{\prob}[1]{\Pr\paren{#1}}
+\newcommand{\expect}[1]{\Exp\bracket{#1}}
+\newcommand{\var}[1]{\textnormal{Var}\bracket{#1}}
+\newcommand{\set}[1]{\ensuremath{\left\{ #1 \right\}}}
+\newcommand{\poly}{\mbox{\rm poly}}
+
+
+%=====================================================
+% Fill Out This Part With Your Own Information:
+%=====================================================
+
+
+\renewcommand{\thishomework}{6} %Homework number
+\renewcommand{\thisname}{Ravi Raghavan} % Enter your name here
+\renewcommand{\thisextension}{No} % Pick only one of the two options accordingly
+
+\begin{document}
+
+\thisheading
+\vspace{-0.75cm}
+
+
+%=====================================================
+% LaTeX Tip: You can erase this part from here.... 
+%=====================================================		
+
+\finishline
+
+%=====================================================
+% LaTeX Tip: ... to here
+%=====================================================	
+
+
+\bigskip
+
+
+\begin{problem} \textit{Pre-computation for line searches.} For each of the following functions, explain how the computational cost of a line search can be reduced by a pre-computation. Give the cost of the pre-computation, and the cost of evaluating $g(t) = f(x + t\Delta x)$ and $g'(t)$ with and without the pre-computation.
+\begin{enumerate}
+    \item[(a)] $f(x) = - \sum_{i=1}^{m} \log{(b_i - a_i^Tx)}$
+    \begin{solution} 
+ In Exact Line Search, our goal is to minimize $\tilde{f}(t) =  f(x + t\Delta x)$
+
+$\tilde{f}(t) = - \sum_{i=1}^{m} \log{(b_i - a_i^T(x + t \Delta x))}$ \newline 
+
+$\tilde{f}(t) = - \sum_{i=1}^{m} \log{(b_i - a_i^Tx - a_i^T t \Delta x))}$ \newline 
+
+$\tilde{f}'(t) = - \sum_{i=1}^{m} \frac{- a_i^T \Delta x}{\log{(b_i - a_i^T(x + t \Delta x)))}}$ \newline 
+
+
+$\tilde{f}'(t) = - \sum_{i=1}^{m} \frac{- a_i^T \Delta x}{\log{(b_i - a_i^Tx - a_i^T t \Delta x))}}$ \newline 
+
+
+Let $n$ be the size of each $a_i$ and $x$. Let's say we are testing out $k$ values of $t$. 
+
+\textbf{\underline{Precomputation:}} \newline  
+
+Computing $b_i - a_i^Tx$ for $i \in [1, m]$ takes $2n$ operations per $i$. \newline 
+Computing $a_i^T \Delta x$ for $i \in [1, m]$ takes $2n - 1$ operations per $i$
+
+
+Hence, there are a total of $m(4n - 1) = O(mn)$ operations in pre-computation \newline
+
+\textbf{\underline{Cost without Precomputation($\tilde{f}(t)$):}} \newline 
+Computing $x + t \Delta x$ takes a total of $2n$ operations. Computing $a_i^T(x + t \Delta x)$ takes a total of $4n - 1$ operations. $b_i - (a_i^T(x + t \Delta x)))$ takes $4n$ operations. $\log{(b_i - a_i^T(x + t \Delta x))}$ takes $4n + 1$  
+
+$\sum_{i=1}^{m} \log{(b_i - a_i^T(x + t \Delta x))}$ takes $m(4n + 1)$ operations. 
+
+Taking the inverse of this sum will require $m(4n + 1) + 1$ operations
+
+Since we are testing out $k$ values of $t$, this requires $4mnk + mk + k$ \newline 
+
+\textbf{\underline{Cost without Precomputation($\tilde{f}'(t)$):}} \newline 
+Computing $x + t \Delta x$ takes a total of $2n$ operations. Computing $a_i^T(x + t \Delta x)$ takes a total of $4n - 1$ operations. $b_i - (a_i^T(x + t \Delta x)))$ takes $4n$ operations. $\log{(b_i - a_i^T(x + t \Delta x))}$ takes $4n + 1$. Computing $- a_i^T \Delta x$ takes $2n$ operations
+
+Calculating $\frac{- a_i^T \Delta x}{\log{(b_i - a_i^T(x + t \Delta x)))}}$ takes $6n + 2$
+
+$\sum_{i=1}^{m} \log{(b_i - a_i^T(x + t \Delta x))}$ takes $m(6n + 2)$ operations. 
+
+Taking the inverse of this sum will require $m(6n + 2) + 1$ operations
+
+Since we are testing out $k$ values of $t$, this requires $6mnk + 2mk + k$ \newline 
+
+
+\textbf{\underline{Cost with Precomputation($\tilde{f}(t)$):}} \newline 
+Computing $\log{(b_i - a_i^Tx - a_i^T t \Delta x))}$ takes $3$ operations. $\sum_{i=1}^{m} \log{(b_i - a_i^Tx - a_i^T t \Delta x))}$ takes $3m$ operations. Taking the inverse of this sum will require $3m + 1$ operations
+
+Since we are testing out $k$ values of $t$, this requires $3mk + k$ \newline 
+
+\textbf{\underline{Cost with Precomputation($\tilde{f}'(t)$):}} \newline 
+Computing $\frac{- a_i^T \Delta x}{\log{(b_i - a_i^Tx - a_i^T t \Delta x))}}$ takes $5$ operations.
+
+$\sum_{i=1}^{m} \frac{- a_i^T \Delta x}{\log{(b_i - a_i^Tx - a_i^T t \Delta x))}}$ takes $5m$ operations. Taking the inverse of this sum will require $5m + 1$ operations
+
+Since we are testing out $k$ values of $t$, this requires $5mk + k$ \newline 
+
+
+    \end{solution}
+ 
+    \item[(b)] $f(x) = \log(\sum_{i=1}^{m} \exp(a_i^Tx + b_i))$ 
+
+    \begin{solution}
+         In Exact Line Search, our goal is to minimize $\tilde{f}(t) =  f(x + t\Delta x)$
+
+         $\tilde{f}(t) =  \log(\sum_{i=1}^{m} \exp(a_i^T(x + t\Delta x) + b_i))$ \newline 
+
+         $\tilde{f}(t) =  \log(\sum_{i=1}^{m} \exp(a_i^Tx + a_i^T t\Delta x + b_i))$
+
+        $\tilde{f}(t) =  \log(\sum_{i=1}^{m} \exp(a_i^Tx + b_i + a_i^T t\Delta x))$
+
+
+        $\tilde{f}'(t) =  \log(\sum_{i=1}^{m} \exp(a_i^T(x + t\Delta x) + b_i) (a_i^T \Delta x))$
+
+        
+        $\tilde{f}'(t) =  \log(\sum_{i=1}^{m} \exp(a_i^Tx + b_i + a_i^T t\Delta x) (a_i^T \Delta x))$
+
+        Let $n$ be the size of each $a_i$ and $x$. Let's say we are testing out $k$ values of $t$. 
+
+        \textbf{\underline{Precomputation:}} \newline  
+        
+        Computing $a_i^Tx + b_i$ for $i \in [1, m]$ takes $2n$ operations per $i$. \newline 
+        Computing $a_i^T \Delta x$ for $i \in [1, m]$ takes $2n - 1$ operations per $i$
+
+        Hence, there are a total of $m(4n - 1) = O(mn)$ operations in pre-computation \newline
+
+        
+        \textbf{\underline{Cost without Precomputation($\tilde{f}(t)$):}} \newline 
+        Computing $x + t \Delta x$ takes a total of $2n$ operations. Computing $a_i^T(x + t \Delta x)$ takes a total of $4n - 1$ operations. $a_i^T(x + t\Delta x) + b_i$ takes $4n$ operations. $\exp(a_i^T(x + t\Delta x) + b_i)$ takes $4n + 1$  
+        
+        $\sum_{i=1}^{m} \exp(a_i^T(x + t\Delta x) + b_i)$ takes $m(4n + 1)$ operations. 
+        
+        Taking the log of this sum will require $m(4n + 1) + 1$ operations
+        
+        Since we are testing out $k$ values of $t$, this requires $4mnk + mk + k$ \newline 
+        
+        \textbf{\underline{Cost without Precomputation($\tilde{f}'(t)$):}} \newline 
+        Computing $x + t \Delta x$ takes a total of $2n$ operations. Computing $a_i^T(x + t \Delta x)$ takes a total of $4n - 1$ operations. $a_i^T(x + t\Delta x) + b_i$ takes $4n$ operations. $\exp(a_i^T(x + t\Delta x) + b_i)$ takes $4n + 1$. $\exp(a_i^T(x + t\Delta x) + b_i) (a_i^T \Delta x)$ takes $4n + 2$
+        
+        Calculating $\sum_{i=1}^{m} \exp(a_i^T(x + t\Delta x) + b_i)$ takes $m(4n + 2)$ operations.
+                
+        Taking the log of this sum will require $m(4n + 2) + 1$ operations
+        
+        Since we are testing out $k$ values of $t$, this requires $4mnk + 2mk + k$ \newline 
+        
+        
+        \textbf{\underline{Cost with Precomputation($\tilde{f}(t)$):}} \newline 
+        Computing $\exp(a_i^Tx + b_i + a_i^T t\Delta x)$ takes $3$ operations. $\sum_{i=1}^{m} \exp(a_i^Tx + b_i + a_i^T t\Delta x)$ takes $3m$ operations. Taking the log of this sum will require $3m + 1$ operations
+        
+        Since we are testing out $k$ values of $t$, this requires $3mk + k$ \newline 
+        
+        \textbf{\underline{Cost with Precomputation($\tilde{f}'(t)$):}} \newline 
+        Computing $\exp(a_i^Tx + b_i + a_i^T t\Delta x) (a_i^T \Delta x)$ takes $4$ operations.
+        
+        $(\sum_{i=1}^{m} \exp(a_i^Tx + b_i + a_i^T t\Delta x) (a_i^T \Delta x))$ takes $4m$ operations. Taking the log of this sum will require $4m + 1$ operations
+        
+        Since we are testing out $k$ values of $t$, this requires $4mk + k$ \newline 
+    
+    \end{solution}
+    
+\end{enumerate}
+
+\end{problem}
+
+\begin{problem}
+\textit{Pre-computation for line searches.} 
+
+\begin{enumerate}
+\item[(a)] False
+\item[(b)] True
+\end{enumerate}
+\end{problem}
+
+
+\end{document}
+
+
+
+
+
