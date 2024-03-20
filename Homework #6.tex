@@ -122,45 +122,69 @@ Let $n$ be the size of each $a_i$ and $x$. Let's say we are testing out $k$ valu
 
 \textbf{\underline{Precomputation:}} \newline  
 
-Computing $b_i - a_i^Tx$ for $i \in [1, m]$ takes $2n$ operations per $i$. \newline 
-Computing $a_i^T \Delta x$ for $i \in [1, m]$ takes $2n - 1$ operations per $i$
+Computing $b_i - a_i^Tx$ for $i \in [1, m]$ takes $O(n)$ operations per $i$. \newline 
+Computing $a_i^T \Delta x$ for $i \in [1, m]$ takes $O(n)$ operations per $i$
 
 
-Hence, there are a total of $m(4n - 1) = O(mn)$ operations in pre-computation \newline
+Hence, there are a total of $m * O(n) = O(mn)$ operations in pre-computation \newline
 
 \textbf{\underline{Cost without Precomputation($\tilde{f}(t)$):}} \newline 
-Computing $x + t \Delta x$ takes a total of $2n$ operations. Computing $a_i^T(x + t \Delta x)$ takes a total of $4n - 1$ operations. $b_i - (a_i^T(x + t \Delta x)))$ takes $4n$ operations. $\log{(b_i - a_i^T(x + t \Delta x))}$ takes $4n + 1$  
+Computing $x + t \Delta x$ takes a total of $O(n)$ operations. 
 
-$\sum_{i=1}^{m} \log{(b_i - a_i^T(x + t \Delta x))}$ takes $m(4n + 1)$ operations. 
+Computing $a_i^T(x + t \Delta x)$ takes a total of $O(n)$ operations. 
 
-Taking the inverse of this sum will require $m(4n + 1) + 1$ operations
+$b_i - (a_i^T(x + t \Delta x)))$ will take $O(n)$ operations. 
 
-Since we are testing out $k$ values of $t$, this requires $4mnk + mk + k$ \newline 
+$\log{(b_i - a_i^T(x + t \Delta x))}$ takes $O(n)$  
+
+$\sum_{i=1}^{m} \log{(b_i - a_i^T(x + t \Delta x))}$ takes $O(mn)$ operations. 
+
+$- \sum_{i=1}^{m} \log{(b_i - a_i^T(x + t \Delta x))}$ takes $O(mn)$ operations. 
+
+
+Since we are testing out $k$ values of $t$, the overall Line Search Algorithm will be $O(mnk)$ \newline 
 
 \textbf{\underline{Cost without Precomputation($\tilde{f}'(t)$):}} \newline 
-Computing $x + t \Delta x$ takes a total of $2n$ operations. Computing $a_i^T(x + t \Delta x)$ takes a total of $4n - 1$ operations. $b_i - (a_i^T(x + t \Delta x)))$ takes $4n$ operations. $\log{(b_i - a_i^T(x + t \Delta x))}$ takes $4n + 1$. Computing $- a_i^T \Delta x$ takes $2n$ operations
+Computing $x + t \Delta x$ takes a total of $O(n)$ operations. 
 
-Calculating $\frac{- a_i^T \Delta x}{\log{(b_i - a_i^T(x + t \Delta x)))}}$ takes $6n + 2$
+Computing $a_i^T(x + t \Delta x)$ takes a total of $O(n)$ operations. 
 
-$\sum_{i=1}^{m} \log{(b_i - a_i^T(x + t \Delta x))}$ takes $m(6n + 2)$ operations. 
+$b_i - (a_i^T(x + t \Delta x)))$ will take $O(n)$ operations. 
 
-Taking the inverse of this sum will require $m(6n + 2) + 1$ operations
+$\log{(b_i - a_i^T(x + t \Delta x))}$ takes $O(n)$  
 
-Since we are testing out $k$ values of $t$, this requires $6mnk + 2mk + k$ \newline 
+Computing $- a_i^T \Delta x$ takes $O(n)$ operations
+
+Calculating $\frac{- a_i^T \Delta x}{\log{(b_i - a_i^T(x + t \Delta x)))}}$ takes $O(n)$
+
+$\sum_{i=1}^{m} \frac{- a_i^T \Delta x}{\log{(b_i - a_i^T(x + t \Delta x)))}}$ takes $O(mn)$ operations. 
+
+$- \sum_{i=1}^{m} \frac{- a_i^T \Delta x}{\log{(b_i - a_i^T(x + t \Delta x)))}}$ takes $O(mn)$ operations. 
+
+Since we are testing out $k$ values of $t$, the overall Line Search Algorithm will be $O(mnk)$  \newline 
 
 
 \textbf{\underline{Cost with Precomputation($\tilde{f}(t)$):}} \newline 
-Computing $\log{(b_i - a_i^Tx - a_i^T t \Delta x))}$ takes $3$ operations. $\sum_{i=1}^{m} \log{(b_i - a_i^Tx - a_i^T t \Delta x))}$ takes $3m$ operations. Taking the inverse of this sum will require $3m + 1$ operations
+Computing $\log{(b_i - a_i^Tx - a_i^T t \Delta x))}$ takes $O(1)$ operations. 
 
-Since we are testing out $k$ values of $t$, this requires $3mk + k$ \newline 
+$\sum_{i=1}^{m} \log{(b_i - a_i^Tx - a_i^T t \Delta x))}$ takes $O(m)$ operations. 
+
+$- \sum_{i=1}^{m} \log{(b_i - a_i^Tx - a_i^T t \Delta x))}$ takes $O(m)$ operations. 
+
+
+Since we are testing out $k$ values of $t$, the Line Search Algorithm will be $O(mk)$ \newline 
+Including pre-computation, it takes $O(mk) + O(mn)$ \newline 
 
 \textbf{\underline{Cost with Precomputation($\tilde{f}'(t)$):}} \newline 
-Computing $\frac{- a_i^T \Delta x}{\log{(b_i - a_i^Tx - a_i^T t \Delta x))}}$ takes $5$ operations.
+Computing $\frac{- a_i^T \Delta x}{\log{(b_i - a_i^Tx - a_i^T t \Delta x))}}$ takes $O(1)$ operations.
 
-$\sum_{i=1}^{m} \frac{- a_i^T \Delta x}{\log{(b_i - a_i^Tx - a_i^T t \Delta x))}}$ takes $5m$ operations. Taking the inverse of this sum will require $5m + 1$ operations
+$\sum_{i=1}^{m} \frac{- a_i^T \Delta x}{\log{(b_i - a_i^Tx - a_i^T t \Delta x))}}$ takes $O(m)$ operations. 
 
-Since we are testing out $k$ values of $t$, this requires $5mk + k$ \newline 
+$- \sum_{i=1}^{m} \frac{- a_i^T \Delta x}{\log{(b_i - a_i^Tx - a_i^T t \Delta x))}}$ takes $O(m)$ operations. 
 
+
+Since we are testing out $k$ values of $t$, the Line Search Algorithm will be $O(mk)$ \newline 
+Including pre-computation, it takes $O(mk) + O(mn)$ \newline 
 
     \end{solution}
  
@@ -185,43 +209,65 @@ Since we are testing out $k$ values of $t$, this requires $5mk + k$ \newline
 
         \textbf{\underline{Precomputation:}} \newline  
         
-        Computing $a_i^Tx + b_i$ for $i \in [1, m]$ takes $2n$ operations per $i$. \newline 
-        Computing $a_i^T \Delta x$ for $i \in [1, m]$ takes $2n - 1$ operations per $i$
+        Computing $a_i^Tx + b_i$ for $i \in [1, m]$ takes $O(n)$ operations per $i$. \newline 
+        Computing $a_i^T \Delta x$ for $i \in [1, m]$ takes $O(n)$ operations per $i$
 
-        Hence, there are a total of $m(4n - 1) = O(mn)$ operations in pre-computation \newline
+        Hence, there are a total of $m * O(n) = O(mn)$ operations in pre-computation \newline
 
         
         \textbf{\underline{Cost without Precomputation($\tilde{f}(t)$):}} \newline 
-        Computing $x + t \Delta x$ takes a total of $2n$ operations. Computing $a_i^T(x + t \Delta x)$ takes a total of $4n - 1$ operations. $a_i^T(x + t\Delta x) + b_i$ takes $4n$ operations. $\exp(a_i^T(x + t\Delta x) + b_i)$ takes $4n + 1$  
+        Computing $x + t \Delta x$ takes a total of $O(n)$ operations. 
         
-        $\sum_{i=1}^{m} \exp(a_i^T(x + t\Delta x) + b_i)$ takes $m(4n + 1)$ operations. 
+        Computing $a_i^T(x + t \Delta x)$ takes a total of $O(n)$ operations. 
         
-        Taking the log of this sum will require $m(4n + 1) + 1$ operations
+        $a_i^T(x + t\Delta x) + b_i$ takes $O(n)$ operations. 
         
-        Since we are testing out $k$ values of $t$, this requires $4mnk + mk + k$ \newline 
+        $\exp(a_i^T(x + t\Delta x) + b_i)$ takes $O(n)$  
+        
+        $\sum_{i=1}^{m} \exp(a_i^T(x + t\Delta x) + b_i)$ takes $O(mn)$ operations. 
+
+        $\log(\sum_{i=1}^{m} \exp(a_i^Tx + b_i + a_i^T t\Delta x))$ takes $O(mn)$ operations
+                
+        Since we are testing out $k$ values of $t$, the overall Line Search Algorithm takes $O(mnk)$ \newline 
         
         \textbf{\underline{Cost without Precomputation($\tilde{f}'(t)$):}} \newline 
-        Computing $x + t \Delta x$ takes a total of $2n$ operations. Computing $a_i^T(x + t \Delta x)$ takes a total of $4n - 1$ operations. $a_i^T(x + t\Delta x) + b_i$ takes $4n$ operations. $\exp(a_i^T(x + t\Delta x) + b_i)$ takes $4n + 1$. $\exp(a_i^T(x + t\Delta x) + b_i) (a_i^T \Delta x)$ takes $4n + 2$
+        Computing $x + t \Delta x$ takes a total of $O(n)$ operations. 
         
-        Calculating $\sum_{i=1}^{m} \exp(a_i^T(x + t\Delta x) + b_i)$ takes $m(4n + 2)$ operations.
-                
-        Taking the log of this sum will require $m(4n + 2) + 1$ operations
+        Computing $a_i^T(x + t \Delta x)$ takes a total of $O(n)$ operations. 
         
-        Since we are testing out $k$ values of $t$, this requires $4mnk + 2mk + k$ \newline 
+        $a_i^T(x + t\Delta x) + b_i$ takes $O(n)$ operations. 
+        
+        $\exp(a_i^T(x + t\Delta x) + b_i)$ takes $O(n)$  
+        
+        $\exp(a_i^T(x + t\Delta x) + b_i) (a_i^T \Delta x)$ takes $O(n)$
+        
+        $\sum_{i=1}^{m} \exp(a_i^T(x + t\Delta x) + b_i)$ takes $O(mn)$ operations.
+
+        $\log(\sum_{i=1}^{m} \exp(a_i^T(x + t\Delta x) + b_i) (a_i^T \Delta x))$ takes $O(mn)$ operations
+
+                        
+        Since we are testing out $k$ values of $t$, the overall Line Search Algorithm takes $O(mnk)$ \newline 
         
         
         \textbf{\underline{Cost with Precomputation($\tilde{f}(t)$):}} \newline 
-        Computing $\exp(a_i^Tx + b_i + a_i^T t\Delta x)$ takes $3$ operations. $\sum_{i=1}^{m} \exp(a_i^Tx + b_i + a_i^T t\Delta x)$ takes $3m$ operations. Taking the log of this sum will require $3m + 1$ operations
+        Computing $\exp(a_i^Tx + b_i + a_i^T t\Delta x)$ takes $O(1)$ operations. 
         
-        Since we are testing out $k$ values of $t$, this requires $3mk + k$ \newline 
+        $\sum_{i=1}^{m} \exp(a_i^Tx + b_i + a_i^T t\Delta x)$ takes $O(m)$ operations. 
+
+        $\log(\sum_{i=1}^{m} \exp(a_i^Tx + b_i + a_i^T t\Delta x))$ takes $O(m)$ operations
+        
+        Since we are testing out $k$ values of $t$, the Line Search Algorithm takes $O(mk)$ \newline 
+        Including pre-computation, it takes $O(mk) + O(mn)$ \newline 
         
         \textbf{\underline{Cost with Precomputation($\tilde{f}'(t)$):}} \newline 
-        Computing $\exp(a_i^Tx + b_i + a_i^T t\Delta x) (a_i^T \Delta x)$ takes $4$ operations.
+        Computing $\exp(a_i^Tx + b_i + a_i^T t\Delta x) (a_i^T \Delta x)$ takes $O(1)$ operations.
         
-        $(\sum_{i=1}^{m} \exp(a_i^Tx + b_i + a_i^T t\Delta x) (a_i^T \Delta x))$ takes $4m$ operations. Taking the log of this sum will require $4m + 1$ operations
+        $(\sum_{i=1}^{m} \exp(a_i^Tx + b_i + a_i^T t\Delta x) (a_i^T \Delta x))$ takes $O(m)$ operations. 
+
+        $\log(\sum_{i=1}^{m} \exp(a_i^Tx + b_i + a_i^T t\Delta x) (a_i^T \Delta x))$ takes $O(m)$ operations
         
-        Since we are testing out $k$ values of $t$, this requires $4mk + k$ \newline 
-    
+        Since we are testing out $k$ values of $t$, the Line Search Algorithm takes $O(mk)$ \newline 
+    Including pre-computation, it takes $O(mk) + O(mn)$ \newline 
     \end{solution}
     
 \end{enumerate}
