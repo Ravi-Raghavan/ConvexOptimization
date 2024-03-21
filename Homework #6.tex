@@ -200,10 +200,10 @@ Including pre-computation, it takes $O(mk) + O(mn)$ \newline
         $\tilde{f}(t) =  \log(\sum_{i=1}^{m} \exp(a_i^Tx + b_i + a_i^T t\Delta x))$
 
 
-        $\tilde{f}'(t) =  \log(\sum_{i=1}^{m} \exp(a_i^T(x + t\Delta x) + b_i) (a_i^T \Delta x))$
+        $\tilde{f}'(t) =  \frac{\sum_{i=1}^{m} \exp(a_i^T(x + t\Delta x) + b_i) (a_i^T \Delta x)}{(\sum_{i=1}^{m} \exp(a_i^T(x + t\Delta x) + b_i))}$
 
         
-        $\tilde{f}'(t) =  \log(\sum_{i=1}^{m} \exp(a_i^Tx + b_i + a_i^T t\Delta x) (a_i^T \Delta x))$
+        $\tilde{f}'(t) =  \frac{\sum_{i=1}^{m} \exp(a_i^Tx + b_i + a_i^T t\Delta x) (a_i^T \Delta x)}{(\sum_{i=1}^{m} \exp(a_i^Tx + b_i + a_i^T t\Delta x))}$
 
         Let $n$ be the size of each $a_i$ and $x$. Let's say we are testing out $k$ values of $t$. 
 
@@ -240,10 +240,14 @@ Including pre-computation, it takes $O(mk) + O(mn)$ \newline
         $\exp(a_i^T(x + t\Delta x) + b_i)$ takes $O(n)$  
         
         $\exp(a_i^T(x + t\Delta x) + b_i) (a_i^T \Delta x)$ takes $O(n)$
-        
+
         $\sum_{i=1}^{m} \exp(a_i^T(x + t\Delta x) + b_i)$ takes $O(mn)$ operations.
 
-        $\log(\sum_{i=1}^{m} \exp(a_i^T(x + t\Delta x) + b_i) (a_i^T \Delta x))$ takes $O(mn)$ operations
+        $\sum_{i=1}^{m} \exp(a_i^T(x + t\Delta x) + b_i) (a_i^T \Delta x)$ takes $O(mn)$ operations
+
+        $(\sum_{i=1}^{m} \exp(a_i^T(x + t\Delta x) + b_i))$ takes $O(mn)$ operations
+
+        $\frac{\sum_{i=1}^{m} \exp(a_i^T(x + t\Delta x) + b_i) (a_i^T \Delta x)}{(\sum_{i=1}^{m} \exp(a_i^T(x + t\Delta x) + b_i))}$ takes $O(mn)$ operations
 
                         
         Since we are testing out $k$ values of $t$, the overall Line Search Algorithm takes $O(mnk)$ \newline 
@@ -264,7 +268,9 @@ Including pre-computation, it takes $O(mk) + O(mn)$ \newline
         
         $(\sum_{i=1}^{m} \exp(a_i^Tx + b_i + a_i^T t\Delta x) (a_i^T \Delta x))$ takes $O(m)$ operations. 
 
-        $\log(\sum_{i=1}^{m} \exp(a_i^Tx + b_i + a_i^T t\Delta x) (a_i^T \Delta x))$ takes $O(m)$ operations
+        $(\sum_{i=1}^{m} \exp(a_i^Tx + b_i + a_i^T t\Delta x))$ takes $O(m)$ operations
+
+        $\frac{\sum_{i=1}^{m} \exp(a_i^Tx + b_i + a_i^T t\Delta x) (a_i^T \Delta x)}{(\sum_{i=1}^{m} \exp(a_i^Tx + b_i + a_i^T t\Delta x))}$ takes $O(m)$ operations
         
         Since we are testing out $k$ values of $t$, the Line Search Algorithm takes $O(mk)$ \newline 
     Including pre-computation, it takes $O(mk) + O(mn)$ \newline 
