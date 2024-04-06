@@ -100,6 +100,81 @@
 
 
 \bigskip
+\begin{problem}
+    \textit{Voronoi description of halfspace.} Let $a$ and $b$ be distinct points in $\mathbb{R}^n$. Show that the set of all points that are closer (in Euclidean norm) to $a$ than $b$, \textit{i.e.}, $\{x : ||x - a||_2 \leq  ||x - b||_2 \}$, is a halfspace. Describe it explicitly as an inequality of the form $c^Tx \leq d$. Draw a picture.
+
+    \begin{solution}
+        We can see that the following two sets are equivalent: 
+
+        $S_1 = S_2$ where $S_1 = \{x : ||x - a||_2 \leq  ||x - b||_2 \}$ and $S_2 = \{x : ||x - a||^2_2 \leq  ||x - b||^2_2 \}$ \newline 
+
+        Let's work with $S_2$ since it will be a lot easier 
+
+        $S_2 = \{x : ||x - a||^2_2 \leq  ||x - b||^2_2 \}$ \newline 
+        $S_2 = \{x : ||x||^2_2 - 2 <x, a> + ||a||^2_2 \leq  ||x||^2_2 - 2<x, b> + ||b||^2_2 \}$ \newline 
+        $S_2 = \{x : - 2 <x, a> + ||a||^2_2 \leq  - 2<x, b> + ||b||^2_2 \}$ \newline 
+        $S_2 = \{x : 2 <x, b - a> \enspace  \leq  ||b||^2_2 - ||a||^2_2 \}$ \newline 
+        $S_2 = \{x : 2 (b - a)^T x \enspace  \leq  ||b||^2_2 - ||a||^2_2 \}$ \newline 
+        $S_2 = \{x : (b - a)^T x \enspace  \leq  0.5 (||b||^2_2 - ||a||^2_2) \}$ \newline 
+
+        This is a closed half-space
+        
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    Which of the following sets $S$ are polyhedra? If possible, express $S$ in the form $S = \{x | Ax \preceq b, Fx = g \}$
+\begin{enumerate}
+    \item[(b)]  Yes $S$ is a polyhedra. 
+
+    Let $M_1 = [a_1, a_2, ..., a_n] \in \mathbb{R}^{1 x n}$ and let $M_2 = [a_1^2, a_2^2, ..., a_n^2] \in \mathbb{R}^{1 x n}$
+
+    Let $F$ be the vertical concatentation of $1^T$, $M_1$, and $M_2$. Let $g$ be $[1, b_1, b_2]^T$
+
+    Let $A = -I$
+    
+    We can express $S$, via compact notation, as $S = \{x | Ax \preceq 0, Fx = g \}$
+
+    \item [(c)] $S$ is NOT a Polyhedra 
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+    \textit{Hyperbolic sets.} Show that the \textit{hyperbolic set} is $\{x \in \mathbb{R}^2_+ : x_1x_2 \geq 1\}$ is convex. As a generalization, show that $\{x \in \mathbb{R}^2_+ : \prod_{i=1}^{n} x_i \geq 1\}$ is convex. \textit{Hint.} If $a, b \geq 0$ and $0 \leq \theta \leq 1$, then $a^{\theta} b^{1 - \theta} \leq \theta a + (1 - \theta) b$
+
+    \begin{solution}
+    Let $S$ be $\{x \in \mathbb{R}^2_+ : \prod_{i=1}^{n} x_i \geq 1\}$. Let's have two vectors  $j$ and $k$ that are in $S$. Let the elements of $j$ be $j_1, j_2, ...., j_n$. Let the elements of $k$ be $k_1, k_2, ..., k_n$
+
+        We want to prove that $\theta j + (1 - \theta)k \in S$. 
+
+        Since we know that $j \in S$ and $k \in S$, we can state the following:
+        \begin{itemize}
+            \item $j_1 \geq 0, j_2 \geq 0, ...., j_n \geq 0$
+            \item $j_1 j_2 j_3 ... j_n \geq 1$
+            \item $k_1 \geq 0, k_2 \geq 0, ...., k_n \geq 0$
+            \item $k_1 k_2 k_3 ... k_n \geq 1$
+        \end{itemize}
+
+        For $i \in [1, n]$, $j_i, k_i \geq 0$ and $0 \leq \theta \leq 1$, we can see that $0 \leq j_i^{\theta} k_i^{1 - \theta} \leq \theta j_i + (1 - \theta)k_i$. 
+
+        We can also see that: \newline 
+        
+        $\prod_{i=1}^{n} j_i^{\theta} k_i^{1 - \theta} =  (\prod_{i=1}^{n} j_i)^{\theta} (\prod_{i=1}^{n} k_i)^{1 - \theta}$
+
+        Since $j_1 j_2 j_3 ... j_n \geq 1$ and $k_1 k_2 k_3 ... k_n \geq 1$, we can say that: \newline 
+        
+        $\prod_{i=1}^{n} j_i^{\theta} k_i^{1 - \theta} =  (\prod_{i=1}^{n} j_i)^{\theta} (\prod_{i=1}^{n} k_i)^{1 - \theta} \geq 1$
+
+        Since $j_i^{\theta} k_i^{1 - \theta} \leq \theta j_i + (1 - \theta)k_i$, \newline
+        
+        $1 \leq \prod_{i=1}^{n} j_i^{\theta} k_i^{1 - \theta} \leq   \prod_{i=1}^{n} \theta j_i + (1 - \theta)k_i$
+
+        We have shown that $\theta j_i + (1 - \theta)k_i \in S$ and that $S$ is a convex set!
+
+        Since we have proved the generalized case, we can say that $\{x \in \mathbb{R}^2_+ : x_1x_2 \geq 1\}$ is convex as well 
+        
+    \end{solution}
+\end{problem}
 
 \begin{problem}
 Problem 2.16: \newline 
