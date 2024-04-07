@@ -215,6 +215,37 @@ $\theta (x_1, y_{11} + y_{12}) + (1 - \theta) (x_2, y_{21} + y_{22})$ is in $S$.
     \end{solution}
 \end{problem}
 
+\begin{problem} [Problem 2.19(a)]
+    \textit{Linear-fractional functions and convex sets.} Let $f: \mathbb{R}^m \rightarrow \mathbb{R}^n$ be the linear-fractional function
+    \begin{equation}
+        f(x) = (Ax + b) / (c^Tx + d), \enspace dom f = \{x | c^Tx + d > 0\}
+    \end{equation}
+
+    In this problem, we study the inverse image of a convex set $C$ under $f$, \textit{i.e.,}
+    \begin{equation}
+        f^{-1}(C) = \{x \in dom f : f(x) \in C\}
+    \end{equation}
+
+    For each of the following sets $C \subseteq \mathbb{R}^n $, give a simple description of $f^{-1}(C)$
+
+    \begin{solution}
+        Let's look at the halfspace $C = \{y : g^Ty \leq h\}$(with $g\neq 0$). 
+
+        $f^{-1}(C) = \{x :  g^T ((Ax + b) / (c^Tx + d)) \leq h, c^Tx + d > 0 \}$ \newline 
+
+        Since $c^Tx + d > 0$ \newline 
+        $f^{-1}(C) = \{ x :  g^T (Ax + b) \leq h(c^Tx + d), c^Tx + d > 0 \}$ \newline 
+        $f^{-1}(C) = \{ x :  g^TAx + g^Tb \leq hc^Tx + hd, c^Tx + d > 0 \}$ \newline
+        $f^{-1}(C) = \{ x :  (g^TA - hc^T)x \leq hd - g^Tb, c^Tx + d > 0 \}$ \newline
+        $f^{-1}(C) = \{ x :  (A^Tg - ch^T)^T x \leq hd - g^Tb, c^Tx + d > 0 \}$ \newline
+
+        Let's call a new vector $p^T = (A^Tg - ch^T)^T$ and $q = hd - g^Tb$ \newline 
+        $f^{-1}(C) = \{ x :  p^T x \leq q, c^Tx + d > 0 \}$ \newline
+
+        We can see that $f^{-1}(C)$ is just the intersection of a halfspace and the domain of f!
+    \end{solution}
+\end{problem}
+
 
 \end{document}
 
