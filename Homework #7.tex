@@ -246,6 +246,76 @@ $\theta (x_1, y_{11} + y_{12}) + (1 - \theta) (x_2, y_{21} + y_{22})$ is in $S$.
     \end{solution}
 \end{problem}
 
+\begin{problem} [Problem 3.17]
+Suppose $p < 1, p \neq 0$. Show that the function 
+\begin{equation}
+    f(x) = (\sum_{i=1}^{n} x_i^p)^{\frac{1}{p}}
+\end{equation}
+with $dom f = \mathbb{R}^n_{++}$ is concave. This includes as special cases $f(x) = (\sum_{i=1}^{n} x_i^2)^{\frac{1}{2}}$ and the \textit{harmonic mean} $f(x) = (\sum_{i=1}^{n} \frac{1}{x_i})^{-1}$. \textit{Hint.} Adapt the proofs for the log-sum-exp
+function and the geometric mean in 3.1.5
+
+\begin{solution}
+    Gradient: $\frac{\partial{f}}{\partial{x_k}} = (\sum_{i=1}^{n} x_i^p)^{\frac{1}{p} - 1} x_k^{p - 1}$
+
+    Jacobian: \newline 
+    $\frac{\partial^2{f}}{\partial^2{x_k}} = (1 - p) (\sum_{i=1}^{n} x_i^p)^{\frac{1}{p} - 2} [x_k^{2p - 2} - x_k^{p - 2} \sum_{i=1}^{n} x_i^p]$ \newline 
+    $\frac{\partial^2{f}}{\partial{x_k} \partial{x_l}} = (1 - p) (\sum_{i=1}^{n} x_i^p)^{\frac{1}{p} - 2} x_l^{p - 1} x_k^{p - 1}$ \newline 
+
+    It is clear that we can express $\nabla^2f(x)$ as follows: \newline 
+    $\nabla^2f(x) = (1 - p) (\sum_{i=1}^{n} x_i^p)^{\frac{1}{p} - 2} [qq^T - (\sum_{i=1}^{n} x_i^p) diag(x_1^{p - 2}, x_2^{p - 2}, \dots, x_n^{p - 2})]$ where $q_i = x_i^{p - 1}$ \newline 
+
+    For concavity, we need $v^T \nabla^2f(x) v \leq 0$ to hold true for all $x \in \mathbb{R}^n_{++}$
+
+    $v^T \nabla^2f(x) v  = (1 - p) (\sum_{i=1}^{n} x_i^p)^{\frac{1}{p} - 2} [v^Tqq^Tv - (\sum_{i=1}^{n} x_i^p) v^T diag(x_1^{p - 2}, x_2^{p - 2}, \dots, x_n^{p - 2}) v]$ 
+
+    $v^T \nabla^2f(x) v  = (1 - p) (\sum_{i=1}^{n} x_i^p)^{\frac{1}{p} - 2} [(\sum_{i=1}^{n} q_i v_i)^2 - \sum_{i=1}^{n} x_i^p (\sum_{i=1}^{n} x_i^{p - 2} v_i)]$ 
+
+    $v^T \nabla^2f(x) v  = (1 - p) (\sum_{i=1}^{n} x_i^p)^{\frac{1}{p} - 2} [(\sum_{i=1}^{n} x_i x_i^{p - 2} v_i)^2 - \sum_{i=1}^{n} x_i^p (\sum_{i=1}^{n} x_i^{p - 2} v_i)]$ 
+
+    The Cauchy Schwartz Inequality tell us that $(a^Ta) (b^Tb) \geq (a^Tb)^2$ \newline 
+    If we set $a_i = x_i^{\frac{p}{2}}$ and we set $b_i = x_i^{\frac{p - 2}{2}} v_i$, substituting this into the Cauchy Schwartz inequality allows us to see that 
+
+    $(\sum_{i=1}^{n} x_i^p)  (\sum_{i=1}^{n} x_i^{p - 2} v_i) \geq (\sum_{i=1}^{n} x_i^{p - 1} v_i)^2 = (\sum_{i=1}^{n} q_i v_i)^2$ \newline 
+
+    By extension, we can see that \newline 
+    $(\sum_{i=1}^{n} x_i^p) v^T diag(x_1^{p - 2}, x_2^{p - 2}, \dots, x_n^{p - 2}) v \geq v^Tqq^Tv$ \newline 
+
+    $[v^Tqq^Tv - (\sum_{i=1}^{n} x_i^p) v^T diag(x_1^{p - 2}, x_2^{p - 2}, \dots, x_n^{p - 2}) v] \leq 0$
+
+    Since $p < 1$ and $x_i \in \mathbb{R}_{++}$, $(1 - p) (\sum_{i=1}^{n} x_i^p)^{\frac{1}{p} - 2}$ is a positive constant. Hence, $v^T \nabla^2f(x) v \leq 0$ which means that we have proven concavity!
+    
+\end{solution}
+\end{problem}
+
+\begin{problem}
+    Adapt the proof of concavity of the log-determinant function in §3.1.5 to show the following
+    \begin{itemize}
+        \item[(a)] $f(X) = tr(X^{-1})$ is convex on $dom f = \mathbb{S}^n_{++}$
+        \begin{solution}
+            To verify convexity, we can consider an arbitrary line given by $X = Z + tV$ where $Z, V \in \mathbb{S}^n_{++}$
+
+            Let $\lambda_{v1}, \lambda_{v2}, \dots, \lambda_{vn}$ be the $n$ eigenvalues of $V$
+
+            Let $\lambda_{z1}, \lambda_{z2}, \dots, \lambda_{zn}$ be the $n$ eigenvalues of $Z$
+
+            $t \lambda_{v1}, t \lambda_{v2}, \dots, t\lambda_{vn}$ are the $n$ eigenvalues of $tV$
+
+            Since $tr(A + B) = tr(A) + tr(B)$, we know that the $tr(Z + tV) = tr(Z) + tr(tv) = \lambda_{z1} + t\lambda_{v1} + \lambda_{z2} +  t\lambda_{v2} + \dots + \lambda_{zn} + t\lambda_{vn}$
+
+            Let $Z + tV = C$ and let the eigenvalues of $C$ be $\lambda_{c1}, \lambda_{c2}, \dots, \lambda_{cn}$ be the $n$ eigenvalues of $C$
+
+            We know that $\lambda_{c1} + \dots + \lambda_{cn} = \lambda_{z1} + t\lambda_{v1} + \lambda_{z2} +  t\lambda_{v2} + \dots + \lambda_{zn} + t\lambda_{vn}$
+
+            $g(t) = f(Z + tV) = tr((Z + tV)^{-1}) = \frac{1}{\lambda_{c1}} + \dots + \frac{1}{\lambda_{cn}}$ \newline 
+
+            $g(t) = f(Z + tV) = tr((Z + tV)^{-1}) = tr(Z^{-1} $
+
+            
+            
+        \end{solution}  
+    \end{itemize}
+\end{problem}
+
 
 \end{document}
 

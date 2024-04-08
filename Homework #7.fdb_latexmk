@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1712494904 "/Users/raviraghavan/Desktop/Undergrad BS CS:CE/Undergrad Senior Year/Spring 2024/ECE 509 Convex Optimization/Homework #7.tex" "Homework #7.pdf" "Homework #7" 1712494905 0
-  "/Users/raviraghavan/Desktop/Undergrad BS CS:CE/Undergrad Senior Year/Spring 2024/ECE 509 Convex Optimization/Homework #7.tex" 1712494904 10297 4d36cd0b5797048684fa0a8d75b2e865 ""
+["pdflatex"] 1712550688 "/Users/raviraghavan/Desktop/Undergrad BS CS:CE/Undergrad Senior Year/Spring 2024/ECE 509 Convex Optimization/Homework #7.tex" "Homework #7.pdf" "Homework #7" 1712550689 0
+  "/Users/raviraghavan/Desktop/Undergrad BS CS:CE/Undergrad Senior Year/Spring 2024/ECE 509 Convex Optimization/Homework #7.tex" 1712550684 14402 dfd588b997a1029067a93cc949cd866d ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1136768653 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
@@ -18,11 +18,14 @@
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb" 1248133631 34811 78b52f49e893bcba91bd7581cdc144c0 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb" 1248133631 30251 6afa5cb1d0204815a708a080681d4674 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1248133631 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
+  "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb" 1248133631 37912 77d683123f92148345f3fc36a38d9ab1 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb" 1248133631 36281 c355509802a035cadc5f15869451dcee ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1248133631 32722 d7379af29a190c3f453aba36302ff5a9 ""
+  "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb" 1248133631 31809 8670ca339bf94e56da1fc21c80635e2a ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1248133631 32762 224316ccc9ad3ca0423a14971cfa7fc1 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
+  "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb" 1248133631 32915 7bf7720c61a5b3a7ff25b0964421c9b6 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1248133631 32716 08e384dc442464e7285e891af9f45947 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb" 1248133631 37944 359e864bd06cde3b1cf57bb20757fb06 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb" 1248133631 34694 ad62b13721ee8eda1dcc8993c8bd7041 ""
@@ -61,8 +64,8 @@
   "/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1709136911 4623355 b8cad38412faebe1ce5b780a45db67bd ""
   "/usr/local/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1709136851 7883460 6c9c589f76a0feca2346aae2a247378b ""
   "/usr/local/texlive/2023/texmf.cnf" 1678822455 577 1b2b1af17af2508fb20dd85783af4050 ""
-  "Homework #7.aux" 1712494905 32 ab05033ccbb38b00a31b200ccedf8001 "pdflatex"
-  "Homework #7.tex" 1712494904 10297 4d36cd0b5797048684fa0a8d75b2e865 ""
+  "Homework #7.aux" 1712550689 32 c81c40425fbb5e93b90fba65da0b5e61 "pdflatex"
+  "Homework #7.tex" 1712550684 14402 dfd588b997a1029067a93cc949cd866d ""
   (generated)
   "Homework #7.aux"
   "Homework #7.log"
