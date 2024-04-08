@@ -292,26 +292,49 @@ function and the geometric mean in 3.1.5
     \begin{itemize}
         \item[(a)] $f(X) = tr(X^{-1})$ is convex on $dom f = \mathbb{S}^n_{++}$
         \begin{solution}
-            To verify convexity, we can consider an arbitrary line given by $X = Z + tV$ where $Z, V \in \mathbb{S}^n_{++}$
+            To verify convexity, we can consider an arbitrary line given by $X = Z + tV$ where $Z \in \mathbb{S}^n_{++}$ and $V \in \mathbb{S}^n$
 
-            Let $\lambda_{v1}, \lambda_{v2}, \dots, \lambda_{vn}$ be the $n$ eigenvalues of $V$
+            $g(t) = f(Z + tV) = tr((Z + tV)^{-1})$ \newline 
+            $= tr((Z^{\frac{1}{2}} (I + tZ^{\frac{-1}{2}} V Z^{\frac{-1}{2}}) Z^{\frac{1}{2}})^{-1})$ \newline 
+            $= tr((Z^{\frac{-1}{2}} (I + tZ^{\frac{-1}{2}} V Z^{\frac{-1}{2}})^{-1} Z^{\frac{-1}{2}}))$ \newline 
 
-            Let $\lambda_{z1}, \lambda_{z2}, \dots, \lambda_{zn}$ be the $n$ eigenvalues of $Z$
+            It is a well known fact that $tr(ABC) = tr(BCA) = tr(CAB)$ \newline 
 
-            $t \lambda_{v1}, t \lambda_{v2}, \dots, t\lambda_{vn}$ are the $n$ eigenvalues of $tV$
+            Hence, we can continue our simplification \newline 
+            $= tr((Z^{\frac{-1}{2}} Z^{\frac{-1}{2}} (I + tZ^{\frac{-1}{2}} V Z^{\frac{-1}{2}})^{-1}))$ \newline 
 
-            Since $tr(A + B) = tr(A) + tr(B)$, we know that the $tr(Z + tV) = tr(Z) + tr(tv) = \lambda_{z1} + t\lambda_{v1} + \lambda_{z2} +  t\lambda_{v2} + \dots + \lambda_{zn} + t\lambda_{vn}$
+            $= tr((Z^{-1} (I + tZ^{\frac{-1}{2}} V Z^{\frac{-1}{2}})^{-1}))$ \newline 
 
-            Let $Z + tV = C$ and let the eigenvalues of $C$ be $\lambda_{c1}, \lambda_{c2}, \dots, \lambda_{cn}$ be the $n$ eigenvalues of $C$
-
-            We know that $\lambda_{c1} + \dots + \lambda_{cn} = \lambda_{z1} + t\lambda_{v1} + \lambda_{z2} +  t\lambda_{v2} + \dots + \lambda_{zn} + t\lambda_{vn}$
-
-            $g(t) = f(Z + tV) = tr((Z + tV)^{-1}) = \frac{1}{\lambda_{c1}} + \dots + \frac{1}{\lambda_{cn}}$ \newline 
-
-            $g(t) = f(Z + tV) = tr((Z + tV)^{-1}) = tr(Z^{-1} $
-
+            Let us represent $Z^{\frac{-1}{2}} V Z^{\frac{-1}{2}}$ as an Eigenvalue Decomposition of $QDQ^T$ \newline 
             
-            
+            $= tr((Z^{-1} (I + tQDQ^T)^{-1}))$ \newline 
+            $= tr((Z^{-1} (QIQ^T + tQDQ^T)^{-1}))$ \newline 
+            $= tr((Z^{-1} (Q(I + tD)Q^T)^{-1}))$ \newline 
+            $= tr((Z^{-1} Q (I + tD)^{-1} Q^T))$ \newline 
+
+            Again, we can use the cyclic property of the trace: \newline 
+            $= tr((Q^TZ^{-1} Q (I + tD)^{-1}))$ \newline 
+
+            $= \sum_{i=1}^{n} (Q^TZ^{-1} Q)_{ii} (1 + t\lambda_i)^{-1}$
+
+            Note: $\lambda_i$ are eigenvalues of $Z^{\frac{-1}{2}} V Z^{\frac{-1}{2}}$ 
+
+            Since $Z$ is a positive definite, symmetric matrix, we know that $Z^{-1}$ is a positive definite, symmetric matrix as well. Hence, $(Q^TZ^{-1} Q)_{ii}$ is always positive. \newline 
+
+            Let's now look at $(1 + t\lambda_i)^{-1}$. Let's take the second derivative with respect to $t$. This second derivative is equal to $\frac{2\lambda_i^2}{(1 + t\lambda_i)^3}$. The numerator is clearly positive. \newline 
+
+            We know that $Z + tV \in \mathbb{S}^n_{++}$ \newline 
+            This means that $Z^{\frac{1}{2}} (I + tZ^{\frac{-1}{2}} V Z^{\frac{-1}{2}}) Z^{\frac{1}{2}} \in \mathbb{S}^n_{++}$ \newline 
+            This means that $(I + tZ^{\frac{-1}{2}} V Z^{\frac{-1}{2}}) \in \mathbb{S}^n_{++}$ must be True
+
+            This means that $1 + t\lambda_i > 0$ must be true for all $i$!. Hence, the denominator of $\frac{2\lambda_i^2}{(1 + t\lambda_i)^3}$ is positive as well. 
+
+            We have shown that the second derivative of $(1 + t\lambda_i)^{-1}$ is positive over the values of $t$ that are in the domain of $g$ which means that $(1 + t\lambda_i)^{-1}$ is a convex function over the domain of $g$.
+
+            $\sum_{i=1}^{n} (Q^TZ^{-1} Q)_{ii} (1 + t\lambda_i)^{-1}$ is a non-negative weighted sum of convex functions which is convex!
+
+            We have completed the proof!
+
         \end{solution}  
     \end{itemize}
 \end{problem}
