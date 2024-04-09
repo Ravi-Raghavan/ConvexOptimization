@@ -117,6 +117,8 @@
         $S_2 = \{x : 2 (b - a)^T x \enspace  \leq  ||b||^2_2 - ||a||^2_2 \}$ \newline 
         $S_2 = \{x : (b - a)^T x \enspace  \leq  0.5 (||b||^2_2 - ||a||^2_2) \}$ \newline 
 
+        If we set $c = b - a$ and $d = 0.5 (||b||^2_2 - ||a||^2_2)$, we can express $S_2$ as follows: \newline 
+        $S_2 = \{x : c^T x \enspace  \leq d \}$ \newline 
         This is a closed half-space
         
     \end{solution}
@@ -135,7 +137,18 @@
     
     We can express $S$, via compact notation, as $S = \{x | Ax \preceq 0, Fx = g \}$
 
-    \item [(c)] $S$ is NOT a Polyhedra 
+    Note: Just to confirm, $\preceq$ when applied to 2 vectors means component-wise $\leq$
+
+    \item [(c)] $S$ is NOT a Polyhedra. Let's analyze why this is the case. 
+
+    First we must look at the statement $x^Ty \leq 1$ for all $||y||_2 = 1$. Our goal is to take all these inequalities and express them in the form $Ax \preceq b$, where $A$ is a matrix, $\preceq$ when applied to 2 vectors means component-wise $\leq$, and $b$ is a vector. So, given a $y$ where $||y||_2 = 1$, we can put this $y$ in a row of $A$. $Ax \preceq 1$, where each row of $A$ is a feasible value of $y$, would capture the statement $x^Ty \leq 1$ for all $||y||_2 = 1$. 
+    
+    However, the number of vectors $y$ where $||y||_2 = 1$ is infinite. Hence, our matrix $A$ would have to have infinite rows which is clearly not possible. 
+
+    Another way of looking at it is like this: \newline 
+    $S$ is the intersection of an infinite number of halfspaces. As per definition, polyhedra are the intersection of a FINITE number of halfspaces. 
+    
+    We have proved why $S$ is NOT a polyhedra.  
 \end{enumerate}
 \end{problem}
 
@@ -143,6 +156,36 @@
     \textit{Hyperbolic sets.} Show that the \textit{hyperbolic set} is $\{x \in \mathbb{R}^2_+ : x_1x_2 \geq 1\}$ is convex. As a generalization, show that $\{x \in \mathbb{R}^2_+ : \prod_{i=1}^{n} x_i \geq 1\}$ is convex. \textit{Hint.} If $a, b \geq 0$ and $0 \leq \theta \leq 1$, then $a^{\theta} b^{1 - \theta} \leq \theta a + (1 - \theta) b$
 
     \begin{solution}
+
+    Let's start by proving that the \textit{hyperbolic set} is $S = \{x \in \mathbb{R}^2_+ : x_1x_2 \geq 1\}$ is convex. \newline 
+Let's have two vectors  $j$ and $k$ that are in $S$. Let the elements of $j$ be $j_1, j_2$. Let the elements of $k$ be $k_1, k_2$
+
+We want to prove that $\theta j + (1 - \theta)k \in S$. 
+
+        Since we know that $j \in S$ and $k \in S$, we can state the following:
+        \begin{itemize}
+            \item $j_1 \geq 0, j_2 \geq 0$
+            \item $j_1 j_2 \geq 1$
+            \item $k_1 \geq 0, k_2 \geq 0$
+            \item $k_1 k_2 \geq 1$
+        \end{itemize}
+
+    For $0 \leq \theta \leq 1$, we can see that $0 \leq j_1^{\theta} k_1^{1 - \theta} \leq \theta j_1 + (1 - \theta)k_1$ and $0 \leq j_2^{\theta} k_2^{1 - \theta} \leq \theta j_2 + (1 - \theta)k_2$. 
+
+    $j_1^{\theta} k_1^{1 - \theta} j_2^{\theta} k_2^{1 - \theta} = (j_1 j_2)^{\theta} (k_1 k_2)^{1 - \theta} $
+
+    Since $j_1 j_2 \geq 1$ and $k_1 k_2 \geq 1$, we can say that: \newline 
+
+    $j_1^{\theta} k_1^{1 - \theta} j_2^{\theta} k_2^{1 - \theta} = (j_1 j_2)^{\theta} (k_1 k_2)^{1 - \theta} \geq 1$
+
+    Since $j_1^{\theta} k_1^{1 - \theta} \leq \theta j_1 + (1 - \theta)k_1$ and $j_2^{\theta} k_2^{1 - \theta} \leq \theta j_2 + (1 - \theta)k_2$
+
+    $1 \leq j_1^{\theta} k_1^{1 - \theta} j_2^{\theta} k_2^{1 - \theta} \leq (\theta j_1 + (1 - \theta)k_1) (\theta j_2 + (1 - \theta)k_2)$
+
+    Furthermore, since $j_1 \geq 0, j_2 \geq 0$ and $k_1 \geq 0, k_2 \geq 0$, we know that $\theta j_1 + (1 - \theta)k_1 \geq 0$ and $\theta j_2 + (1 - \theta)k_2 \geq 0$
+
+    We have finished proving that $\theta j + (1 - \theta)k \in S$. 
+    
     Let $S$ be $\{x \in \mathbb{R}^2_+ : \prod_{i=1}^{n} x_i \geq 1\}$. Let's have two vectors  $j$ and $k$ that are in $S$. Let the elements of $j$ be $j_1, j_2, ...., j_n$. Let the elements of $k$ be $k_1, k_2, ..., k_n$
 
         We want to prove that $\theta j + (1 - \theta)k \in S$. 
@@ -169,9 +212,9 @@
         
         $1 \leq \prod_{i=1}^{n} j_i^{\theta} k_i^{1 - \theta} \leq   \prod_{i=1}^{n} \theta j_i + (1 - \theta)k_i$
 
-        We have shown that $\theta j_i + (1 - \theta)k_i \in S$ and that $S$ is a convex set!
+        Furthermore, since $j_1 \geq 0, j_2 \geq 0, ...., j_n \geq 0$ and $k_1 \geq 0, k_2 \geq 0, ...., k_n \geq 0$, we know that $\theta j_i + (1 - \theta)k_i \geq 0$ as well. 
 
-        Since we have proved the generalized case, we can say that $\{x \in \mathbb{R}^2_+ : x_1x_2 \geq 1\}$ is convex as well 
+        We have shown that $\theta j_i + (1 - \theta)k_i \in S$ and that $S$ is a convex set!
         
     \end{solution}
 \end{problem}
