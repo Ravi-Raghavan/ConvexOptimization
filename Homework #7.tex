@@ -266,23 +266,37 @@ function and the geometric mean in 3.1.5
 
     For concavity, we need $v^T \nabla^2f(x) v \leq 0$ to hold true for all $x \in \mathbb{R}^n_{++}$
 
-    $v^T \nabla^2f(x) v  = (1 - p) (\sum_{i=1}^{n} x_i^p)^{\frac{1}{p} - 2} [v^Tqq^Tv - (\sum_{i=1}^{n} x_i^p) v^T diag(x_1^{p - 2}, x_2^{p - 2}, \dots, x_n^{p - 2}) v]$ 
+    $v^T \nabla^2f(x) v  = (1 - p) (\sum_{i=1}^{n} x_i^p)^{-\frac{1}{p}} [v^Tqq^Tv (\sum_{i=1}^{n} x_i^p)^{\frac{2}{p} - 2} - (\sum_{i=1}^{n} x_i^p)^{\frac{2}{p} - 1} v^T diag(x_1^{p - 2}, x_2^{p - 2}, \dots, x_n^{p - 2}) v]$
 
-    $v^T \nabla^2f(x) v  = (1 - p) (\sum_{i=1}^{n} x_i^p)^{\frac{1}{p} - 2} [(\sum_{i=1}^{n} q_i v_i)^2 - \sum_{i=1}^{n} x_i^p (\sum_{i=1}^{n} x_i^{p - 2} v_i)]$ 
+    $v^T \nabla^2f(x) v  = (1 - p) (\sum_{i=1}^{n} x_i^p)^{-\frac{1}{p}} [(\sum_{i=1}^{n} x_i^{p - 1} v_i)^2 ((\sum_{i=1}^{n} x_i^p)^{\frac{1}{p} - 1})^2 - (\sum_{i=1}^{n} x_i^p)^{\frac{2}{p} - 1} v^T diag(x_1^{p - 2}, x_2^{p - 2}, \dots, x_n^{p - 2}) v]$
 
-    $v^T \nabla^2f(x) v  = (1 - p) (\sum_{i=1}^{n} x_i^p)^{\frac{1}{p} - 2} [(\sum_{i=1}^{n} x_i x_i^{p - 2} v_i)^2 - \sum_{i=1}^{n} x_i^p (\sum_{i=1}^{n} x_i^{p - 2} v_i)]$ 
+    $v^T \nabla^2f(x) v  = (1 - p) (\sum_{i=1}^{n} x_i^p)^{-\frac{1}{p}} [(\sum_{i=1}^{n} ((\sum_{i=1}^{n} x_i^p)^{\frac{1}{p} - 1}) x_i^{p - 1} v_i)^2  - \sum_{i=1}^{n} x_i^{p - 2} v_i^2 ((\sum_{i=1}^{n} x_i^p)^{\frac{2}{p} - 1})]$
+
 
     The Cauchy Schwartz Inequality tell us that $(a^Ta) (b^Tb) \geq (a^Tb)^2$ \newline 
-    If we set $a_i = x_i^{\frac{p}{2}}$ and we set $b_i = x_i^{\frac{p - 2}{2}} v_i$, substituting this into the Cauchy Schwartz inequality allows us to see that 
+    If we set $a_i = x_i^{\frac{p}{2}} ((\sum_{i=1}^{n} x_i^p)^{\frac{-1}{2}})$ and we set $b_i = x_i^{\frac{p - 2}{2}} v_i ((\sum_{i=1}^{n} x_i^p)^{\frac{1}{p} - \frac{1}{2}})$, substituting this into the Cauchy Schwartz inequality allows us to see that 
 
-    $(\sum_{i=1}^{n} x_i^p)  (\sum_{i=1}^{n} x_i^{p - 2} v_i) \geq (\sum_{i=1}^{n} x_i^{p - 1} v_i)^2 = (\sum_{i=1}^{n} q_i v_i)^2$ \newline 
+    $(\sum_{i=1}^{n} x_i^p)  ((\sum_{i=1}^{n} x_i^p)^{-1}) (\sum_{i=1}^{n} x_i^{p - 2} v_i) ((\sum_{i=1}^{n} x_i^p)^{\frac{2}{p} - 1}) \geq (\sum_{i = 1}^{n} x_i^{p - 1} v_i )^2 ((\sum_{i=1}^{n} x_i^p)^{\frac{2}{p} - 2})$ \newline 
 
-    By extension, we can see that \newline 
-    $(\sum_{i=1}^{n} x_i^p) v^T diag(x_1^{p - 2}, x_2^{p - 2}, \dots, x_n^{p - 2}) v \geq v^Tqq^Tv$ \newline 
+    Simplication of LHS[Left Hand Side]: \newline 
+    $(\sum_{i=1}^{n} x_i^p)  ((\sum_{i=1}^{n} x_i^p)^{-1}) (\sum_{i=1}^{n} x_i^{p - 2} v_i) ((\sum_{i=1}^{n} x_i^p)^{\frac{2}{p} - 1}) = (\sum_{i=1}^{n} x_i^{p - 2} v_i) ((\sum_{i=1}^{n} x_i^p)^{\frac{2}{p} - 1})$ \newline 
+    
+    $= (\sum_{i=1}^{n} x_i^p)^{\frac{2}{p} - 1} v^T diag(x_1^{p - 2}, x_2^{p - 2}, \dots, x_n^{p - 2}) v$
 
-    $[v^Tqq^Tv - (\sum_{i=1}^{n} x_i^p) v^T diag(x_1^{p - 2}, x_2^{p - 2}, \dots, x_n^{p - 2}) v] \leq 0$
+    Simplication of RHS[Right Hand Side]: \newline 
+    $v^Tqq^Tv (\sum_{i=1}^{n} x_i^p)^{\frac{2}{p} - 2}$
 
-    Since $p < 1$ and $x_i \in \mathbb{R}_{++}$, $(1 - p) (\sum_{i=1}^{n} x_i^p)^{\frac{1}{p} - 2}$ is a positive constant. Hence, $v^T \nabla^2f(x) v \leq 0$ which means that we have proven concavity!
+    Since LHS $\geq$ RHS, we can state that: \newline 
+
+    $(\sum_{i=1}^{n} x_i^p)^{\frac{2}{p} - 1} v^T diag(x_1^{p - 2}, x_2^{p - 2}, \dots, x_n^{p - 2}) v \geq v^Tqq^Tv (\sum_{i=1}^{n} x_i^p)^{\frac{2}{p} - 2}$
+
+    $v^Tqq^Tv (\sum_{i=1}^{n} x_i^p)^{\frac{2}{p} - 2} - (\sum_{i=1}^{n} x_i^p)^{\frac{2}{p} - 1} v^T diag(x_1^{p - 2}, x_2^{p - 2}, \dots, x_n^{p - 2}) v \leq 0$
+
+    Since $p < 1$ and $x_i \in \mathbb{R}_{++}$, $(1 - p) (\sum_{i=1}^{n} x_i^p)^{\frac{-1}{p}}$ is a positive constant. \newline 
+
+    $v^T \nabla^2f(x) v  = (1 - p) (\sum_{i=1}^{n} x_i^p)^{-\frac{1}{p}} [v^Tqq^Tv (\sum_{i=1}^{n} x_i^p)^{\frac{2}{p} - 2} - (\sum_{i=1}^{n} x_i^p)^{\frac{2}{p} - 1} v^T diag(x_1^{p - 2}, x_2^{p - 2}, \dots, x_n^{p - 2}) v] \leq 0$
+    
+    Hence, since $v^T \nabla^2f(x) v \leq 0$, we have proven concavity!
     
 \end{solution}
 \end{problem}
