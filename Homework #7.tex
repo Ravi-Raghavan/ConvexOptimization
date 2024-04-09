@@ -339,6 +339,34 @@ function and the geometric mean in 3.1.5
     \end{itemize}
 \end{problem}
 
+\begin{problem}
+    \textit{ Nonnegative weighted sums and integrals}
+    \begin{itemize}
+        \item[(a)] Show that $f(x) = \sum_{i=1}^{r} \alpha_i x_{[i]}$ is a convex function of $x$, where $\alpha_1 \geq \alpha_2 \geq \dots \alpha_r \geq 0$, and $x_{[i]}$  denotes the $ith$ largest component of $x$. (You can use the fact that $f(x) = \sum_{i=1}^{r}  x_{[i]}$ is convex on $\mathbb{R}^n$)
+
+        \begin{solution}
+            $f(x) = \alpha_r (\sum_{i=1}^{r}  x_{[i]}) + (\alpha_{r - 1} - \alpha_r) (\sum_{i=1}^{r - 1}  x_{[i]}) + (\alpha_{r - 2} - \alpha_{r - 1}) (\sum_{i=1}^{r - 2}  x_{[i]}) + \dots + (\alpha_{1} - \alpha_{2}) (x_{[1]})$ 
+
+            Since $a_{i} > a_{i + 1}$, $a_{i} - a_{i + 1} > 0$. \newline 
+
+            We know that a non-negative combination of convex functions is convex. Hence, we have completed the proof
+        \end{solution}
+
+        \item[(b)] Let $T(x, w)$  denote the trigonometric polynomia
+        \begin{equation}
+            T(x, w) = x_1 + x_2 \cos{w} + x_3 \cos{2w} + \dots + x_n \cos{(n - 1)w}
+         \end{equation}
+
+         
+Show that the function 
+\begin{equation}
+    f(x) = - \int_{0}^{2\pi} \log T(x, w) \,dw
+\end{equation}
+
+is convex on $\{x \in \mathbb{R}^n : T(x, w) > 0, 0 \leq w \leq 2\pi\}$
+    \end{itemize}
+\end{problem}
+
 
 \end{document}
 
