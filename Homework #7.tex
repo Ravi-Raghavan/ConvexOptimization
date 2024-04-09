@@ -352,7 +352,7 @@ function and the geometric mean in 3.1.5
             We know that a non-negative combination of convex functions is convex. Hence, we have completed the proof
         \end{solution}
 
-        \item[(b)] Let $T(x, w)$  denote the trigonometric polynomia
+        \item[(b)] Let $T(x, w)$  denote the trigonometric polynomial
         \begin{equation}
             T(x, w) = x_1 + x_2 \cos{w} + x_3 \cos{2w} + \dots + x_n \cos{(n - 1)w}
          \end{equation}
@@ -364,6 +364,24 @@ Show that the function
 \end{equation}
 
 is convex on $\{x \in \mathbb{R}^n : T(x, w) > 0, 0 \leq w \leq 2\pi\}$
+
+\begin{solution}
+    Let $g(x, w) = - \log T(x, w) = - \log(x_1 + x_2 \cos{w} + x_3 \cos{2w} + \dots + x_n \cos{(n - 1)w})$ \newline 
+
+    Let's prove that $g(x, w)$ is convex in $x$ when we fix $w$ \newline 
+
+    $h(t) = g(z + tv, w) = - \log T(z + tv, w) = - \log(z_1 + tv_1 + (\cos{w})(z_2 + tv_2) +  (\cos{2w}) (z_3 + tv_3) + \dots + (\cos{(n - 1)w}) (z_n + tv_n))$ \newline 
+
+    $h'(t) = - \frac{v_1 + v_2 \cos{w} + v_3 \cos{2w} + \dots + v_n \cos{(n - 1)w} }{T(z + tv, w)}$ \newline 
+
+    $h''(t) = \frac{(v_1 + v_2 \cos{w} + v_3 \cos{2w} + \dots + v_n \cos{(n - 1)w} )^2}{T(z + tv, w)^2} \geq 0$
+
+    This means that $g(x, w)$ is convex for a fixed $w$ \newline 
+
+    Hence, $f(x) = \int_{0}^{2\pi} g(x, w) \,dw$ is like an infinite non-negative weighted sum. Hence, $f(x)$ is convex!
+    
+
+\end{solution}
     \end{itemize}
 \end{problem}
 
