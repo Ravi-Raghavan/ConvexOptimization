@@ -152,7 +152,7 @@
     However, the number of vectors $y$ where $||y||_2 = 1$ is infinite. Hence, our matrix $A$ would have to have infinite rows which is clearly not possible. 
 
     Another way of looking at it is like this: \newline 
-    $S$ is the intersection of an infinite number of halfspaces. As per definition, polyhedra are the intersection of a FINITE number of halfspaces. 
+    Based on the definition of $S$, it requires an infinite number of halfspaces. As per definition, polyhedra are the intersection of a FINITE number of halfspaces. 
     
     We have proved why $S$ is NOT a polyhedra.  
 \end{enumerate}
@@ -249,10 +249,10 @@ Problem 2.16: \newline
         $ (\theta x_1 + (1 - \theta) x_2, \theta y_{11} + (1 - \theta) y_{21} ) \in S_1$
         \item $\theta (x_1, y_{12})  + (1 - \theta)(x_2, y_{22}) \in S_2$
 
-        $ (\theta x_1 + (1 - \theta) x_2, \theta y_{12} + (1 - \theta) y_{22} ) \in S_1$
+        $ (\theta x_1 + (1 - \theta) x_2, \theta y_{12} + (1 - \theta) y_{22} ) \in S_2$
     \end{itemize}
 
-    By definition of Set $S$, since $ (\theta x_1 + (1 - \theta) x_2, \theta y_{11} + (1 - \theta) y_{21} ) \in S_1$ and $ (\theta x_1 + (1 - \theta) x_2, \theta y_{12} + (1 - \theta) y_{22} ) \in S_1$, we can see that: \newline 
+    By definition of Set $S$, since $ (\theta x_1 + (1 - \theta) x_2, \theta y_{11} + (1 - \theta) y_{21} ) \in S_1$ and $ (\theta x_1 + (1 - \theta) x_2, \theta y_{12} + (1 - \theta) y_{22} ) \in S_2$, we can see that: \newline 
 
     $ (\theta x_1 + (1 - \theta) x_2, (\theta y_{11} + (1 - \theta) y_{21}) + (\theta y_{12} + (1 - \theta) y_{22}) ) \in S$ \newline 
 
@@ -286,9 +286,9 @@ $\theta (x_1, y_{11} + y_{12}) + (1 - \theta) (x_2, y_{21} + y_{22})$ is in $S$.
         $f^{-1}(C) = \{ x :  g^T (Ax + b) \leq h(c^Tx + d), c^Tx + d > 0 \}$ \newline 
         $f^{-1}(C) = \{ x :  g^TAx + g^Tb \leq hc^Tx + hd, c^Tx + d > 0 \}$ \newline
         $f^{-1}(C) = \{ x :  (g^TA - hc^T)x \leq hd - g^Tb, c^Tx + d > 0 \}$ \newline
-        $f^{-1}(C) = \{ x :  (A^Tg - ch^T)^T x \leq hd - g^Tb, c^Tx + d > 0 \}$ \newline
+        $f^{-1}(C) = \{ x :  (A^Tg - hc)^T x \leq hd - g^Tb, c^Tx + d > 0 \}$ \newline
 
-        Let's call a new vector $p^T = (A^Tg - ch^T)^T$ and $q = hd - g^Tb$ \newline 
+        Let's call a new vector $p^T = (A^Tg - hc)^T$ and $q = hd - g^Tb$ \newline 
         $f^{-1}(C) = \{ x :  p^T x \leq q, c^Tx + d > 0 \}$ \newline
 
         We can see that $f^{-1}(C)$ is just the intersection of a halfspace and the domain of f!
@@ -300,20 +300,30 @@ Suppose $p < 1, p \neq 0$. Show that the function
 \begin{equation}
     f(x) = (\sum_{i=1}^{n} x_i^p)^{\frac{1}{p}}
 \end{equation}
-with $dom f = \mathbb{R}^n_{++}$ is concave. This includes as special cases $f(x) = (\sum_{i=1}^{n} x_i^2)^{\frac{1}{2}}$ and the \textit{harmonic mean} $f(x) = (\sum_{i=1}^{n} \frac{1}{x_i})^{-1}$. \textit{Hint.} Adapt the proofs for the log-sum-exp
+with $dom f = \mathbb{R}^n_{++}$ is concave. This includes as special cases $f(x) = (\sum_{i=1}^{n} x_i^{\frac{1}{2}})^{2}$ and the \textit{harmonic mean} $f(x) = (\sum_{i=1}^{n} \frac{1}{x_i})^{-1}$. \textit{Hint.} Adapt the proofs for the log-sum-exp
 function and the geometric mean in 3.1.5
 
 \begin{solution}
+
+Computing Gradient: \newline 
+Gradient: $\frac{\partial{f}}{\partial{x_k}} = \frac{1}{p} (\sum_{i=1}^{n} x_i^p)^{\frac{1}{p} - 1} p x_k^{p - 1} = (\sum_{i=1}^{n} x_i^p)^{\frac{1}{p} - 1} x_k^{p - 1}$ \newline 
     Gradient: $\frac{\partial{f}}{\partial{x_k}} = (\sum_{i=1}^{n} x_i^p)^{\frac{1}{p} - 1} x_k^{p - 1}$
 
     Jacobian: \newline 
+    $\frac{\partial^2{f}}{\partial^2{x_k}} = (\frac{1}{p} - 1) (\sum_{i=1}^{n} x_i^p)^{\frac{1}{p} - 2} p x_k^{p - 1} x_k^{p - 1} + (\sum_{i=1}^{n} x_i^p)^{\frac{1}{p} - 1} (p - 1) x_k^{p-2}$ \newline 
+    $\frac{\partial^2{f}}{\partial^2{x_k}} = (1 - p) (\sum_{i=1}^{n} x_i^p)^{\frac{1}{p} - 2} x_k^{2p - 2} + (\sum_{i=1}^{n} x_i^p)^{\frac{1}{p} - 1} (p - 1) x_k^{p-2}$ \newline 
     $\frac{\partial^2{f}}{\partial^2{x_k}} = (1 - p) (\sum_{i=1}^{n} x_i^p)^{\frac{1}{p} - 2} [x_k^{2p - 2} - x_k^{p - 2} \sum_{i=1}^{n} x_i^p]$ \newline 
+
+
+    $\frac{\partial^2{f}}{\partial{x_k} \partial{x_l}} = (\frac{1}{p} - 1) (\sum_{i=1}^{n} x_i^p)^{\frac{1}{p} - 2} p x_l^{p - 1} x_k^{p - 1}$ \newline
     $\frac{\partial^2{f}}{\partial{x_k} \partial{x_l}} = (1 - p) (\sum_{i=1}^{n} x_i^p)^{\frac{1}{p} - 2} x_l^{p - 1} x_k^{p - 1}$ \newline 
 
     It is clear that we can express $\nabla^2f(x)$ as follows: \newline 
-    $\nabla^2f(x) = (1 - p) (\sum_{i=1}^{n} x_i^p)^{\frac{1}{p} - 2} [qq^T - (\sum_{i=1}^{n} x_i^p) diag(x_1^{p - 2}, x_2^{p - 2}, \dots, x_n^{p - 2})]$ where $q_i = x_i^{p - 1}$ \newline 
+    $\nabla^2f(x) = (1 - p) (\sum_{i=1}^{n} x_i^p)^{\frac{1}{p} - 2} [qq^T - (\sum_{i=1}^{n} x_i^p) diag(x_1^{p - 2}, x_2^{p - 2}, \dots, x_n^{p - 2})]$ where $q$ is a vector in $\mathbb{R}^n$ such that $q_i = x_i^{p - 1}$ \newline 
 
-    For concavity, we need $v^T \nabla^2f(x) v \leq 0$ to hold true for all $x \in \mathbb{R}^n_{++}$
+    For concavity, we need $v^T \nabla^2f(x) v \leq 0$ to hold true for all $x \in \mathbb{R}^n_{++}$ \newline 
+
+    Let's do some factorization \newline 
 
     $v^T \nabla^2f(x) v  = (1 - p) (\sum_{i=1}^{n} x_i^p)^{-\frac{1}{p}} [v^Tqq^Tv (\sum_{i=1}^{n} x_i^p)^{\frac{2}{p} - 2} - (\sum_{i=1}^{n} x_i^p)^{\frac{2}{p} - 1} v^T diag(x_1^{p - 2}, x_2^{p - 2}, \dots, x_n^{p - 2}) v]$
 
@@ -325,10 +335,10 @@ function and the geometric mean in 3.1.5
     The Cauchy Schwartz Inequality tell us that $(a^Ta) (b^Tb) \geq (a^Tb)^2$ \newline 
     If we set $a_i = x_i^{\frac{p}{2}} ((\sum_{i=1}^{n} x_i^p)^{\frac{-1}{2}})$ and we set $b_i = x_i^{\frac{p - 2}{2}} v_i ((\sum_{i=1}^{n} x_i^p)^{\frac{1}{p} - \frac{1}{2}})$, substituting this into the Cauchy Schwartz inequality allows us to see that 
 
-    $(\sum_{i=1}^{n} x_i^p)  ((\sum_{i=1}^{n} x_i^p)^{-1}) (\sum_{i=1}^{n} x_i^{p - 2} v_i) ((\sum_{i=1}^{n} x_i^p)^{\frac{2}{p} - 1}) \geq (\sum_{i = 1}^{n} x_i^{p - 1} v_i )^2 ((\sum_{i=1}^{n} x_i^p)^{\frac{2}{p} - 2})$ \newline 
+    $(\sum_{i=1}^{n} x_i^p)  ((\sum_{i=1}^{n} x_i^p)^{-1}) (\sum_{i=1}^{n} x_i^{p - 2} v_i^2) ((\sum_{i=1}^{n} x_i^p)^{\frac{2}{p} - 1}) \geq (\sum_{i = 1}^{n} x_i^{p - 1} v_i )^2 ((\sum_{i=1}^{n} x_i^p)^{\frac{2}{p} - 2})$ \newline 
 
     Simplication of LHS[Left Hand Side]: \newline 
-    $(\sum_{i=1}^{n} x_i^p)  ((\sum_{i=1}^{n} x_i^p)^{-1}) (\sum_{i=1}^{n} x_i^{p - 2} v_i) ((\sum_{i=1}^{n} x_i^p)^{\frac{2}{p} - 1}) = (\sum_{i=1}^{n} x_i^{p - 2} v_i) ((\sum_{i=1}^{n} x_i^p)^{\frac{2}{p} - 1})$ \newline 
+    $(\sum_{i=1}^{n} x_i^p)  ((\sum_{i=1}^{n} x_i^p)^{-1}) (\sum_{i=1}^{n} x_i^{p - 2} v_i^2) ((\sum_{i=1}^{n} x_i^p)^{\frac{2}{p} - 1}) = (\sum_{i=1}^{n} x_i^{p - 2} v_i^2) ((\sum_{i=1}^{n} x_i^p)^{\frac{2}{p} - 1})$ \newline 
     
     $= (\sum_{i=1}^{n} x_i^p)^{\frac{2}{p} - 1} v^T diag(x_1^{p - 2}, x_2^{p - 2}, \dots, x_n^{p - 2}) v$
 
@@ -371,6 +381,8 @@ function and the geometric mean in 3.1.5
             Let us represent $Z^{\frac{-1}{2}} V Z^{\frac{-1}{2}}$ as an Eigenvalue Decomposition of $QDQ^T$ \newline 
             
             $= tr((Z^{-1} (I + tQDQ^T)^{-1}))$ \newline 
+
+            Since $Q$ is an orthogonal matrix, \newline 
             $= tr((Z^{-1} (QIQ^T + tQDQ^T)^{-1}))$ \newline 
             $= tr((Z^{-1} (Q(I + tD)Q^T)^{-1}))$ \newline 
             $= tr((Z^{-1} Q (I + tD)^{-1} Q^T))$ \newline 
@@ -378,6 +390,7 @@ function and the geometric mean in 3.1.5
             Again, we can use the cyclic property of the trace: \newline 
             $= tr((Q^TZ^{-1} Q (I + tD)^{-1}))$ \newline 
 
+            Since $D$ is a diagonal matrix with eigenvalues of $Z^{\frac{-1}{2}} V Z^{\frac{-1}{2}}$ \newline 
             $= \sum_{i=1}^{n} (Q^TZ^{-1} Q)_{ii} (1 + t\lambda_i)^{-1}$
 
             Note: $\lambda_i$ are eigenvalues of $Z^{\frac{-1}{2}} V Z^{\frac{-1}{2}}$ 
@@ -388,6 +401,15 @@ function and the geometric mean in 3.1.5
 
             We know that $Z + tV \in \mathbb{S}^n_{++}$ \newline 
             This means that $Z^{\frac{1}{2}} (I + tZ^{\frac{-1}{2}} V Z^{\frac{-1}{2}}) Z^{\frac{1}{2}} \in \mathbb{S}^n_{++}$ \newline 
+
+            For any vector $y$, we know that $y^T Z^{\frac{1}{2}} (I + tZ^{\frac{-1}{2}} V Z^{\frac{-1}{2}}) Z^{\frac{1}{2}} y \geq 0$ \newline 
+
+            We know that $Z^{\frac{1}{2}}$ is symmetric and positive definite. \newline 
+
+            $y^T (Z^{\frac{1}{2}})^T (I + tZ^{\frac{-1}{2}} V Z^{\frac{-1}{2}}) Z^{\frac{1}{2}} y \geq 0$ \newline 
+
+            $(Z^{\frac{1}{2}} y)^T (I + tZ^{\frac{-1}{2}} V Z^{\frac{-1}{2}}) (Z^{\frac{1}{2}} y) \geq 0$ \newline 
+            
             This means that $(I + tZ^{\frac{-1}{2}} V Z^{\frac{-1}{2}}) \in \mathbb{S}^n_{++}$ must be True
 
             This means that $1 + t\lambda_i > 0$ must be true for all $i$!. Hence, the denominator of $\frac{2\lambda_i^2}{(1 + t\lambda_i)^3}$ is positive as well. 
@@ -410,7 +432,9 @@ function and the geometric mean in 3.1.5
         \begin{solution}
             $f(x) = \alpha_r (\sum_{i=1}^{r}  x_{[i]}) + (\alpha_{r - 1} - \alpha_r) (\sum_{i=1}^{r - 1}  x_{[i]}) + (\alpha_{r - 2} - \alpha_{r - 1}) (\sum_{i=1}^{r - 2}  x_{[i]}) + \dots + (\alpha_{1} - \alpha_{2}) (x_{[1]})$ 
 
-            Since $a_{i} > a_{i + 1}$, $a_{i} - a_{i + 1} > 0$. \newline 
+            Since $a_{i} \geq a_{i + 1}$, $a_{i} - a_{i + 1} \geq 0$. \newline
+
+            We already know that $f(x) = \sum_{i=1}^{r}  x_{[i]}$ is convex on $\mathbb{R}^n$
 
             We know that a non-negative combination of convex functions is convex. Hence, we have completed the proof
         \end{solution}
@@ -431,8 +455,9 @@ is convex on $\{x \in \mathbb{R}^n : T(x, w) > 0, 0 \leq w \leq 2\pi\}$
 \begin{solution}
     Let $g(x, w) = - \log T(x, w) = - \log(x_1 + x_2 \cos{w} + x_3 \cos{2w} + \dots + x_n \cos{(n - 1)w})$ \newline 
 
-    Let's prove that $g(x, w)$ is convex in $x$ when we fix $w$ \newline 
-
+    Let's first show that $g(x, w)$ is convex in $x$ when we fix $w$ \newline 
+    We will show that $g$ is convex along an arbitrary line \newline 
+    
     $h(t) = g(z + tv, w) = - \log T(z + tv, w) = - \log(z_1 + tv_1 + (\cos{w})(z_2 + tv_2) +  (\cos{2w}) (z_3 + tv_3) + \dots + (\cos{(n - 1)w}) (z_n + tv_n))$ \newline 
 
     $h'(t) = - \frac{v_1 + v_2 \cos{w} + v_3 \cos{2w} + \dots + v_n \cos{(n - 1)w} }{T(z + tv, w)}$ \newline 
