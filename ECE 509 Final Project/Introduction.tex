@@ -66,6 +66,59 @@ holds for all $x, y \in dom f$
     \forall x, y \in \mathbb{R}^n, f(y) \leq f(x) + \langle \nabla f(x), y - x \rangle + \frac{L}{2} ||y - x||^2
 \end{equation}
 
+\noindent \textbf{Lemma:} If $f$ is $L-$smooth and $\gamma > 0$ then, 
+\begin{equation}
+    \forall x, y \in \mathbb{R}^n, \enspace f(x - \gamma \nabla f(x)) - f(x) \leq -\gamma (1 - \frac{\gamma L}{2}) ||\nabla f(x)||^2
+\end{equation}
+
+\noindent \textbf{Proof:}  \newline 
+Let's begin with the definition of $L-$Smooth. Earlier, we showed that when a function is $L-$Smooth, the following holds true: \newline 
+
+$||\nabla f(x) - \nabla f(y)|| \leq L ||x - y||$ \newline
+
+
+Let's now begin with the proof: \newline
+Let $g(t) = f(x + t(y - x))$ \newline 
+
+Based on simple calculus rules \newline 
+$f(y) - f(x) = \int_{0}^{1} g'(t) \,dt$ \newline 
+
+$f(y) - f(x) = \int_{0}^{1} \nabla f(x + t(y - x))^T (y - x) \,dt$ \newline 
+
+$f(y) - f(x) = \int_{0}^{1} \langle \nabla f(x + t(y - x)), y - x \rangle \,dt$ \newline 
+
+$f(y) - f(x) = \langle \nabla f(x), y - x \rangle + \int_{0}^{1} \langle \nabla f(x + t(y - x)) - \nabla f(x), y - x \rangle \,dt$ \newline 
+
+Apply the Cauchy Schwarz Inequality on the inside of the integral \newline 
+
+$f(y) - f(x) \leq \langle \nabla f(x), y - x \rangle + \int_{0}^{1} ||\nabla f(x + t(y - x)) - \nabla f(x)|| || y - x || \,dt$ \newline 
+
+Now let's apply the definition of $L-$Smoothness inside the integral, \newline 
+
+$f(y) - f(x) \leq \langle \nabla f(x), y - x \rangle + \int_{0}^{1} tL ||y - x||^2\,dt$ \newline 
+
+$f(y) - f(x) \leq \langle \nabla f(x), y - x \rangle + \frac{L}{2} ||y - x||^2$ \newline 
+
+
+Now, let's insert $y = x - \gamma \nabla f(x)$ into the above equation \newline 
+
+$f(x - \gamma \nabla f(x)) - f(x) \leq \langle \nabla f(x), x - \gamma \nabla f(x) - x \rangle + \frac{L}{2} ||x - \gamma \nabla f(x) - x||^2$ \newline 
+
+$f(x - \gamma \nabla f(x)) - f(x) \leq \langle \nabla f(x), - \gamma \nabla f(x) \rangle + \frac{L}{2} ||- \gamma \nabla f(x)||^2$ \newline 
+
+$f(x - \gamma \nabla f(x)) - f(x) \leq - \langle \nabla f(x), \gamma \nabla f(x) \rangle + \frac{L\gamma ^2}{2} ||\nabla f(x)||^2$ \newline 
+
+$f(x - \gamma \nabla f(x)) - f(x) \leq - \gamma ||\nabla f(x)||^2 + \frac{L\gamma ^2}{2} ||\nabla f(x)||^2$ \newline 
+
+$f(x - \gamma \nabla f(x)) - f(x) \leq (- \gamma + \frac{L\gamma ^2}{2}) ||\nabla f(x)||^2$ \newline 
+
+If we assume that $\inf f > -\infty$ and if we set $\gamma = \frac{1}{L}$, we can see that: \newline 
+
+$\inf f - f(x) \leq f(x - \frac{1}{L} \nabla f(x)) - f(x) \leq (-\frac{1}{2L}) ||\nabla f(x)||^2$ \newline 
+
+$(\frac{1}{2L}) ||\nabla f(x)||^2 \leq f(x) - \inf f$
+
+
 \subsubsection{Smoothness and Convexity}
 \noindent \textbf{Lemma:} If $f: \mathbb{R}^d \rightarrow \mathbb{R}$ is convex and $L-$smooth, then $\forall x, y \in \mathbb{R}^d$, we have that: 
 \begin{equation}
@@ -262,6 +315,27 @@ Hence, we have shown that $f_i(x_1) = f_i(x^*)$ and that, subsequently, $V[\nabl
 \begin{equation}
     \forall x \in \mathbb{R}^d, \enspace \mathbb{E}[||\nabla f_i(x)||^2] \leq 2L_{max} (f(x) - \inf f) + 2L_{max} \Delta^*_f
 \end{equation}
+
+\noindent \textbf{Proof:} 
+Earlier, we showed that, for L-Smooth Functions, $(\frac{1}{2L}) ||\nabla f(x)||^2 \leq f(x) - \inf f$ \newline 
+
+Hence, we can state that: $(\frac{1}{2L_i}) ||\nabla f_i(x)||^2 \leq f_i(x) - \inf f_i$ \newline 
+
+$ ||\nabla f_i(x)||^2 \leq 2L_i (f_i(x) - \inf f_i) \leq 2L_{max} (f_i(x) - \inf f_i) = 2L_{max} (f_i(x) - f_i(x^*)) + 2L_{max} (f_i(x^*) - \inf f_i)$ \newline 
+
+$ ||\nabla f_i(x)||^2 \leq  2L_{max} (f_i(x) - f_i(x^*)) + 2L_{max} (f_i(x^*) - \inf f_i)$ \newline 
+
+Let's take expectation \newline 
+$ \mathbb{E} [||\nabla f_i(x)||^2] \leq  2L_{max} \mathbb{E}[(f_i(x) - f_i(x^*))] + 2L_{max} \mathbb{E}[(f_i(x^*) - \inf f_i)]$ \newline 
+
+$ \mathbb{E} [||\nabla f_i(x)||^2] \leq  2L_{max} (f(x) - \inf f) + 2L_{max} \mathbb{E}[(f_i(x^*) - \inf f_i)]$ \newline 
+
+$ \mathbb{E} [||\nabla f_i(x)||^2] \leq  2L_{max} (f(x) - \inf f) + 2L_{max} (\inf f - E[\inf f_i])$ \newline
+
+$ \mathbb{E} [||\nabla f_i(x)||^2] \leq  2L_{max} (f(x) - \inf f) + 2L_{max} (\inf f - \frac{1}{n} \sum_{i=1}^{n} inf f_i)$ \newline
+
+$ \mathbb{E} [||\nabla f_i(x)||^2] \leq  2L_{max} (f(x) - \inf f) + 2L_{max} \Delta_f^*$ \newline
+
 
 \noindent \textbf{Lemma. } Let us say that we have a function that is a Sum of L-Smooth and Convex Functions. 
 
