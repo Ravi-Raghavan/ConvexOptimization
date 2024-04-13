@@ -311,6 +311,58 @@ Hence, we have shown that $f_i(x_1) = f_i(x^*)$ and that, subsequently, $V[\nabl
     \item If each $f_i$ is $p$ strongly convex, then $2p\Delta^*_f \leq \sigma_f^*$
 \end{enumerate}
 
+\noindent \textbf{Proof:} Let us say that we have a point $x^* \in \arg \min f$. Earlier, we show that if a function $f$ is $L-$Smooth, then $||\nabla f(x)||^2 \leq 2L * (f(x) - \inf f)$. 
+
+In this case, we know that each $f_i$ is $L-$Smooth. We can proceed as follows: \newline 
+$||\nabla f_i(x^*)||^2 \leq 2L_i * (f_i(x^*) - \inf f_i) \leq 2L_{max} *  (f_i(x^*) - \inf f_i)$. 
+
+Let's take the expectation over both sides of the inequality: \newline 
+$\mathbb{E}[||\nabla f_i(x^*)||^2] \leq \mathbb{E}[2L_{max} * (f_i(x^*) - \inf f_i)]$. \newline  
+
+$\mathbb{E}[||\nabla f_i(x^*)||^2] \leq 2L_{max}  \mathbb{E}[(f_i(x^*) - \inf f_i)]$. 
+
+Let's take a look at $\mathbb{E}[||\nabla f_i(x^*)||^2]$. We will use the fact that $\nabla f(x^*) = 0$
+
+$\mathbb{E}[||\nabla f_i(x^*)||^2]  =  \mathbb{E}[||\nabla f_i(x^*) - \nabla f(x^*)||^2] = \mathbb{E}[||\nabla f_i(x^*) - \mathbb{E}[\nabla f_i(x^*)]||^2] = \mathbb{V}[\nabla f_i(x^*)]  \geq \sigma_f^*$ \newline 
+
+Now, let's analyze $2L_{max}  \mathbb{E}[(f_i(x^*) - \inf f_i)]$. \newline 
+
+$2L_{max}  \mathbb{E}[(f_i(x^*) - \inf f_i)] = 2L_{max} (\mathbb{E}[(f_i(x^*))] - \mathbb{E}[(\inf f_i)]) = 2L_{max} (f(x^*) - \frac{1}{n} \sum_{i=1}^{n} inf f_i)$
+
+This can be simplified further: \newline 
+$2L_{max} (\inf f - \frac{1}{n} \sum_{i=1}^{n} \inf f_i) = 2L_{max} \Delta^*_f$ \newline 
+
+We have shown that $\sigma_f^* \leq 2L_{max} \Delta^*_f$
+
+
+Now, our job is to show that If each $f_i$ is $p$ strongly convex, then $2p\Delta^*_f \leq \sigma_f^*$ \newline 
+
+The definition of strong convexity tells us that, when a function $f$ is $p$ strongly convex and $x^* \in \arg \min f$: \newline 
+$f(x) - f(x^*) \leq \frac{1}{2p} ||\nabla f(x)||^2$
+
+
+When a function $f_i$ is $p$ strongly convex, we have the inequality for each $f_i$: \newline 
+$f_i(x) - \inf f_i \leq \frac{1}{2p} ||\nabla f_i(x)||^2$ \newline 
+
+$f_i(x^*) - \inf f_i \leq \frac{1}{2p} ||\nabla f_i(x^*)||^2$
+
+Take Expectation over this inequality: \newline 
+
+$\mathbb{E} [f_i(x^*) - \inf f_i] \leq \frac{1}{2p} \mathbb{E} [||\nabla f_i(x^*)||^2]$ \newline 
+
+$\mathbb{E} [f_i(x^*)] - \mathbb{E} [\inf f_i] \leq \frac{1}{2p} \mathbb{E} [||\nabla f_i(x^*)||^2]$ \newline 
+
+$\inf f - \frac{1}{n} \sum_{i=1}^{n} \inf f_i \leq \frac{1}{2p} \mathbb{V} [\nabla f_i(x^*)]$ \newline 
+
+$\Delta_f^* \leq \frac{1}{2p} \mathbb{V} [\nabla f_i(x^*)]$ \newline 
+
+Since we have convexity, we know that $\sigma_f^* = \mathbb{V} [\nabla f_i(x^*)]$ \newline 
+
+$\Delta_f^* \leq \frac{1}{2p} \sigma_f^*$ \newline 
+
+$2p \Delta_f^* \leq \sigma_f^*$ \newline 
+
+
 \noindent \textbf{Lemma}.  Let us say that we have a function that is a Sum of L-Smooth Functions. 
 \begin{equation}
     \forall x \in \mathbb{R}^d, \enspace \mathbb{E}[||\nabla f_i(x)||^2] \leq 2L_{max} (f(x) - \inf f) + 2L_{max} \Delta^*_f
@@ -343,6 +395,7 @@ $ \mathbb{E} [||\nabla f_i(x)||^2] \leq  2L_{max} (f(x) - \inf f) + 2L_{max} \De
 \forall x \in \mathbb{R}^d, \enspace \mathbb{E}[||\nabla f_i(x)||^2] \leq 4L_{max} (f(x) - \inf f) + 2\sigma^*_f
 \end{equation}
 
+\noindent \textbf{Proof: } \newline 
 For the rest of this proof, let's pick an $x^* \in \arg \min f$
 
 In our journey to prove this lemma, the first thing we can do is express $||\nabla f_i(x)||^2$ as follows: \newline 
