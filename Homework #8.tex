@@ -1,0 +1,197 @@
+\documentclass{article}
+
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+%=====================================================
+% Add PACKAGES Here (You typically would not need to):
+%=====================================================
+
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}  % Include the amsmath and amssymb packages for mathematical symbols
+
+%=====================================================
+% Ignore This Part (But Do NOT Delete It:)
+%=====================================================
+
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem*{fun}{Fun with Algorithms}
+\newtheorem*{challenge}{Challenge Yourself}
+\def\fline{\rule{0.75\linewidth}{0.5pt}}
+\newcommand{\finishline}{\begin{center}\fline\end{center}}
+\newtheorem*{solution*}{Solution}
+\newenvironment{solution}{\begin{solution*}}{{\finishline} \end{solution*}}
+\newcommand{\grade}[1]{\hfill{\textbf{($\mathbf{#1}$ points)}}}
+\newcommand{\thisdate}{April 25, 2024}
+\newcommand{\thissemester}{\textbf{Rutgers: Spring 2024}}
+\newcommand{\thiscourse}{ECE 509: Convex Optimization} 
+\newcommand{\thishomework}{Number} 
+\newcommand{\thisname}{Name} 
+\newcommand{\thisextension}{Yes/No} 
+
+\headheight 40pt              
+\headsep 10pt
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
+
+\newcommand{\thisheading}{
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { \textbf{\thiscourse \hfill \thissemester} }
+       \vspace{4mm}
+       \hbox to 6.28in { {\Large \hfill Homework \#\thishomework \hfill} }
+       \vspace{2mm}
+         \hbox to 6.28in { { \hfill \thisdate  \hfill} }
+       \vspace{2mm}
+       \hbox to 6.28in { \emph{Name: \thisname \hfill Extension: \thisextension}}
+      \vspace{2mm}}
+      }
+   \end{center}
+   \bigskip
+}
+
+%=====================================================
+% Some useful MACROS (you can define your own in the same exact way also)
+%=====================================================
+
+
+\newcommand{\ceil}[1]{{\left\lceil{#1}\right\rceil}}
+\newcommand{\floor}[1]{{\left\lfloor{#1}\right\rfloor}}
+\newcommand{\prob}[1]{\Pr\paren{#1}}
+\newcommand{\expect}[1]{\Exp\bracket{#1}}
+\newcommand{\var}[1]{\textnormal{Var}\bracket{#1}}
+\newcommand{\set}[1]{\ensuremath{\left\{ #1 \right\}}}
+\newcommand{\poly}{\mbox{\rm poly}}
+
+
+%=====================================================
+% Fill Out This Part With Your Own Information:
+%=====================================================
+
+
+\renewcommand{\thishomework}{8} %Homework number
+\renewcommand{\thisname}{Ravi Raghavan} % Enter your name here
+\renewcommand{\thisextension}{No} % Pick only one of the two options accordingly
+
+\begin{document}
+
+\thisheading
+\vspace{-0.75cm}
+
+
+%=====================================================
+% LaTeX Tip: You can erase this part from here.... 
+%=====================================================		
+
+\finishline
+
+%=====================================================
+% LaTeX Tip: ... to here
+%=====================================================	
+
+
+\bigskip
+\begin{problem}
+\textit{Composition with an affine function.} Show that the following function $f: \mathbb{R}^n \rightarrow \mathbb{R}$ are convex
+\begin{itemize}
+    \item[(a)] $f(x) = ||Ax - b||$, where $A \in \mathbb{R}^{m x n}$, $b \in \mathbb{R}^m$, and $||.||$ is a norm on $\mathbb{R}^m$
+    \begin{solution}
+    Let us have $x, y \in dom f$. Our goal is, for $\theta \in [0, 1]$ to prove that $f(\theta x + (1 - \theta) y ) \leq \theta f(x) + (1 - \theta) f(y)$
+
+    $f(\theta x + (1 - \theta) y ) = ||A(\theta x + (1 - \theta) y) - b|| = ||\theta 
+ Ax + (1 - \theta) Ay - b||$
+
+The triangle inequality theorem(i.e. $||x|| + ||y|| \geq ||x + y||$) also states that: \newline 
+$\theta f(x) + (1 - \theta) f(y) = \theta ||Ax - b|| + (1 - \theta) ||Ay - b|| =  ||\theta(Ax - b)|| + ||(1 - \theta)(Ay - b)|| \geq ||\theta (Ax - b) + (1 - \theta) (Ay - b)|| = ||\theta Ax - \theta b + (1 - \theta) Ay -  (1 - \theta)b|| = ||\theta Ax  + (1 - \theta) Ay - b|| = f(\theta x + (1 - \theta) y )$
+ 
+    \end{solution} 
+
+    \item[(b)] $f(x) = - (\det (A_0 + x_1 A_1 + \dots + x_n A_n))^{\frac{1}{m}}$, on $\{x | A_0 + x_1 A_1 + \dots + x_n A_n \succ 0\}$ where $A_i \in \mathbb{S}^m$
+
+    \begin{solution}
+        Let $\lambda_{ij}$ represent the $j$th Eigenvalue of $A_i$. \newline 
+
+        Since $A_i \in \mathbb{S}^m$, the eigenvalues of $A_0 + x_1 A_1 + \dots + x_n A_n$ are just the sum of the individual eigenvalues of $A_0, x_1 A_1, \dots x_n A_n$
+
+        We already know that the determinant of a Symmetric Matrix is the product of its eigenvalues. Hence, we can re-express $f(x)$ as follows: \newline 
+
+        $f(x) = - ((\lambda_{01} + x_1 \lambda_{11} + \dots + x_n \lambda_{n1}) \dots (\lambda_{0m} + x_1 \lambda_{1m} + \dots + x_n \lambda_{nm}))^{\frac{1}{m}}$
+
+        Since $A_0 + x_1 A_1 + \dots + x_n A_n \succ 0$, we know that $(\lambda_{0j} + x_1 \lambda_{1j} + \dots + x_n \lambda_{nj}) > 0$
+
+Hence, we can clearly rewrite our problem: \newline 
+
+        Let us denote $P = \begin{bmatrix}
+    \lambda_{11} & \cdots & \lambda_{n1} \\
+    \lambda_{12} & \cdots & \lambda_{n2} \\
+    \vdots & \ddots & \vdots \\
+    \lambda_{1m} & \cdots & \lambda_{nm}
+\end{bmatrix}$
+
+Let $Q = \begin{bmatrix}
+    \lambda_{01} \\
+    \lambda_{02} \\
+    \vdots \\
+    \lambda_{0m}
+\end{bmatrix}$
+
+Let $h(x) = - (\prod_{i=1}^{m} x_i)^{\frac{1}{m}}$ where $x \in \mathbb{R}^m_{++}$ \newline 
+
+Let $g(x) = Px + Q$
+
+$f(x) = h(g(x))$ \newline 
+
+Since geometric means are concave as we proved in class where the domain is $\mathbb{R}^m_{++}$, $h(x)$ is convex. Furthermore, when the domain is $\mathbb{R}^m_{++}$, it is clear that $h(x)$ is non-increasing in each argument. 
+
+$g(x)$ is an affine transformation is, thus, convex and concave. 
+        
+Hence, we have a case where $h(x)$ is convex and non-increasing and $g(x)$ is concave. This means that $f(x) = h(g(x))$ is Convex. 
+    \end{solution}
+\end{itemize}
+\end{problem}
+
+\begin{problem}
+    {Pointwise maximum and supremum.} Show that the following function $f: \mathbb{R}^n \rightarrow \mathbb{R}$ are convex
+
+    \begin{itemize}
+        \item[(a)] $f(x) = \max_{i = 1, \dots, k} || A^{(i)}x - b^{(i)}||$, where $A^{(i)} \in \mathbb{R}^{m x n}$, $b^{(i)} \in \mathbb{R}^m$, and $||.||$ is a norm on $\mathbb{R}^m$
+
+        \begin{solution}
+            This function is just a pointwise maximum of a bunch of convex functions(this was proved earlier), which are convex. Hence, $f$ is convex. 
+        \end{solution}
+
+        \item[(b)] $f(x) = \sum_{i=1}^{r} |x|_{[i]}$ on $\mathbb{R}^n$, where $|x|$ denotes the vector with $|x|_i = |x_i|$ (i.e. $|x|$ is the absolute value $x$, component wise), and $|x|_{[i]}$ is the $i$th largest component of $|x|$.  In other words,  $|x|_{[1]}, |x|_{[2]}, \dots , |x|_{[n]}$ are the absolute values of the components of $x$, sorted in nonincreasing order.
+
+        \begin{solution}
+            We can re-express $f(x)$: \newline 
+
+            $f(x) = \max_{i_1, i_2, \dots, i_r} \{|x_{i_1}| + |x_{i_2}| + \dots + |x_{i_r}|\}$ where $i_k \in [1, n] \enspace \forall k \in [1, r]$ \newline 
+
+            It is clear that $f(x)$ is the pointwise maximum of $\binom{n}{r}$ convex functions. 
+
+            
+        \end{solution}
+    \end{itemize}
+\end{problem}
+
+
+\begin{problem}
+    
+\end{problem}
+
+
+\end{document}
+
+
+
+
+
