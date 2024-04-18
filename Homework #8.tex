@@ -100,7 +100,7 @@
 
 
 \bigskip
-\begin{problem}
+\begin{problem} Problem 3.20
 \textit{Composition with an affine function.} Show that the following function $f: \mathbb{R}^n \rightarrow \mathbb{R}$ are convex
 \begin{itemize}
     \item[(a)] $f(x) = ||Ax - b||$, where $A \in \mathbb{R}^{m x n}$, $b \in \mathbb{R}^m$, and $||.||$ is a norm on $\mathbb{R}^m$
@@ -163,7 +163,7 @@ As shown, we have shown that $f$ is a Composition of a Convex Function and an Af
 \end{itemize}
 \end{problem}
 
-\begin{problem}
+\begin{problem} Problem 3.21
     {Pointwise maximum and supremum.} Show that the following function $f: \mathbb{R}^n \rightarrow \mathbb{R}$ are convex
 
     \begin{itemize}
@@ -188,7 +188,7 @@ As shown, we have shown that $f$ is a Composition of a Convex Function and an Af
 \end{problem}
 
 
-\begin{problem}
+\begin{problem} Problem 3.22
 \textit{Composition rules.} Show that the following functions are convex.
 
 \begin{itemize}
@@ -231,7 +231,7 @@ As shown, we have shown that $f$ is a Composition of a Convex Function and an Af
     
 \end{problem}
 
-\begin{problem}
+\begin{problem} Problem 3.23
     \textit{Perspective of a Function.}
 
     \begin{itemize}
@@ -289,6 +289,87 @@ As shown, we have shown that $f$ is a Composition of a Convex Function and an Af
 
 
             
+        \end{solution}
+    \end{itemize}
+\end{problem}
+
+\begin{problem} Problem 3.32
+    \textit{Products and ratios of convex functions.} In general the product or ratio of two convex functions is not convex. However, there are some results that apply to functions on $\mathbb{R}$. Prove the following.
+
+    \begin{itemize}
+        \item[(a)] If $f$ and $g$ are convex, both nondecreasing (or nonincreasing), and positive functions on an interval, then $fg$ is convex.
+
+        \begin{solution}
+            Goal: Prove that $f(x) g(x)$ is convex. \newline 
+
+            First Derivative of $f(x) g(x) = f'(x) g(x) + f(x) g'(x)$ \newline 
+
+            Second Derivative of $f(x) g(x) = f''(x) g(x) + f'(x) g'(x) + f'(x) g'(x) + f(x) g''(x) = f''(x) g(x) + 2f'(x)g'(x) + f(x) g''(x)$
+
+            Since $f$ and $g$ are convex, we know can replace $f''(x)$ and $g''(x)$ with $k_{f''}$ and $k_{g''}$ where $k_{f''} \geq 0$ and $k_{g''} \geq 0$
+
+            Since $f$ and $g$ are both positive functions, we can replace $f(x)$ and $g(x)$ with $k_{f}$ and $k_{g}$ where $k_{f} \geq 0$ and $k_{g} \geq 0$
+
+            Let's rewrite our expression for the second derivative \newline 
+
+            $f''(x) g(x) + 2f'(x)g'(x) + f(x) g''(x) = k_{f''} k_{g} + 2f'(x)g'(x) + k_{f} k_{g''}$ \newline 
+
+            If $f$ and $g$ are either both nondecreasing or both non-increasing this means that either $f'(x) \geq 0, g'(x) \geq 0$ or $f'(x) \leq 0, g'(x) \leq 0$. Either way, the product $2f'(x)g'(x) \geq 0$ and we can denote this as $k_2$
+
+            Our expression for the second derivative becomes: \newline 
+            $k_{f''} k_{g} + k_2 + k_{f} k_{g''} \geq 0$ \newline
+
+            Breakdown: \newline 
+            $k_{f''} k_{g} \geq 0$ \newline 
+            $k_2 \geq 0$ \newline 
+            $k_{f} k_{g''} \geq 0$ \newline 
+
+            By proving that the second derivative $\geq 0$, we have shown convexity
+
+        \end{solution}
+        \item[(b)] If $f, g$ are concave, positive, with one nondecreasing and the other nonincreasing, then $fg$ is concave.
+
+        \begin{solution}
+            Goal: Prove that $f(x) g(x)$ is convex. \newline 
+
+            First Derivative of $f(x) g(x) = f'(x) g(x) + f(x) g'(x)$ \newline 
+
+            Second Derivative of $f(x) g(x) = f''(x) g(x) + f'(x) g'(x) + f'(x) g'(x) + f(x) g''(x) = f''(x) g(x) + 2f'(x)g'(x) + f(x) g''(x)$
+
+            Since $f$ and $g$ are concave, we know can replace $f''(x)$ and $g''(x)$ with $k_{f''}$ and $k_{g''}$ where $k_{f''} \leq 0$ and $k_{g''} \leq 0$
+
+            Since $f$ and $g$ are both positive functions, we can replace $f(x)$ and $g(x)$ with $k_{f}$ and $k_{g}$ where $k_{f} \geq 0$ and $k_{g} \geq 0$
+
+            If $f$ and $g$ are have one of them nondecreasing and the other nonincreasing this means that either $f'(x) \geq 0, g'(x) \leq 0$ or $f'(x) \leq 0, g'(x) \geq 0$. Either way, the product $2f'(x)g'(x) \leq 0$ and we can denote this as $k_2$
+
+            Our expression for the second derivative becomes: \newline 
+            $k_{f''} k_{g} + k_2 + k_{f} k_{g''} \leq 0$ \newline
+
+            Breakdown: \newline 
+            $k_{f''} k_{g} \leq 0$ \newline 
+            $k_2 \leq 0$ \newline 
+            $k_{f} k_{g''} \leq 0$ \newline 
+
+            By proving that the second derivative $\leq 0$, we have shown concavity
+            
+
+        \end{solution}
+        \item[(c)] If $f$ is convex, nondecreasing, and positive, and $g$ is concave, nonincreasing, and positive, then $f /g$ is convex.
+        \begin{solution}
+            Let's look at $1/g$ \newline 
+
+            First Derivative of $1/g$: $\frac{-g'(x)}{(g(x))^2}$ \newline 
+
+            Second Derivative of $1/g$: $\frac{-g''(x)(g(x))^2 + 2g(x) (g'(x))^2}{(g(x))^4}$ \newline 
+
+            Since $g$ is concave, $g''(x)$ is $\leq 0$. Hence, $-g''(x)(g(x))^2$ is $\geq 0$. Since $g$ is positive, $2g(x) (g'(x))^2$ is $\geq 0$. 
+
+            Hence, $\frac{-g''(x)(g(x))^2 + 2g(x) (g'(x))^2}{(g(x))^4} \geq 0$
+
+            $1/g$ is convex, nondecreasing, and positive. \newline 
+
+            Since $f$ and $1/g$ are both convex, nondecreasing, and positive, based on Part $(a)$, $f/g$ is convex as well. 
+
         \end{solution}
     \end{itemize}
 \end{problem}
