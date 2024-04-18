@@ -417,6 +417,44 @@ Note: The feasible set is the convex hull of the following points $(0, 1)$, $(0.
 \end{itemize}
 \end{problem}
 
+\begin{problem}
+    Problem 4.3. Prove that $x^* = (1, \frac{1}{2}, -1)$ is optimal for the optimization problem
+
+    \begin{align*}
+\text{minimize} \quad & (1/2)x^TPx + q^Tx + r \\
+\text{subject to} \quad & -1 \leq x_i \leq 1, \quad i = 1, 2, 3\\
+\end{align*}
+
+where:
+\begin{itemize}
+    \item $P = \begin{bmatrix}
+13 & 12 & -2 \\
+12 & 17 & 6 \\
+-2 & 6 & 12
+\end{bmatrix}$, $q = \begin{bmatrix}
+-22.0\\
+-14.5\\
+13.0
+\end{bmatrix}$, $r = 1$
+\end{itemize}
+
+\begin{solution}
+    The optimality condition is that $\nabla f(x^*) (y - x^*) \geq 0$
+
+    $\nabla f(x) = Px + q$ \newline 
+    $\nabla f(x^*) = (-1, 0, 2)$
+
+Substituting this back into the optimality condition means that: \newline 
+$-1 (y_1 - 1) + 2 (y_3 + 1) \geq 0$
+
+$-1(y_1 - 1) \geq 0$ is always True given that $-1 \leq y_i \leq 1$.  \newline 
+$2 (y_3 + 1) \geq 0$ is always True given that $-1 \leq y_i \leq 1$. 
+
+Hence, we know that $-1 (y_1 - 1) + 2 (y_3 + 1) \geq 0$ is ALWAYS true meaning that $x^*$ is optimal!
+    
+\end{solution}
+\end{problem}
+
 \end{document}
 
 
