@@ -111,7 +111,9 @@
  Ax + (1 - \theta) Ay - b||$
 
 The triangle inequality theorem(i.e. $||x|| + ||y|| \geq ||x + y||$) also states that: \newline 
-$\theta f(x) + (1 - \theta) f(y) = \theta ||Ax - b|| + (1 - \theta) ||Ay - b|| =  ||\theta(Ax - b)|| + ||(1 - \theta)(Ay - b)|| \geq ||\theta (Ax - b) + (1 - \theta) (Ay - b)|| = ||\theta Ax - \theta b + (1 - \theta) Ay -  (1 - \theta)b|| = ||\theta Ax  + (1 - \theta) Ay - b|| = f(\theta x + (1 - \theta) y )$
+$\theta f(x) + (1 - \theta) f(y) = \theta ||Ax - b|| + (1 - \theta) ||Ay - b|| =  ||\theta(Ax - b)|| + ||(1 - \theta)(Ay - b)|| \geq ||\theta (Ax - b) + (1 - \theta) (Ay - b)|| = ||\theta Ax - \theta b + (1 - \theta) Ay -  (1 - \theta)b|| = ||\theta Ax  + (1 - \theta) Ay - b|| = f(\theta x + (1 - \theta) y )$ \newline 
+
+Another way of doing this proof is just by seeing that $f(x)$ is a composition of a norm and an affine function. Norms are convex. Hence, since we have a composition with an affine mapping, we have a convex function! 
  
     \end{solution} 
 
@@ -155,6 +157,8 @@ Since geometric means are concave as we proved in class where the domain is $\ma
 $g(x)$ is an affine transformation is, thus, convex and concave. 
         
 Hence, we have a case where $h(x)$ is convex and non-increasing and $g(x)$ is concave. This means that $f(x) = h(g(x))$ is Convex. 
+
+As shown, we have shown that $f$ is a Composition of a Convex Function and an Affine Mapping, hence telling us that $f$ is Convex
     \end{solution}
 \end{itemize}
 \end{problem}
@@ -185,6 +189,45 @@ Hence, we have a case where $h(x)$ is convex and non-increasing and $g(x)$ is co
 
 
 \begin{problem}
+\textit{Composition rules.} Show that the following functions are convex.
+
+\begin{itemize}
+    \item[(a)] $f(x) = -\log(-\log(\sum_{i=1}^{m} e^{a_i^Tx + b_i}))$ on $dom f = \{ x | \sum_{i=1}^{m} e^{a_i^Tx + b_i} < 1\}$. You can use the fact that $\log(\sum_{i=1}^{m} e^{y_i})$ is convex. 
+
+    \begin{solution}
+        We can re-express $f(x)$ as follows: \newline 
+
+        $f(x) = h(g(Ax + b))$ where $h(x) = - \log(x)$ and $g(x) = -\log(\sum_{i=1}^{m} e^{y_i})$ and $A$ is a matrix such that each $a_i$ is a row of $A$ and $b$ is a vector such that each $b_i$ is a row of $b$. 
+
+        Let's start by first analyzing $g(Ax + b)$. We know that $g$ is concave. Hence, $g(Ax + b)$ is concave. 
+
+        Since $h(x) = - \log(x)$, $h(x)$ is convex. 
+
+        Since we have $h$ is convex, $\tilde{h}$ is nonincreasing and $g(Ax + b)$ is concave, we have that $f$ is convex. 
+    \end{solution}
+
+    \item[(b)] $f(x, t) = -\log(t^p - ||x||^p_p)$ where $p > 1$ and $dom f = \{(x, t) | t > ||x||_p \}$. You can use the fact that $\frac{||x||^p_p}{u^{p - 1}}$ is convex in $(x, u)$ for $u > 0$
+
+    \begin{solution}
+        Let's start rewriting $f(x, t)$ \newline 
+
+        $f(x, t) = -\log(t^{p - 1}(t - \frac{||x||^p_p}{t^{p - 1}}))$ \newline 
+
+        $f(x, t) = -\log(t^{p - 1}) - \log((t - \frac{||x||^p_p}{t^{p - 1}}))$
+
+        $f(x, t) = -(p - 1)\log(t) - \log((t - \frac{||x||^p_p}{t^{p - 1}}))$
+
+        The function $-(p - 1)\log(t)$ is convex since $p > 1$(i.e. $p - 1 > 0$) and $-\log(t)$ is convex. \newline 
+
+        Let's look at $- \log((t - \frac{||x||^p_p}{t^{p - 1}}))$. This function is a composition of a non-increasing convex function(i.e. $-\log(x)$) and a concave function(i.e. $(t - \frac{||x||^p_p}{t^{p - 1}})$). 
+
+        Let's briefly explain why $(t - \frac{||x||^p_p}{t^{p - 1}})$ is concave. $\frac{||x||^p_p}{t^{p - 1}}$ is convex. Hence, $-\frac{||x||^p_p}{t^{p - 1}}$ is concave. $t$ can be viewed as an affine map. Hence, $t$ is convex and concave. The sum of 2 concave functions is concave. Hence, $(t + (- \frac{||x||^p_p}{t^{p - 1}})) = (t - \frac{||x||^p_p}{t^{p - 1}})$ is Concave. 
+
+        Hence, $- \log((t - \frac{||x||^p_p}{t^{p - 1}}))$ is convex. 
+
+        Since $-(p - 1)\log(t)$ and $- \log((t - \frac{||x||^p_p}{t^{p - 1}}))$ are both convex, $f(x, t) = -(p - 1)\log(t) - \log((t - \frac{||x||^p_p}{t^{p - 1}}))$ is convex as well since it is the sum of $-(p - 1)\log(t)$ and $- \log((t - \frac{||x||^p_p}{t^{p - 1}}))$
+    \end{solution}
+\end{itemize}
     
 \end{problem}
 
