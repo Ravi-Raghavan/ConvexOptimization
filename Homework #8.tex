@@ -231,6 +231,32 @@ As shown, we have shown that $f$ is a Composition of a Convex Function and an Af
     
 \end{problem}
 
+\begin{problem}
+    \textit{Perspective of a Function.}
+
+    \begin{itemize}
+        \item[(a)] Show that for $p > 1$, 
+        \begin{equation}
+            f(x, t) = \frac{|x_1|^p + \dots + |x_n|^p}{t^{p - 1}} = \frac{||x||_p^p}{t^{p - 1}}
+        \end{equation}
+        is convex on $\{ (x, t) | t > 0\}$
+
+        \begin{solution}
+            $f(x, t)$ is the perspective function of $||x||_p^p$ which is convex. 
+
+            Let's briefly show that $||x||_p^p$ is convex. \newline 
+            $g(x) = ||x||_p^p = |x_1|^p + \dots + |x_n|^p$ \newline 
+
+            $\frac{\partial g}{x_k} = p |x_k|^{p - 1} sign(x_k)$
+
+            $\frac{\partial^2 g}{x_k^2} = p(p - 1) |x_k|^{p - 2} > 0$
+
+            $\frac{\partial^2 g}{x_j x_k} =0$ where $j \neq k$
+
+            It is clear that this Hessian is a Diagonal Matrix with all positive entries. Hence, the Hessian is Positive Definite which means that $g(x)$ is convex. 
+        \end{solution}
+    \end{itemize}
+\end{problem}
 
 \end{document}
 
