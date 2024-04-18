@@ -374,6 +374,49 @@ As shown, we have shown that $f$ is a Composition of a Convex Function and an Af
     \end{itemize}
 \end{problem}
 
+\begin{problem}
+    Problem 4.1. Consider the optimization problem 
+    \begin{align*}
+\text{minimize} \quad & f_0(x_1, x_2) \\
+\text{subject to} \quad & 2x_1 + x_2 \geq 1\\
+\quad & x_1 + 3x_2 \geq 1\\
+& x_1 \geq 0, \enspace x_2 \geq 0
+\end{align*}
+
+Make a sketch of the feasible set. For each of the following objective functions, give the optimal set and the optimal value.
+
+\begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.6 \textwidth]{HW 8n_1.jpg}
+        \caption{Set of Feasible Set}
+    \end{figure}
+
+Note: The feasible set is the convex hull of the following points $(0, 1)$, $(0.4, 0.2)$, $(1, 0)$, $(0, \infty)$, $(\infty, 0)$
+
+\begin{itemize}
+    \item[(a)] $f_0(x_1, x_2) = x_1 + x_2$
+    \begin{solution}
+        Optimal Set: $\{(0.4, 0.2)\}$, Optimal Value: $0.6$
+    \end{solution}
+    \item[(b)] $f_0(x_1, x_2) = - x_1 - x_2$
+    \begin{solution}
+        This one is unbounded below. Hence, we can essentially say that Optimal Set: $\{(\infty, \infty)\}$, Optimal Value: $-\infty$
+    \end{solution}
+    \item[(c)] $f_0(x_1, x_2) = x_1$  
+    \begin{solution}
+        Optimal Set: $\{(0, x_2) | x_2 \geq 1\}$, Optimal Value: $0$
+    \end{solution}
+    \item[(d)] $f_0(x_1, x_2) = \max\{x_1, x_2\}$
+    \begin{solution}
+        Optimal Set: $\{(\frac{1}{3}, \frac{1}{3})\}$, Optimal Value: $\frac{1}{3}$
+    \end{solution}
+    \item[(e)] $f_0(x_1, x_2) = x_1^2 + 9x_2^2$
+    \begin{solution}
+        Optimal Set: $\{(\frac{1}{2}, \frac{1}{6})\}$, Optimal Value: $0.5$
+    \end{solution}
+\end{itemize}
+\end{problem}
+
 \end{document}
 
 
