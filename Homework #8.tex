@@ -258,6 +258,41 @@ As shown, we have shown that $f$ is a Composition of a Convex Function and an Af
     \end{itemize}
 \end{problem}
 
+\begin{problem} Problem 3.26
+    \begin{itemize}
+        \item[(c)] 
+        \begin{solution}
+            We are given the following fact: \newline 
+
+            $\prod_{i=n - k + 1}^{n} \lambda_i(X) = \inf \{ \prod_{i=1}^{k} (V^T X V)_{ii} | V \in \mathbb{R}^{n x k}, V^TV = I \}$
+
+            Let's analyze $\prod_{i=1}^{k} (V^T X V)_{ii}$ for a given $V$ where $V^TV = I$ \newline 
+
+            $(V^T X V)_{ii} = v_i^T X v_i$ where $v_i$ is the $i$th column of $V$ \newline 
+
+            We also know that $X$ is Positive Definite. Hence, $(V^T X V)_{ii} > 0$ \newline 
+
+            Hence, 
+            $\log(\prod_{i=n - k + 1}^{n} \lambda_i(X)) = \inf \{ \log(\prod_{i=1}^{k} (V^T X V)_{ii}) | V \in \mathbb{R}^{n x k}, V^TV = I \}$ \newline 
+
+            $\sum_{i=n - k + 1}^{n} \log(\lambda_i(X)) = \inf \{ \log(\prod_{i=1}^{k} (V^T X V)_{ii}) | V \in \mathbb{R}^{n x k}, V^TV = I \}$
+
+            Since $X$ is symmetric, we know that $V^TXV$ is symmetric as well. This means that $\log(\prod_{i=1}^{k} (V^T X V)_{ii}) = \log \det(V^T X V)$ which is concave. 
+
+            Hence, $\sum_{i=n - k + 1}^{n} \log(\lambda_i(X)) = \inf \{ \log(\prod_{i=1}^{k} (V^T X V)_{ii}) | V \in \mathbb{R}^{n x k}, V^TV = I \}$ can be re-expressed as follows: \newline 
+
+            $\sum_{i=n - k + 1}^{n} \log(\lambda_i(X)) = \inf \{ \log \det (V^T X V) | V \in \mathbb{R}^{n x k}, V^TV = I \}$
+
+            This is clearly a pointwise infimum of a bunch of concave functions. Hence, we know that $\sum_{i=n - k + 1}^{n} \log(\lambda_i(X))$ is Concave. 
+
+
+
+
+            
+        \end{solution}
+    \end{itemize}
+\end{problem}
+
 \end{document}
 
 
