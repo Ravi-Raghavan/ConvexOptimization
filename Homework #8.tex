@@ -455,6 +455,137 @@ Hence, we know that $-1 (y_1 - 1) + 2 (y_3 + 1) \geq 0$ is ALWAYS true meaning t
 \end{solution}
 \end{problem}
 
+\begin{problem} Problem 4.5
+    \textit{Equivalent convex problems.} Show that the following three convex problems are equivalent. Carefully explain how the solution of each problem is obtained from the solution of the other problems. The problem data are the matrix $A \in \mathbb{R}^{m x n}$(with rows $a_i^T$), the vector $b \in \mathbb{R}^m$, and the constant $M > 0$.
+    \begin{itemize}
+        \item[(a)] The \textit{robust least-squares problem}
+        \begin{align*}
+\text{minimize} \quad & \sum_{i=1}^{m} \phi(a_i^T x - b_i), \\
+\end{align*}
+with variable $x \in \mathbb{R}^n$, where $\phi: \mathbb{R} \rightarrow \mathbb{R}$ is defined as 
+\begin{equation}
+    \phi(u) = \begin{cases} 
+      u^2 & \text{if } |u| \leq M \\
+      M(2|u| - M) & \text{if } |u| > M 
+   \end{cases}
+\end{equation}
+
+        \item[(b)] The \textit{least-squares problem with variable weights}
+ \begin{align*}
+\text{minimize} \quad & \sum_{i=1}^{m} (a_i^T x - b_i)^2/(w_i + 1) + M^2\textbf{1}^Tw \\
+\text{subject to} \quad & w \succeq 0,\\
+\end{align*}
+with variables $x \in \mathbb{R}^n$ and $w \in \mathbb{R}^m$, and domain $\mathbb{D} = \{(x, w) \in \mathbb{R}^n \times \mathbb{R}^m | w \succ \textbf{-1} \}$
+
+        \item[(c)] The \textit{quadratic program}
+        \begin{align*}
+\text{minimize} \quad & \sum_{i=1}^{m} (u_i^2 + 2Mv_i) \\
+\text{subject to} \quad & -u - v \preceq Ax - b \preceq u + v\\
+\quad & 0 \preceq u \preceq M\textbf{1}\\
+& v \succeq 0
+\end{align*}
+    \end{itemize}
+
+\begin{solution}
+
+Step 1: Show that Problems $(a)$ and $(b)$ are Equivalent: \newline 
+Let's work with the objective function of Problem $(b)$ \newline 
+
+$\sum_{i=1}^{m} (a_i^T x - b_i)^2/(w_i + 1) + M^2\textbf{1}^Tw$ \newline 
+
+$g(w) = \sum_{i=1}^{m} (a_i^T x - b_i)^2/(w_i + 1) + M^2(\sum_{i=1}^{m} w_i)$ \newline 
+
+If we fix $A$, $b$, $M$, and $x$, we can show that this is a convex function with respect to $w$ \newline
+
+$\frac{\partial g}{\partial w_i} = \frac{-(a_i^T x - b_i)^2}{(w_i + 1)^2} + M^2$ \newline
+
+$\frac{\partial^2g}{\partial w_i \partial w_j} = 0$ when $i \neq j$ \newline
+$\frac{\partial^2g}{\partial w_i \partial w_j} = \frac{2(a_i^T x - b_i)^2}{(w_i + 1)^3}$ when $i = j$ \newline
+
+The Hessian is clearly a diagonal matrix whose elements are positive due to the fact that $w \succeq 0$. Hence, on $w \succeq 0$, $g$ is convex. 
+
+To set its gradient to 0, we see that $\frac{-(a_i^T x - b_i)^2}{(w_i + 1)^2} + M^2 = 0$
+
+This means that $(w_i + 1)^2 = \frac{(a_i^T x - b_i)^2}{M^2}$ \newline 
+
+$(w_i + 1) = \frac{|(a_i^T x - b_i)|}{M}$ \newline 
+
+However, due to the restriction that $w \succeq 0$ we must modify this: \newline
+
+$w_i = \begin{cases} 
+      \frac{|(a_i^T x - b_i)|}{M} - 1 & \text{if } \frac{|(a_i^T x - b_i)|}{M} \geq 1 \\
+      0 & \text{if } \frac{|(a_i^T x - b_i)|}{M} < 1 
+   \end{cases}$
+
+$w_i = \begin{cases} 
+      \frac{|(a_i^T x - b_i)|}{M} - 1 & \text{if } |(a_i^T x - b_i)| \geq M \\
+      0 & \text{if } |(a_i^T x - b_i)| < M
+   \end{cases}$
+
+Substituting this into the objective function, we see that: \newline 
+
+$g = \sum_{i=1}^{m} (a_i^T x - b_i)^2/(w_i + 1) + M^2(\sum_{i=1}^{m} w_i)$ \newline 
+
+$g = \sum_{i=1}^{m} (a_i^T x - b_i)^2/(w_i + 1) + \sum_{i=1}^{m} M^2 w_i$ \newline 
+
+$g = \sum_{i=1}^{m} \begin{cases} 
+      M|(a_i^T x - b_i)| + M|(a_i^T x - b_i)| - M^2  & \text{if }  |(a_i^T x - b_i)| \geq M \\
+      (a_i^T x - b_i)^2 & \text{if } |(a_i^T x - b_i)| < M
+   \end{cases}$ \newline 
+
+$g = \sum_{i=1}^{m} \begin{cases} 
+      2M|(a_i^T x - b_i)| - M^2  & \text{if }  |(a_i^T x - b_i)| \geq M \\
+      (a_i^T x - b_i)^2 & \text{if } |(a_i^T x - b_i)| < M
+   \end{cases}$ \newline 
+
+$g = \sum_{i=1}^{m} \begin{cases} 
+      M(2|(a_i^T x - b_i)| - M)  & \text{if }  |(a_i^T x - b_i)| \geq M \\
+      (a_i^T x - b_i)^2 & \text{if } |(a_i^T x - b_i)| < M
+   \end{cases}$ \newline 
+
+$g = \sum_{i=1}^{m} \phi(a_i^T x - b_i)$ \newline 
+
+Step 2: Show that Problems $(a)$ and $(c)$ are Equivalent: \newline 
+
+    The constraints of Problem $(c)$ are that $u_i + v_i \geq |a_i^T x - b_i|$ and that $0 \leq u_i \leq M$ and that $0 \leq v_i$. Clearly, we want $u_i + v_i = |a_i^T x - b_i|$ because if $u_i + v_i > |a_i^T x - b_i|$, with $0 \leq u_i \leq M$ and that $0 \leq v_i$, then we can lower either $u_i$ or $v_i$ and lower the objective function while still meeting the constraints. 
+
+    $u_i + v_i = |a_i^T x - b_i|$, $v_i = |a_i^T x - b_i| - u_i$
+
+    Objective function: $g(u) = \sum_{i=1}^{m} u_i^2 + 2M|a_i^T x - b_i| - 2Mu_i$
+
+    This is clearly convex with respect to $u_i$ \newline 
+
+    $\frac{\partial g}{\partial u_i} = 2u_i - 2M$
+
+    $\frac{\partial^2 g}{\partial u_i \partial u_j} = 0$ when $i \neq j$ \newline 
+    $\frac{\partial^2 g}{\partial u_i \partial u_j} = 2$ when $i = j$
+
+    The Hessian is clearly a diagonal matrix whose elements are positive Hence, on $g$ is convex. 
+
+    Setting the gradient to 0 implies that $u_i = M$. However, we must be careful. Since $v_i = |a_i^T x - b_i| - u_i$ and $v_i \geq 0$. $u_i = M$ can only happen when $|a_i^T x - b_i| \geq M$. Else, we must set $u_i = |a_i^T x - b_i|$ and $v_i = 0$
+
+    Knowing this we can rewrite our objective function: 
+
+$g = \sum_{i=1}^{m} \begin{cases} 
+      M^2 + 2M|a_i^T x - b_i| - 2M^2  & \text{if }  |(a_i^T x - b_i)| \geq M \\
+      |a_i^T x - b_i|^2 + 2M|a_i^T x - b_i| - 2M|a_i^T x - b_i| & \text{if } |(a_i^T x - b_i)| < M
+   \end{cases}$ \newline 
+
+$g = \sum_{i=1}^{m} \begin{cases} 
+      2M|a_i^T x - b_i| - M^2  & \text{if }  |(a_i^T x - b_i)| \geq M \\
+      |a_i^T x - b_i|^2  & \text{if } |(a_i^T x - b_i)| < M
+   \end{cases}$ \newline 
+
+$g = \sum_{i=1}^{m} \begin{cases} 
+      M(2|a_i^T x - b_i| - M)  & \text{if }  |(a_i^T x - b_i)| \geq M \\
+      |a_i^T x - b_i|^2  & \text{if } |(a_i^T x - b_i)| < M
+   \end{cases}$ \newline 
+
+$g = \sum_{i=1}^{m} \phi(a_i^T x - b_i)$ \newline 
+
+\end{solution}
+\end{problem}
+
 \end{document}
 
 
