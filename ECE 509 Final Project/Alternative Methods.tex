@@ -1,0 +1,125 @@
+
+
+\subsection{Momentum}
+
+ The key idea behind the momentum method is to incorporate a fraction of the previous update vector into the current update. Let's denote the previous update step as $u_{t-1}$. Then we can write the current update step $u_t$ according to \ref{eq: Momentum}.
+
+
+ \begin{equation}
+    \label{eq: Momentum}
+    u^t = \alpha u^{t-1} + \gamma \nabla f(x^{(t)})   
+ \end{equation}
+
+\noindent where the $alpha \in (0,1)$ is the momentum coefficient, which determines how much of the previous velocity is retained. This coefficient helps in accumulating a direction of persistent descent, smoothing over the updates. With this step, we can write the current iterate as,
+
+ \begin{align}
+     x^{t+1} = x^{t} - u^{t}
+ \end{align}.
+
+The term $u_t$ is also called the velocity term. The momentum term $\alpha u^{t-1}$ in the velocity term serves as a memory of past gradients:
+
+\begin{itemize}
+    \item If gradients continue pointing in the same direction, the velocity grows in magnitude, allowing for faster convergence.
+    \item If gradients change direction, the velocity's magnitude decreases, which helps mitigate oscillations and overshooting in steep regions of the parameter space.
+\end{itemize}
+
+
+\noindent This approach effectively dampens the oscillations and accelerates convergence towards the minimum of the loss function, particularly in landscapes where the surface curves more steeply in one dimension than in another. To visualize the effect of momentum in optimization let's imagine a ball rolling down a slope. If the slope does not have any turns the ball will keep accumulating velocity till it reaches the bottom. However, if there are turns the ball will slow down to navigate more efficiently. 
+
+
+\textcolor{red}{NEED TO ADD A FIGURE ON MOMENTUM}
+
+\subsection{Nestrov Accelerated Gradients (NAG)}
+
+NAG is also a momentum-based variant of SGD. The main difference between the momentum method and NAG lies in the gradient calculation stage. We have seen that in the momentum method, the update happens at $x^t$ depending on the previous velocity $v^{t-1}$ and the gradient of the function at $x^{t}$ (\ref{eq: Momentum}). In NAG the calculation of the gradient is done at a point ahead given by $\nabla f(x^{t} - \alpha u^{t-1}$).The intuition behind NAS is looking ahead and anticipating, which leads to better solutions. The update rule of NAS can be summarized as mentioned below.
+
+\begin{enumerate}
+    \item Looking Ahead. 
+        \begin{align}
+            x^{t}_{look ahead} = x^t - \alpha v^{t-1}
+        \end{align} 
+    \item Computing the gradient. 
+        \begin{align}
+            \nabla f( x^t - \alpha v^{t-1})
+        \end{align}
+    \item Taking the gradient step.
+    \begin{align}
+         \nonumber x^{t+1} = x^{t}_{look ahead} - \gamma \nabla f( x^t - \alpha v^{t-1})\\
+         x^{t+1} = x^t - \alpha v^{t-1} - \gamma \nabla f( x^t - \alpha v^{t-1})
+    \end{align}
+\end{enumerate}
+
+This anticipatory step allows NAG to correct its course more responsively than standard Momentum, leading to potentially faster convergence and better handling of the curvature near optimal points. Essentially, NAG adds a level of foresight to updates, which can result in more efficient navigation of complex optimization landscapes.
+
+\textcolor{red}{NEED TO ADD FIGURE ON NESTROV}
+
+
+
+\subsection{Ada Grad}
+
+AdaGrad is an adaptive learning rate method that modifies the general approach of gradient descent by allowing each parameter to have its own learning rate. This method addresses a common challenge in training machine learning models, where choosing an appropriate learning rate can be crucial for effective learning. Traditional gradient descent methods use a single learning rate for all parameters, which might not be optimal.
+
+AdaGrad adjusts the learning rate for each parameter based on the history of gradients that have been computed for that parameter. This means that parameters associated with frequently occurring features will have their learning rates decreased, while parameters associated with infrequent features will have their learning rates increased. Such adjustments are beneficial because they make the model less sensitive to the scale of features and more responsive to each feature's specific behavior and importance. This feature-dependent scaling of the learning rate helps in dealing with data sparsity and enhances the convergence properties of the gradient descent optimization, particularly in complex models dealing with high-dimensional data. 
+
+Let's define, $f(x)$ to be the stochastic objective function with parameter $x$, the function evaluation at step $t$ as $f_{t}(x)$, the gradient of the function with respect to $x$ at step $t$ to be $g_{t}(s)$. Further take,
+
+\begin{align}
+    \bfG_s = \sum_{t = 1}^{s-1} g_t g_t^T
+\end{align}
+
+Now the update rule for Adagrad can be written as follows.
+
+\begin{align}
+    x_{t+1} = x_{t} - \gamma \bfG_t^{-\frac{1}{2}} g_t
+\end{align}
+
+A simplified version of the update rule can be written by only considering the diagonal elements of $\bfG$.
+
+
+\begin{align}
+    x_{t+1} = x_{t} - \gamma diag(\bfG_t)^{-\frac{1}{2}} g_t
+\end{align}
+
+This simplified version of the update step is computationally efficient when we are dealing with high-dimensional data. Additionally, to avoid the problems arise due to the matrix being singular,in practice a small offset is added to the diagonal elements of the matrix $\bfG$.  
+
+\begin{align}
+    x_{t+1} = x_{t} - \gamma diag(\epsilon\bfI + \bfG_t)^{-\frac{1}{2}} g_t
+\end{align}
+
+
+Finally, let's look  at the expanded version of the update rule. 
+
+\[
+\begin{bmatrix}
+x^{(1)}_{t+1} \\
+x^{(2)}_{t+1} \\
+\vdots \\
+x^{(m)}_{t+1}
+\end{bmatrix}
+=
+\begin{bmatrix}
+x^{(1)}_{t} \\
+x^{(2)}_{t} \\
+\vdots \\
+x^{(m)}_{t}
+\end{bmatrix}
+-
+\begin{bmatrix}
+\frac{\eta}{\sqrt{\varepsilon + G^{(1,1)}_t}}\\
+ \frac{\eta}{\sqrt{\varepsilon + G^{(2,2)}_t}}  \\
+ \vdots\\
+ \frac{\eta}{\sqrt{\varepsilon + G^{(m,m)}_t}}
+\end{bmatrix}
+\odot 
+\begin{bmatrix}
+g^{(1)}_t \\
+g^{(2)}_t \\
+\vdots \\
+g^{(m)}_t
+\end{bmatrix}
+\]
+
+Where $\odot$ is the Hadamard product between two matrices having the same dimensions. This provides a clear idea of how the per-parameter learning rate works. Here, $\gamma$ is the paramter which describes the global learning rate. It must also be noted that as G accumulates, the learning rate slows down for each parameter and eventually no progress can be made, which is a weakness of Adagrad. 
+
+\subsection{RMS Prop}
+\subsection{Adam}

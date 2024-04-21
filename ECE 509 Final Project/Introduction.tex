@@ -205,6 +205,41 @@ where $f_i: \mathbb{R}^d \rightarrow \mathbb{R}$ and $f_i$ is $L_i$ smooth. We c
 
 \noindent It is evident to see that the gradients used during Stochastic Gradient Descent is an unbiased estimator of $\nabla f(x)$. $E[\nabla f_i(x)] = \frac{1}{n} \sum_{i=1}^{n} \nabla f_i(x) = \nabla f(x)$
 
+\subsection{Minibatch Stochastic Gradient Descent}
+\noindent \textbf{Minibatch Stochastic Gradient Descent Algorithm}. Let's say that we are minimizing a function $f: \mathbb{R}^d \rightarrow \mathbb{R}$ which is a sum of functions. It is assumed that $\arg \min f \neq \emptyset$ and that $f_i$ is unbounded below.  
+
+\noindent Let $x^{(0)} \in \mathbb{R}^d$, let $b \in [1, n]$ be the batch size, and let $\gamma_t > 0$ be a sequence of step sizes. The \textbf{Minibatch Stochastic Gradient Descent (Minibatch SGD)} algorithm defines a sequence $(x^{(t)})_{t \in \mathbb{N}}$ satisfying 
+\begin{equation}
+    B_t \subset \{1, \dots, n\}
+\end{equation}
+\begin{equation}
+    x^{(t + 1)}  = x^{(t)} - \gamma_t \nabla f_{B_t}(x^{(t)})
+\end{equation}
+
+\noindent Note $B_t$ is sampled uniformly among all sets of size $b$. This means that given a batch of size $b$, it has a probability of $\frac{1}{\binom{n}{b}}$ of being selected 
+
+\begin{equation}
+    \nabla f_{B_t}(x^{(t)}) = \frac{1}{|B|} \sum_{i \in B} \nabla f_{i}(x^{(t)})
+\end{equation}
+
+It is easy to see that: 
+\begin{equation}
+    \mathbb{E}[\nabla f_{B_t}(x^{(t)})] = \frac{1}{\binom{n}{b}} \sum_{B \subset \{1, \dots, n\} , |B| = b} \nabla f_{B}(x^{(t)})
+\end{equation}
+
+We can easily prove that 
+\begin{equation}
+    \mathbb{E}[\nabla f_{B_t}(x^{(t)})] = \nabla f(x^{(t)})
+\end{equation}
+
+The key observation we must make is that $\nabla f_i(x^{(t)})$ will be used when computing mini batch gradients(i.e. $\nabla f_{B_t}(x^{(t)})$) in exactly $\binom{n - 1}{b - 1}$ mini batches. 
+
+Combinatoric Property: $\binom{n}{b} = \binom{n - 1}{b - 1} \cdot \frac{n}{b}$
+
+\begin{equation}
+    \mathbb{E}[\nabla f_{B_t}(x^{(t)})] = \frac{1}{\binom{n}{b}} \binom{n - 1}{b - 1} \sum_{i = 1}^{n} \frac{1}{b}\nabla f_{i}(x^{(t)}) = \frac{1}{n} \sum_{i = 1}^{n} \nabla f_{i}(x^{(t)}) = \nabla f(x^{(t)})
+\end{equation}
+
 \subsection{Expected Smoothness and Variance}
 \subsubsection{Expected Smoothness}
 The goal of this section is to analyze the "expected properties" of $f_i$. \newline 
@@ -283,6 +318,22 @@ We know that $f_i(x^*) \geq inf f_i$. Hence, for the above equality to hold true
 
 where $V[X] = E[|| X - E[X] ||^2]$ \newline 
 
+\noindent \textbf{Definition:} Let us now work with a function that is a Sum of L-Smooth Functions. We will define a term, called \textbf{minibatch gradient noise} that is set up as follows: 
+
+\begin{equation}
+    {\sigma_b}^* = \inf_{x^* \in \arg \min f} V[\nabla f_B(x^*)]
+\end{equation}
+
+\noindent \textbf{Definition:} Let us now work with a function that is a Sum of L-Smooth Functions. Let $b \in [1, n]$. We can say that $f$ is $L_b$ smooth in expectation if 
+\begin{equation}
+    \forall x, y \in \mathbb{R}^d, \frac{1}{2L_b} \mathbb{E}[||\nabla f_B(y) - \nabla f_B(x)||^2] \leq f(y) - f(x) - \langle \nabla f(x), y - x \rangle
+\end{equation}
+
+If $y = x$ and $x = x^*$, we can see that a function being $L_b$ smooth indicates that: \newline 
+$\frac{1}{2L_b} \mathbb{E}[||\nabla f_B(x) - \nabla f_B(x^*)||^2] \leq f(x) - f(x^*) - \langle \nabla f(x^*), x - x^* \rangle$ \newline 
+
+$\frac{1}{2L_b} \mathbb{E}[||\nabla f_B(x) - \nabla f_B(x^*)||^2] \leq f(x) - \inf f$
+
 \noindent \textbf{Lemma.} Let us say we have a function that is a sum of L-Smooth Functions. 
 
 If we also have that this function is a sum of Convex functions, we can claim that 
@@ -301,6 +352,26 @@ $\frac{1}{2L_{max}} \mathbb{E}[||\nabla f_i(x_1) - \nabla f_i(x^*)||^2] \leq f(x
 Since $||\nabla f_i(x_1) - \nabla f_i(x^*)||^2$ is a positive quantity, this must mean that $\mathbb{E}[||\nabla f_i(x_1) - \nabla f_i(x^*)||^2] = 0$ and that $||\nabla f_i(x_1) - \nabla f_i(x^*)|| = 0$ for all $i$. 
 
 Hence, we have shown that $f_i(x_1) = f_i(x^*)$ and that, subsequently, $V[\nabla f_i(x_1)] = V[\nabla f_i(x^*)]$
+
+\noindent \textbf{Lemma.} Let us say we have a function that is a sum of L-Smooth Functions. 
+
+If we also have that this function is a sum of Convex functions, we can claim that 
+\begin{equation}
+    \sigma_b^* = V[\nabla f_B(x^*)], \forall x^* \in \arg \min f
+\end{equation}
+
+\noindent \textbf{Proof.} Let us denote $x_1, x^* \in \arg \min f$. If we can show that $V[\nabla f_B(x_1)] = V[\nabla f_B(x^*)]$, then we will have completed the proof 
+
+$\frac{1}{2L_{b}} \mathbb{E}[||\nabla f_B(x_1) - \nabla f_B(x^*)||^2] \leq f(x_1) - f(x^*) - \langle \nabla f(x^*), x_1 - x^* \rangle$
+
+We know that $f(x^*) = inf f$ and that $\nabla f(x^*) = 0$ \newline 
+
+$\frac{1}{2L_{b}} \mathbb{E}[||\nabla f_B(x_1) - \nabla f_B(x^*)||^2] \leq f(x_1) - inf f = 0$
+
+Since $||\nabla f_B(x_1) - \nabla f_B(x^*)||^2$ is a positive quantity, this must mean that $\mathbb{E}[||\nabla f_B(x_1) - \nabla f_B(x^*)||^2] = 0$ and that $||\nabla f_B(x_1) - \nabla f_B(x^*)|| = 0$ for all $i$. 
+
+Hence, we have shown that $f_B(x_1) = f_B(x^*)$ and that, subsequently, $V[\nabla f_B(x_1)] = V[\nabla f_B(x^*)]$
+
 
 \noindent From the aforementioned analysis it is clear that both the function noise and gradient noise measure how close/far away from interpolation we are. 
 
@@ -453,3 +524,68 @@ Using this fact, we can further simplify this inequality: \noindent $\mathbb{E}[
 Substituting the values that we derived earlier(i.e. $2\mathbb{E}[||\nabla f_i(x) - \nabla f_i(x^*)||^2] \leq 4L_{max} (f(x) - \inf f)$ and $2 \sigma_f^* = 2 E[||\nabla f_i(x^*)||^2]$) \newline 
 
 \noindent $\mathbb{E}[||\nabla f_i(x)||^2] \leq 4L_{max} (f(x) - \inf f) + 2 \sigma_f^*$
+
+\noindent \textbf{Lemma} Let us have a function that is a sum of L-Smooth Functions and a sum of Convex functions. 
+
+\begin{equation}
+    \mathbb{E}[||\nabla f_B(x)||^2] \leq 4 L_b (f(x) - \inf f) + 2\sigma_b^*
+\end{equation}
+
+\noindent \textbf{Proof:} \newline 
+For the rest of this proof, let's pick an $x^* \in \arg \min f$
+
+In our journey to prove this lemma, the first thing we can do is express $||\nabla f_B(x)||^2$ as follows: \newline 
+
+$||\nabla f_B(x)||^2 = ||\nabla f_B(x) - \nabla f_B(x^*) + f_B(x^*)||^2$ \newline 
+
+Based on the triangular inequality for norms, we know that $||x + y|| \leq ||x|| + ||y||$ \newline 
+
+$||\nabla f_B(x) - \nabla f_B(x^*) + f_B(x^*)||^2 = ||\nabla f_B(x) - \nabla f_B(x^*)||^2 + 2 ||\nabla f_B(x) - \nabla f_B(x^*)|| ||\nabla f_B(x^*)|| + ||\nabla f_B(x^*)||^2$ \newline 
+
+We know that $||\nabla f_B(x) - \nabla f_B(x^*) - f_B(x^*)||^2 \geq 0$ \newline 
+
+$||\nabla f_B(x) - \nabla f_B(x^*)||^2 - 2 ||\nabla f_B(x) - \nabla f_B(x^*)|| ||\nabla f_B(x^*)|| + ||\nabla f_B(x^*)||^2 \geq 0$ \newline 
+
+$||\nabla f_B(x) - \nabla f_B(x^*)||^2  + ||\nabla f_B(x^*)||^2 \geq 2 ||\nabla f_B(x) - \nabla f_B(x^*)|| ||\nabla f_B(x^*)||$ \newline 
+
+We can express $||\nabla f_B(x) - \nabla f_B(x^*) + f_B(x^*)||^2 = ||\nabla f_B(x) - \nabla f_B(x^*)||^2 + 2 ||\nabla f_B(x) - \nabla f_B(x^*)|| ||\nabla f_B(x^*)|| + ||\nabla f_B(x^*)||^2$  as follows: \newline 
+
+$||\nabla f_B(x) - \nabla f_B(x^*) + f_B(x^*)||^2 \leq 2||\nabla f_B(x) - \nabla f_B(x^*)||^2 + 2||\nabla f_B(x^*)||^2$ \newline 
+
+$||\nabla f_B(x)||^2 \leq 2||\nabla f_B(x) - \nabla f_B(x^*)||^2 + 2||\nabla f_B(x^*)||^2$ \newline 
+
+The next thing we can do is take the expectation over this inequality \newline
+
+\noindent $\mathbb{E}[||\nabla f_B(x)||^2] \leq \mathbb{E} [2||\nabla f_B(x) - \nabla f_B(x^*)||^2 + 2||\nabla f_B(x^*)||^2]$ \newline 
+
+$\mathbb{E}[||\nabla f_B(x)||^2] \leq 2\mathbb{E} [||\nabla f_B(x) - \nabla f_B(x^*)||^2 + ||\nabla f_B(x^*)||^2]$ \newline 
+
+Earlier, we showed that $\frac{1}{2L_{b}} \mathbb{E}[||\nabla f_B(x) - \nabla f_B(x^*)||^2] \leq f(x) - inf f$ \newline 
+
+This basically means that $\mathbb{E}[||\nabla f_B(x) - \nabla f_B(x^*)||^2] \leq 2L_b (f(x) - \inf f)$ \newline 
+
+$2\mathbb{E}[||\nabla f_B(x) - \nabla f_B(x^*)||^2] \leq 4L_b (f(x) - \inf f)$
+
+Since we have a function that is a Sum of L-Smooth and Convex Functions, we know that \newline 
+\noindent $\sigma_b^* = V[\nabla f_B(x^*)], \forall x^* \in \arg \min f.$ \newline 
+
+\noindent $\sigma_b^* = E[||\nabla f_B(x^*) - E[\nabla f_B(x^*)]||^2], \forall x^* \in \arg \min f.$ \newline 
+
+We know that $E[\nabla f_B(x^*)] = \nabla f(x^*) = 0$ since $f$ is a Sum of Convex Functions. \newline 
+
+In this case, 
+\noindent $\sigma_b^* = E[||\nabla f_B(x^*)||^2]$ \newline 
+
+$2 \sigma_b^* = 2 E[||\nabla f_B(x^*)||^2]$ \newline 
+
+According to Linearity of Expectation, we know that \newline 
+$2\mathbb{E} [||\nabla f_B(x) - \nabla f_B(x^*)||^2 + ||\nabla f_B(x^*)||^2] = 2\mathbb{E} [||\nabla f_B(x) - \nabla f_B(x^*)||^2] + 2 \mathbb{E}  [||\nabla f_B(x^*)||^2]$
+
+
+Using this fact, we can further simplify this inequality: \noindent $\mathbb{E}[||\nabla f_B(x)||^2] \leq \mathbb{E} [2||\nabla f_B(x) - \nabla f_B(x^*)||^2 + 2||\nabla f_B(x^*)||^2]$ \newline 
+
+\noindent $\mathbb{E}[||\nabla f_B(x)||^2] \leq 2\mathbb{E} [||\nabla f_B(x) - \nabla f_B(x^*)||^2] + 2 \mathbb{E}  [||\nabla f_B(x^*)||^2]$ \newline 
+
+Substituting the values that we derived earlier(i.e. $2\mathbb{E}[||\nabla f_B(x) - \nabla f_B(x^*)||^2] \leq 4L_{b} (f(x) - \inf f)$ and $2 \sigma_b^* = 2 E[||\nabla f_B(x^*)||^2]$) \newline 
+
+\noindent $\mathbb{E}[||\nabla f_B(x)||^2] \leq 4L_{b} (f(x) - \inf f) + 2 \sigma_b^*$ \newline 
