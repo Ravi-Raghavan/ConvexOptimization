@@ -105,60 +105,56 @@
 \begin{itemize}
     \item[(a)] $f(x) = ||Ax - b||$, where $A \in \mathbb{R}^{m x n}$, $b \in \mathbb{R}^m$, and $||.||$ is a norm on $\mathbb{R}^m$
     \begin{solution}
-    Let us have $x, y \in dom f$. Our goal is, for $\theta \in [0, 1]$ to prove that $f(\theta x + (1 - \theta) y ) \leq \theta f(x) + (1 - \theta) f(y)$
-
-    $f(\theta x + (1 - \theta) y ) = ||A(\theta x + (1 - \theta) y) - b|| = ||\theta 
- Ax + (1 - \theta) Ay - b||$
-
-The triangle inequality theorem(i.e. $||x|| + ||y|| \geq ||x + y||$) also states that: \newline 
-$\theta f(x) + (1 - \theta) f(y) = \theta ||Ax - b|| + (1 - \theta) ||Ay - b|| =  ||\theta(Ax - b)|| + ||(1 - \theta)(Ay - b)|| \geq ||\theta (Ax - b) + (1 - \theta) (Ay - b)|| = ||\theta Ax - \theta b + (1 - \theta) Ay -  (1 - \theta)b|| = ||\theta Ax  + (1 - \theta) Ay - b|| = f(\theta x + (1 - \theta) y )$ \newline 
-
-Another way of doing this proof is just by seeing that $f(x)$ is a composition of a norm and an affine function. Norms are convex. Hence, since we have a composition with an affine mapping, we have a convex function! 
+$f(x)$ is a composition of a norm and an affine function. Norms are convex. Hence, since we have a composition with an affine mapping, we have a convex function! 
  
     \end{solution} 
 
     \item[(b)] $f(x) = - (\det (A_0 + x_1 A_1 + \dots + x_n A_n))^{\frac{1}{m}}$, on $\{x | A_0 + x_1 A_1 + \dots + x_n A_n \succ 0\}$ where $A_i \in \mathbb{S}^m$
 
     \begin{solution}
-        Let $\lambda_{ij}$ represent the $j$th Eigenvalue of $A_i$. \newline 
+    It is clear that $f(x)$ is the composition of $- (\det (X))^{\frac{1}{m}}$ and an affine function(i.e. $A_0 + x_1 A_1 + \dots + x_n A_n$). \newline 
 
-        Since $A_i \in \mathbb{S}^m$, the eigenvalues of $A_0 + x_1 A_1 + \dots + x_n A_n$ are just the sum of the individual eigenvalues of $A_0, x_1 A_1, \dots x_n A_n$
+    Now, our goal is to prove that $g(X) = - (\det (X))^{\frac{1}{m}}$, where $X \in \mathbb{S}^m_{++}$ is convex. \newline 
 
-        We already know that the determinant of a Symmetric Matrix is the product of its eigenvalues. Hence, we can re-express $f(x)$ as follows: \newline 
+     To verify convexity, we can consider an arbitrary line given by $X = Z + tV$ where $Z \in \mathbb{S}^m_{++}$ and $V \in \mathbb{S}^m$ \newline 
 
-        $f(x) = - ((\lambda_{01} + x_1 \lambda_{11} + \dots + x_n \lambda_{n1}) \dots (\lambda_{0m} + x_1 \lambda_{1m} + \dots + x_n \lambda_{nm}))^{\frac{1}{m}}$
+     $h(t) = g(Z + tV) = - (\det (Z + tV))^{\frac{1}{m}}$ \newline 
+    $= -(\det (Z^{\frac{1}{2}} (I + tZ^{\frac{-1}{2}} V Z^{\frac{-1}{2}}) Z^{\frac{1}{2}}))^{\frac{1}{m}}$ \newline
 
-        Since $A_0 + x_1 A_1 + \dots + x_n A_n \succ 0$, we know that $(\lambda_{0j} + x_1 \lambda_{1j} + \dots + x_n \lambda_{nj}) > 0$
+    $= - (\det (Z^{\frac{1}{2}}))^{\frac{1}{m}} (\det ((I + tZ^{\frac{-1}{2}} V Z^{\frac{-1}{2}})))^{\frac{1}{m}} (\det (Z^{\frac{1}{2}}))^{\frac{1}{m}}$ \newline
 
-Hence, we can clearly rewrite our problem: \newline 
+    $= - (\det (Z))^{\frac{1}{m}} (\det ((I + tZ^{\frac{-1}{2}} V Z^{\frac{-1}{2}})))^{\frac{1}{m}}$ \newline
 
-        Let us denote $P = \begin{bmatrix}
-    \lambda_{11} & \cdots & \lambda_{n1} \\
-    \lambda_{12} & \cdots & \lambda_{n2} \\
-    \vdots & \ddots & \vdots \\
-    \lambda_{1m} & \cdots & \lambda_{nm}
-\end{bmatrix}$
+    $= - (\det (Z))^{\frac{1}{m}} (\prod_{i=1}^{m} (1 + t\lambda_i))^{\frac{1}{m}}$ \newline 
 
-Let $Q = \begin{bmatrix}
-    \lambda_{01} \\
-    \lambda_{02} \\
-    \vdots \\
-    \lambda_{0m}
-\end{bmatrix}$
+    Note: $\lambda_i$ are eigenvalues of $Z^{\frac{-1}{2}} V Z^{\frac{-1}{2}}$ \newline 
 
-Let $h(x) = - (\prod_{i=1}^{m} x_i)^{\frac{1}{m}}$ where $x \in \mathbb{R}^m_{++}$ \newline 
+     We know that $Z + tV \in \mathbb{S}^m_{++}$ \newline 
+    This means that $Z^{\frac{1}{2}} (I + tZ^{\frac{-1}{2}} V Z^{\frac{-1}{2}}) Z^{\frac{1}{2}} \in \mathbb{S}^m_{++}$ \newline 
 
-Let $g(x) = Px + Q$
+    For any vector $y$, we know that $y^T Z^{\frac{1}{2}} (I + tZ^{\frac{-1}{2}} V Z^{\frac{-1}{2}}) Z^{\frac{1}{2}} y \geq 0$ \newline 
 
-$f(x) = h(g(x))$ \newline 
+    We know that $Z^{\frac{1}{2}}$ is symmetric and positive definite. \newline 
 
-Since geometric means are concave as we proved in class where the domain is $\mathbb{R}^m_{++}$, $h(x)$ is convex. Furthermore, when the domain is $\mathbb{R}^m_{++}$, it is clear that $h(x)$ is non-increasing in each argument. 
+    $y^T (Z^{\frac{1}{2}})^T (I + tZ^{\frac{-1}{2}} V Z^{\frac{-1}{2}}) Z^{\frac{1}{2}} y \geq 0$ \newline 
 
-$g(x)$ is an affine transformation is, thus, convex and concave. 
-        
-Hence, we have a case where $h(x)$ is convex and non-increasing and $g(x)$ is concave. This means that $f(x) = h(g(x))$ is Convex. 
+    $(Z^{\frac{1}{2}} y)^T (I + tZ^{\frac{-1}{2}} V Z^{\frac{-1}{2}}) (Z^{\frac{1}{2}} y) \geq 0$ \newline 
+    
+    This means that $(I + tZ^{\frac{-1}{2}} V Z^{\frac{-1}{2}}) \in \mathbb{S}^m_{++}$ must be True
 
-As shown, we have shown that $f$ is a Composition of a Convex Function and an Affine Mapping, hence telling us that $f$ is Convex
+    This means that $1 + t\lambda_i > 0$ must be true for all $i$! 
+
+
+    Since $(\prod_{i=1}^{m} (1 + t\lambda_i))^{\frac{1}{m}}$ is a geometric mean of positive numbers, it is concave. \newline 
+
+    $= - (\det (Z))^{\frac{1}{m}} (\prod_{i=1}^{m} (1 + t\lambda_i))^{\frac{1}{m}}$ represents a negative value multiplied by a concave function. \newline 
+    
+    Hence, $h(t) = - (\det (Z))^{\frac{1}{m}} (\prod_{i=1}^{m} (1 + t\lambda_i))^{\frac{1}{m}}$ is convex! \newline 
+
+    This means that $g(X) = -(\det(X))^{\frac{1}{m}}$ is convex. 
+
+    Hence, we have shown that $f(x)$ is the composition of a convex function with an affine function which means that $f(x)$ is convex. 
+
     \end{solution}
 \end{itemize}
 \end{problem}
@@ -179,6 +175,8 @@ As shown, we have shown that $f$ is a Composition of a Convex Function and an Af
             We can re-express $f(x)$: \newline 
 
             $f(x) = \max_{i_1, i_2, \dots, i_r} \{|x_{i_1}| + |x_{i_2}| + \dots + |x_{i_r}|\}$ where $i_k \in [1, n] \enspace \forall k \in [1, r]$ \newline 
+
+            $|x_{i_1}| + |x_{i_2}| + \dots + |x_{i_r}|$ is a convex function since it is a non-negative weighted sum of convex functions(i.e. $L_1$ Norm)
 
             It is clear that $f(x)$ is the pointwise maximum of $\binom{n}{r}$ convex functions. 
 
@@ -217,7 +215,7 @@ As shown, we have shown that $f$ is a Composition of a Convex Function and an Af
 
         $f(x, t) = -(p - 1)\log(t) - \log((t - \frac{||x||^p_p}{t^{p - 1}}))$
 
-        The function $-(p - 1)\log(t)$ is convex since $p > 1$(i.e. $p - 1 > 0$) and $-\log(t)$ is convex. \newline 
+        The function $-(p - 1)\log(t)$ is convex since $p > 1$(i.e. $p - 1 > 0$) and $-\log(t)$ is convex. Hence, $-(p - 1)\log(t)$ is a non-negative weighted sum of convex functions. \newline 
 
         Let's look at $- \log((t - \frac{||x||^p_p}{t^{p - 1}}))$. This function is a composition of a non-increasing convex function(i.e. $-\log(x)$) and a concave function(i.e. $(t - \frac{||x||^p_p}{t^{p - 1}})$). 
 
@@ -257,7 +255,7 @@ As shown, we have shown that $f$ is a Composition of a Convex Function and an Af
         \end{solution}
     \end{itemize}
 \end{problem}
-
+\newpage
 \begin{problem} Problem 3.26
     \begin{itemize}
         \item[(c)] 
@@ -270,14 +268,14 @@ As shown, we have shown that $f$ is a Composition of a Convex Function and an Af
 
             $(V^T X V)_{ii} = v_i^T X v_i$ where $v_i$ is the $i$th column of $V$ \newline 
 
-            We also know that $X$ is Positive Definite. Hence, $(V^T X V)_{ii} > 0$ \newline 
+            We also know that $X$ is Symmetric and Positive Definite. Since $X$ is Positive Definite, $(V^T X V)_{ii} > 0$. We also know that $V$ is an orthogonal matrix. Hence, since $X$ is a positive definite and symmetric matrix, $V^TXV$ is a diagonal matrix that is positive definite. \newline 
 
             Hence, 
             $\log(\prod_{i=n - k + 1}^{n} \lambda_i(X)) = \inf \{ \log(\prod_{i=1}^{k} (V^T X V)_{ii}) | V \in \mathbb{R}^{n x k}, V^TV = I \}$ \newline 
 
             $\sum_{i=n - k + 1}^{n} \log(\lambda_i(X)) = \inf \{ \log(\prod_{i=1}^{k} (V^T X V)_{ii}) | V \in \mathbb{R}^{n x k}, V^TV = I \}$
 
-            Since $X$ is symmetric, we know that $V^TXV$ is symmetric as well. This means that $\log(\prod_{i=1}^{k} (V^T X V)_{ii}) = \log \det(V^T X V)$ which is concave. 
+            Since $V^TXV$ is a positive definite diagonal matrix, $\log(\prod_{i=1}^{k} (V^T X V)_{ii}) = \log \det(V^T X V)$ which is concave on the space of positive definite matrices 
 
             Hence, $\sum_{i=n - k + 1}^{n} \log(\lambda_i(X)) = \inf \{ \log(\prod_{i=1}^{k} (V^T X V)_{ii}) | V \in \mathbb{R}^{n x k}, V^TV = I \}$ can be re-expressed as follows: \newline 
 
@@ -308,7 +306,7 @@ As shown, we have shown that $f$ is a Composition of a Convex Function and an Af
 
             Since $f$ and $g$ are convex, we know can replace $f''(x)$ and $g''(x)$ with $k_{f''}$ and $k_{g''}$ where $k_{f''} \geq 0$ and $k_{g''} \geq 0$
 
-            Since $f$ and $g$ are both positive functions, we can replace $f(x)$ and $g(x)$ with $k_{f}$ and $k_{g}$ where $k_{f} \geq 0$ and $k_{g} \geq 0$
+            Since $f$ and $g$ are both positive functions, we can replace $f(x)$ and $g(x)$ with $k_{f}$ and $k_{g}$ where $k_{f} > 0$ and $k_{g} > 0$
 
             Let's rewrite our expression for the second derivative \newline 
 
@@ -330,7 +328,7 @@ As shown, we have shown that $f$ is a Composition of a Convex Function and an Af
         \item[(b)] If $f, g$ are concave, positive, with one nondecreasing and the other nonincreasing, then $fg$ is concave.
 
         \begin{solution}
-            Goal: Prove that $f(x) g(x)$ is convex. \newline 
+            Goal: Prove that $f(x) g(x)$ is concave. \newline 
 
             First Derivative of $f(x) g(x) = f'(x) g(x) + f(x) g'(x)$ \newline 
 
@@ -338,9 +336,9 @@ As shown, we have shown that $f$ is a Composition of a Convex Function and an Af
 
             Since $f$ and $g$ are concave, we know can replace $f''(x)$ and $g''(x)$ with $k_{f''}$ and $k_{g''}$ where $k_{f''} \leq 0$ and $k_{g''} \leq 0$
 
-            Since $f$ and $g$ are both positive functions, we can replace $f(x)$ and $g(x)$ with $k_{f}$ and $k_{g}$ where $k_{f} \geq 0$ and $k_{g} \geq 0$
+            Since $f$ and $g$ are both positive functions, we can replace $f(x)$ and $g(x)$ with $k_{f}$ and $k_{g}$ where $k_{f} > 0$ and $k_{g} > 0$
 
-            If $f$ and $g$ are have one of them nondecreasing and the other nonincreasing this means that either $f'(x) \geq 0, g'(x) \leq 0$ or $f'(x) \leq 0, g'(x) \geq 0$. Either way, the product $2f'(x)g'(x) \leq 0$ and we can denote this as $k_2$
+            If $f$ and $g$ have one of them nondecreasing and the other nonincreasing this means that either $f'(x) \geq 0, g'(x) \leq 0$ or $f'(x) \leq 0, g'(x) \geq 0$. Either way, the product $2f'(x)g'(x) \leq 0$ and we can denote this as $k_2$
 
             Our expression for the second derivative becomes: \newline 
             $k_{f''} k_{g} + k_2 + k_{f} k_{g''} \leq 0$ \newline
@@ -362,7 +360,7 @@ As shown, we have shown that $f$ is a Composition of a Convex Function and an Af
 
             Second Derivative of $1/g$: $\frac{-g''(x)(g(x))^2 + 2g(x) (g'(x))^2}{(g(x))^4}$ \newline 
 
-            Since $g$ is concave, $g''(x)$ is $\leq 0$. Hence, $-g''(x)(g(x))^2$ is $\geq 0$. Since $g$ is positive, $2g(x) (g'(x))^2$ is $\geq 0$. 
+            Since $g$ is concave, $g''(x)$ is $\leq 0$. Hence, $-g''(x)(g(x))^2$ is $\geq 0$. Since $g$ is positive, $2g(x) (g'(x))^2$ is $> 0$. 
 
             Hence, $\frac{-g''(x)(g(x))^2 + 2g(x) (g'(x))^2}{(g(x))^4} \geq 0$
 
@@ -387,7 +385,7 @@ Make a sketch of the feasible set. For each of the following objective functions
 
 \begin{figure}[h!]
         \centering
-        \includegraphics[width=0.6 \textwidth]{HW 8n_1.jpg}
+        \includegraphics[width=0.6 \textwidth]{HW8-2n_1.jpg}
         \caption{Set of Feasible Set}
     \end{figure}
 
@@ -408,10 +406,30 @@ Note: The feasible set is the convex hull of the following points $(0, 1)$, $(0.
     \end{solution}
     \item[(d)] $f_0(x_1, x_2) = \max\{x_1, x_2\}$
     \begin{solution}
+    The level curve of the objective function, $f_0(x_1, x_2) = \frac{1}{4}$, is tangent to the constraint line $x_1 + 3x_2 = 1$ at $(\frac{1}{4}, \frac{1}{4})$ which yields an objective function value of $\frac{1}{4}$. However, the point $(\frac{1}{4}, \frac{1}{4})$ is outside the feasible set. To see this $2x_1 + x_2 = 0.75 < 1$ \newline 
+    
+    The level curve of the objective function, $f_0(x_1, x_2) = \frac{1}{3}$, is tangent to the constraint line $2x_1 + x_2 = 1$ at $(\frac{1}{3}, \frac{1}{3})$ which yields an objective function value of $\frac{1}{3}$. This point is inside the feasible set. $2x_1 + x_2 = 1$, $x_1 + 3x_2 > 1$, $x_1 > 0$, $x_2 > 0$ \newline
+    
         Optimal Set: $\{(\frac{1}{3}, \frac{1}{3})\}$, Optimal Value: $\frac{1}{3}$
     \end{solution}
     \item[(e)] $f_0(x_1, x_2) = x_1^2 + 9x_2^2$
     \begin{solution}
+    Gradient: $\langle 2x_1, 18x_2 \rangle$ \newline 
+
+    We want the gradient to be tangent to either one of the constraint lines $2x_1 + x_2 = 1$ or $x_1 + 3x_2 = 1$. \newline 
+
+    The constraint lines $2x_1 + x_2 = 1$ and $x_1 + 3x_2 = 1$ have slopes $-2$ and $-\frac{1}{3}$ respectively. \newline 
+
+For the gradient to be tangent to $2x_1 + x_2 = 1$, the slope of the gradient has to be $\frac{1}{2}$. This means that $\frac{9x_2}{x_1} = \frac{1}{2}$ which means that $\frac{x_2}{x_1} = \frac{1}{18}$ \newline 
+
+
+$2x_1 + \frac{x_1}{18} = 1$, which means that $x_1 = \frac{18}{37}, x_2 = \frac{1}{37}$. This point is NOT inside the feasible set. $x_1 + 3x_2 < 1$ \newline 
+
+For the gradient to be tangent to $x_1 + 3x_2 = 1$, the slope of the gradient has to be $3$. This means that $\frac{9x_2}{x_1} = 3$ which means that $\frac{x_2}{x_1} = \frac{1}{3}$ \newline 
+
+
+$x_1 + x_1 = 1$, which means that $x_1 = \frac{1}{2}, x_2 = \frac{1}{6}$. This point is inside the feasible set. $x_1 + 3x_2 = 1$, $2x_1 + x_2 > 1$, $x_1 > 0$, $x_2 > 0$.  Overall, this would mean that $f_0(x_1, x_2) = \frac{1}{2}$ \newline 
+    
         Optimal Set: $\{(\frac{1}{2}, \frac{1}{6})\}$, Optimal Value: $0.5$
     \end{solution}
 \end{itemize}
@@ -491,7 +509,7 @@ with variables $x \in \mathbb{R}^n$ and $w \in \mathbb{R}^m$, and domain $\mathb
 Step 1: Show that Problems $(a)$ and $(b)$ are Equivalent: \newline 
 Let's work with the objective function of Problem $(b)$ \newline 
 
-$\sum_{i=1}^{m} (a_i^T x - b_i)^2/(w_i + 1) + M^2\textbf{1}^Tw$ \newline 
+$g(w) = \sum_{i=1}^{m} (a_i^T x - b_i)^2/(w_i + 1) + M^2\textbf{1}^Tw$ \newline 
 
 $g(w) = \sum_{i=1}^{m} (a_i^T x - b_i)^2/(w_i + 1) + M^2(\sum_{i=1}^{m} w_i)$ \newline 
 
@@ -551,16 +569,23 @@ Step 2: Show that Problems $(a)$ and $(c)$ are Equivalent: \newline
 
     $u_i + v_i = |a_i^T x - b_i|$, $v_i = |a_i^T x - b_i| - u_i$
 
-    Objective function: $g(u) = \sum_{i=1}^{m} u_i^2 + 2M|a_i^T x - b_i| - 2Mu_i$
+Let's work with the objective function for Problem (c). \newline 
 
-    This is clearly convex with respect to $u_i$ \newline 
+Objective function: $g(u) = \sum_{i=1}^{m} u_i^2 + 2Mv_i$ \newline 
+
+Lets substitute the value of $v_i$ into the objective function \newline
+
+
+    Objective function: $g(u) = \sum_{i=1}^{m} u_i^2 + 2M|a_i^T x - b_i| - 2Mu_i$ \newline
+
+    This is clearly convex with respect to $u$ \newline 
 
     $\frac{\partial g}{\partial u_i} = 2u_i - 2M$
 
     $\frac{\partial^2 g}{\partial u_i \partial u_j} = 0$ when $i \neq j$ \newline 
     $\frac{\partial^2 g}{\partial u_i \partial u_j} = 2$ when $i = j$
 
-    The Hessian is clearly a diagonal matrix whose elements are positive Hence, on $g$ is convex. 
+    The Hessian is clearly a diagonal matrix whose elements are positive Hence, $g$ is convex with respect to $u$. 
 
     Setting the gradient to 0 implies that $u_i = M$. However, we must be careful. Since $v_i = |a_i^T x - b_i| - u_i$ and $v_i \geq 0$. $u_i = M$ can only happen when $|a_i^T x - b_i| \geq M$. Else, we must set $u_i = |a_i^T x - b_i|$ and $v_i = 0$
 
