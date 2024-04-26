@@ -1762,6 +1762,10 @@ INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/mathabx/matha5.tfm
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/mathabx/mathx10.tfm
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/mathabx/mathx10.tfm
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/mathabx/mathx10.tfm
+INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/libertinus-type1/LibertinusSerif-Regular-tlf-t1.tfm
+INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/libertinus-type1/LibertinusSerif-Bold-tlf-t1.tfm
+INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/libertinus-type1/LibertinusSerif-Regular-tlf-t1.tfm
+INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/libertinus-type1/LibertinusSerif-Bold-tlf-t1.tfm
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/libertinus-type1/LibertinusSerif-Italic-tlf-t1.tfm
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/vf/public/libertinus-type1/LibertinusSerif-Regular-tlf-t1.vf
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/libertinus-type1/LibertinusSerif-Regular-tlf-t1--base.tfm
@@ -1837,5 +1841,6 @@ INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb
+INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb

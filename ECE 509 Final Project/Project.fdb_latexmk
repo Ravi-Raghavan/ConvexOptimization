@@ -1,13 +1,13 @@
 # Fdb version 4
-["biber Project"] 1713741918 "Project.bcf" "Project.bbl" "Project" 1713741944 0
+["biber Project"] 1713741918 "Project.bcf" "Project.bbl" "Project" 1714113321 0
   "./reference.bib" 1713741908 4527 31a5d469a2f606e87e6c164d13520f9f ""
-  "Project.bcf" 1713741943 107358 af5aa60d217501fda241c73891f1d6da "pdflatex"
+  "Project.bcf" 1714113320 107358 af5aa60d217501fda241c73891f1d6da "pdflatex"
   (generated)
   "Project.bbl"
   "Project.blg"
   (rewritten before read)
-["pdflatex"] 1713741940 "/Users/raviraghavan/Desktop/Undergrad BS CS:CE/Undergrad Senior Year/Spring 2024/ECE 509 Convex Optimization/ECE 509 Final Project/Project.tex" "Project.pdf" "Project" 1713741944 0
-  "/Users/raviraghavan/Desktop/Undergrad BS CS:CE/Undergrad Senior Year/Spring 2024/ECE 509 Convex Optimization/ECE 509 Final Project/Project.tex" 1713741777 742 c0cc164ea05ce7869a806a7d8436743f ""
+["pdflatex"] 1714113317 "/Users/raviraghavan/Desktop/Undergrad BS CS:CE/Undergrad Senior Year/Spring 2024/ECE 509 Convex Optimization/ECE 509 Final Project/Project.tex" "Project.pdf" "Project" 1714113321 0
+  "/Users/raviraghavan/Desktop/Undergrad BS CS:CE/Undergrad Senior Year/Spring 2024/ECE 509 Convex Optimization/ECE 509 Final Project/Project.tex" 1714113313 734 b5bc12674b1aea484efe4aeb1594c3c5 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/libertinus-type1/lbts_75t36g.enc" 1667852677 3022 13dbae1db4ca7b6d6a3611a22a194cb8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/libertinus-type1/lbts_nufysp.enc" 1667852677 3020 5d8857a1b98c2fe839d85dd536083a57 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/libertinus-type1/lbts_rlktsf.enc" 1667852677 3252 3a84f8594ce806be302a5861cad3f566 ""
@@ -331,17 +331,17 @@
   "/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1709136911 4623355 b8cad38412faebe1ce5b780a45db67bd ""
   "/usr/local/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1709136851 7883460 6c9c589f76a0feca2346aae2a247378b ""
   "/usr/local/texlive/2023/texmf.cnf" 1678822455 577 1b2b1af17af2508fb20dd85783af4050 ""
-  "Alternative Methods.tex" 1713741919 6509 cc45f0f8dc4d45a68d5fe0cec9ba5b5a ""
-  "Convergence.tex" 1713741857 34993 68d7e340a3d64766d81860a0f86b0be0 ""
-  "Experiments.tex" 1713741702 149 232228d18c30d4390abb4cb95c72a728 ""
-  "Introduction.tex" 1713741831 33674 d50ddd377cf0eeace724197addff15c8 ""
-  "Project.aux" 1713741943 4636 c8610cad26abc0e2bfc45cfdc15ec791 "pdflatex"
+  "Alternative Methods.tex" 1714113257 8792 ffd6b27f1d661c28d82491f714b99598 ""
+  "Convergence.tex" 1714113269 35878 000fcc275d8fc39c50849bf30facd312 ""
+  "Experiments.tex" 1714113285 149 232228d18c30d4390abb4cb95c72a728 ""
+  "Introduction.tex" 1714113293 33862 a73892c7d40192c2b74ee4d384db91f9 ""
+  "Project.aux" 1714113320 5505 2bb084ae82e45ecbc338403601067fe7 "pdflatex"
   "Project.bbl" 1713741935 466 ee04f40f768daeed26442158e95aba61 "biber Project"
-  "Project.out" 1713741943 5652 ac0122f163d616588560beeb9989dfa3 "pdflatex"
-  "Project.run.xml" 1713741943 2325 944df0fb8ba51fc0b835d5cceb5a5a7a "pdflatex"
-  "Project.tex" 1713741777 742 c0cc164ea05ce7869a806a7d8436743f ""
+  "Project.out" 1714113320 6281 fdfb1fa7f1df8c6ec76fc3392aef3b1d "pdflatex"
+  "Project.run.xml" 1714113320 2325 944df0fb8ba51fc0b835d5cceb5a5a7a "pdflatex"
+  "Project.tex" 1714113313 734 b5bc12674b1aea484efe4aeb1594c3c5 ""
   "Stability.tex" 1713740479 0 d41d8cd98f00b204e9800998ecf8427e ""
-  "lecturenotes.sty" 1713741774 25964 95bedd06ca21cb356c05d63dd7817a5c ""
+  "lecturenotes.sty" 1714113301 25964 95bedd06ca21cb356c05d63dd7817a5c ""
   (generated)
   "Project.aux"
   "Project.bcf"

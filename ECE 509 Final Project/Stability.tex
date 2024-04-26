@@ -1,0 +1,66 @@
+
+
+\subsection{Stability of Randomized Iterative Algorithms}
+
+\subsubsection{Generalization Error}
+
+Generalization error is a measure of how accurately a machine learning model can predict outcome values for previously unseen data. Specifically, it quantifies the difference in performance between training data and new, unseen data. A key goal in areas such as machine learning is to minimize this error, which indicates better model performance on new, unseen data. The generalization error of a learning algorithm can be formally defined as the difference between the expected loss over the distribution of all possible data and the empirical loss calculated on the training set. Following is a build-up for a formal definition of the generalization error adopted from \cite{Stability},  
+
+\noindent Consider a supervised learning setting where:
+
+\begin{itemize}
+    \item The samples are drawn from a $\mathcal{D}$ unknown distribution.
+    \item The samples $S = (x_1,x_2,\hdots,x_n)$ is samples i.i.d from the aforementioned distribution.
+    \item The main objective is to find the model $w$ with an associated loss function $f(w;x)$
+    \item $n$ denotes the number of samples.
+\end{itemize}
+
+The algorithm tries to find the model $w$ with a minimum population risk defined as the expected loss over $\mathcal{D}$,
+
+\begin{align}
+    \label{eq: population risk}
+    R[w] \defeq \bE_{x\sim\mathcal{D}} [f(w;x)]
+\end{align}
+
+However, it is important to note that, not knowing $\mathcal{D}$ makes it impossible to measure $R[w]$ directly. However, having a sufficient number of samples allow us to estimate population risk through the empirical average of the loss function over the samples (empirical risk),
+
+\begin{align}
+    \label{eq: empirical risk}
+     R_{S}[w] \defeq \frac{1}{n}\sum_{i = 1}^n f(w;x_i)
+\end{align}
+
+Now the generalization error of the model $w$ is the difference between the population risk and the empirical risk,
+
+\begin{equation}
+    \label{eq: generalization error}
+    \text{Generalization Error} = R[w] - R_s[w]
+\end{equation}
+
+In many applications, the model parameters $w$ are learned using the sample data and response variables. For example, in linear regression, the goal is to establish a linear relationship between the features (or predictors) and the response variable. This relationship is expressed in the form $y = w^Tx + b$, where $y$ is the response, $x$ is the feature vector, $w$ is the vector of weights, and $b$ is a bias term. By minimizing the empirical risk, typically represented by the mean squared error between the predicted values and the actual values in the training data, the model learns the parameters that best fit the data.
+
+To learn these parameters effectively, especially in complex or large-scale settings, randomized algorithms such as Stochastic Gradient Descent (SGD) are frequently employed. This makes it computationally more efficient than batch gradient descent, particularly with large datasets. Here the random nature of the algorithm develops through the random selection of data subsets. With this insight it can be seen that the model $w$ can be taken as a function of data $S$ through a randomized algorithm $A$, where, $w = A(S)$. This allows one to define an expected generalization error over the randomness of the samples and the algorithm. 
+
+\begin{align}
+    \epsilon_{gen} \defeq \bE_{S,A} [R_S[A(S)] - R[A(s)]]
+\end{align}
+
+
+
+
+
+
+\subsection{Stability of SGD}
+According to Hardt et al. (2016), the stability of a learning algorithm, such as Stochastic Gradient Descent (SGD), can directly influence the generalization error. An algorithm is considered stable if small changes in the training set result in small changes in the outcome. The stability of SGD is quantified in the context of how the learning rate and other parameters are adjusted during the training process.
+
+\subsection{Algorithmic Stability and Generalization}
+The paper establishes a connection between the stability of SGD and its generalization performance:
+
+\begin{equation}
+\text{Generalization Error of SGD} \leq O\left(\frac{1}{\sqrt{n}}\right)
+\end{equation}
+
+This inequality shows that the generalization error of SGD decreases at a rate proportional to the inverse square root of the number of training samples, under certain conditions related to the learning rate and the smoothness of the loss function.
+
+\subsection{Conclusion}
+Understanding and minimizing generalization error is crucial for improving the performance of machine learning models on new, unseen data. The stability properties of algorithms like SGD play a significant role in their ability to generalize well.
+

@@ -57,7 +57,7 @@ This anticipatory step allows NAG to correct its course more responsively than s
 
 \subsection{Ada Grad}
 
-AdaGrad is an adaptive learning rate method that modifies the general approach of gradient descent by allowing each parameter to have its own learning rate. This method addresses a common challenge in training machine learning models, where choosing an appropriate learning rate can be crucial for effective learning. Traditional gradient descent methods use a single learning rate for all parameters, which might not be optimal.
+AdaGrad is an adaptive learning rate method that modifies the general approach of gradient descent by allowing each parameter to have its own learning rate. This method addresses a common challenge in training machine learning models, where choosing an appropriate learning rate can be crucial for effective learning. Traditional gradient descent methods use a single learning rate for all parameters, which might not be optimal. Specifically, in a scenario where the users are presented with a dataset with sparse features the methods discussed above take longer to converge to the extremum. This is because the level sets of the problem being elongated balls. 
 
 AdaGrad adjusts the learning rate for each parameter based on the history of gradients that have been computed for that parameter. This means that parameters associated with frequently occurring features will have their learning rates decreased, while parameters associated with infrequent features will have their learning rates increased. Such adjustments are beneficial because they make the model less sensitive to the scale of features and more responsive to each feature's specific behavior and importance. This feature-dependent scaling of the learning rate helps in dealing with data sparsity and enhances the convergence properties of the gradient descent optimization, particularly in complex models dealing with high-dimensional data. 
 
@@ -105,10 +105,10 @@ x^{(m)}_{t}
 \end{bmatrix}
 -
 \begin{bmatrix}
-\frac{\eta}{\sqrt{\varepsilon + G^{(1,1)}_t}}\\
- \frac{\eta}{\sqrt{\varepsilon + G^{(2,2)}_t}}  \\
+\frac{\eta}{\sqrt{\varepsilon I+ G^{(1,1)}_t}}\\
+ \frac{\eta}{\sqrt{\varepsilon I + G^{(2,2)}_t}}  \\
  \vdots\\
- \frac{\eta}{\sqrt{\varepsilon + G^{(m,m)}_t}}
+ \frac{\eta}{\sqrt{\varepsilon I + G^{(m,m)}_t}}
 \end{bmatrix}
 \odot 
 \begin{bmatrix}
@@ -119,7 +119,60 @@ g^{(m)}_t
 \end{bmatrix}
 \]
 
-Where $\odot$ is the Hadamard product between two matrices having the same dimensions. This provides a clear idea of how the per-parameter learning rate works. Here, $\gamma$ is the paramter which describes the global learning rate. It must also be noted that as G accumulates, the learning rate slows down for each parameter and eventually no progress can be made, which is a weakness of Adagrad. 
+Where $\odot$ is the Hadamard product between two matrices having the same dimensions. This provides a clear idea of how the per-parameter learning rate works. Here, $\gamma$ is the paramter which describes the global learning rate. It must also be noted that as G accumulates, the learning rate slows down for each parameter and eventually no progress can be made, causing the algorithm to never reach the exact minima. This is once of the major disadvantages of Adagrad.
 
-\subsection{RMS Prop}
-\subsection{Adam}
+\subsection{Root Mean Square Propagation (\textbf{RMS Prop)}}
+
+We have seen that the monotonically decreasing learning rate of Adagrad leads to a scenario where the learning rate becomes too small too quickly while the descent method can still achieve a reduction of the cost function. RMS prop addresses this issue by introducing a moving  window of fixed size over the gradients computed at each step rather than using the full set of gradients. Now the term $G^{(i)}$ for a the coordinate $x^{(i)}$ on the $t^{th}$ iteration can be written as,
+
+\begin{align}
+    \label{eq: RMS Window}
+    G_t^{(i)} = \frac{\left(g^{(i)}_{t-w}\right)^2+\left(g^{(i)}_{t-w+1}\right)^2+\hdots + \left(g^{(i)}_{t-1}\right)^2}{w}  
+\end{align}
+
+A conceptually equivalent and computationally cheaper way of doing this is to treat \ref{eq: RMS Window} as an accumulation of exponentially decaying average of square of gradients. Let, $\rho$ be the decaying factor, then we can write,
+
+\begin{align}
+\label{eq: Expeted RMS}
+\bE \left[ \left(g^{(i)}_{t}\right)^2 \right] = \rho \bE \left[ \left(g^{(i)}_{t-1}\right)^2 \right] + (1-\rho) \left(g^{(i)}_{t}\right)^2 
+\end{align}
+
+From \ref{eq: Expeted RMS} we can see that the decay factor causes the older gradient to decay with iteration. This prevents the learning rate from becoming too small too quickly. Now $\left(G_t^{i}\right)^{-\frac{1}{2}}$ can be seen as,
+
+\begin{align}
+    \label{eq: RMS RMSprop}
+    RMS[g_t^{(i)}] = \left(G_{(t)}^{i}\right)^{-\frac{1}{2}} = \sqrt{\bE \left[ \left(g^{(i)}_{t}\right)^2 \right]}
+\end{align}
+
+Finally the update step of RMSprop algorithm, 
+
+
+\[
+\begin{bmatrix}
+x^{(1)}_{t+1} \\
+x^{(2)}_{t+1} \\
+\vdots \\
+x^{(m)}_{t+1}
+\end{bmatrix}
+=
+\begin{bmatrix}
+x^{(1)}_{t} \\
+x^{(2)}_{t} \\
+\vdots \\
+x^{(m)}_{t}
+\end{bmatrix}
+-
+\begin{bmatrix}
+\frac{\eta}{RMS[g_t^{(1)}]}\\
+ \frac{\eta}{RMS[g_t^{(2)}]}  \\
+ \vdots\\
+ \frac{\eta}{RMS[g_t^{(m)}]}
+\end{bmatrix}
+\odot 
+\begin{bmatrix}
+g^{(1)}_t \\
+g^{(2)}_t \\
+\vdots \\
+g^{(m)}_t
+\end{bmatrix}
+\]

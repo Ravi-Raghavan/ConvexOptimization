@@ -16,8 +16,8 @@
 \gdef\HyperFirstAtBeginDocument#1{#1}
 \providecommand\HyField@AuxAddToFields[1]{}
 \providecommand\HyField@AuxAddToCoFields[2]{}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Stochastic Gradient Descent Basic Concepts}{1}{section.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Theory: Smooth Functions and Convexity}{1}{subsection.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1}Convex Optimization Basic Concepts}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Smooth Functions and Convexity}{1}{subsection.1.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.1}Differentiability}{1}{subsubsection.1.1.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.2}Convexity}{1}{subsubsection.1.1.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.3}Strong Convexity}{2}{subsubsection.1.1.3}\protected@file@percent }
@@ -25,26 +25,48 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.5}Smoothness and Convexity}{3}{subsubsection.1.1.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Gradient Descent}{4}{subsection.1.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Function Definitions}{4}{subsection.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.4}Stochastic Gradient Descent}{4}{subsection.1.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.5}Minibatch Stochastic Gradient Descent}{4}{subsection.1.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.6}Expected Smoothness and Variance}{5}{subsection.1.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.4}Stochastic Gradient Descent}{5}{subsection.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.5}Minibatch Stochastic Gradient Descent}{5}{subsection.1.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.6}Expected Smoothness and Variance [SGD]}{5}{subsection.1.6}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {1.6.1}Expected Smoothness}{5}{subsubsection.1.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.6.2}Variance}{5}{subsubsection.1.6.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2}Varianats on Stochastic Gradient Descent}{11}{section.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Momentum}{11}{subsection.2.1}\protected@file@percent }
-\newlabel{eq: Momentum}{{37}{11}{Momentum}{equation.2.37}{}}
-\newlabel{eq: Momentum@cref}{{[equation][37][]37}{[1][11][]11}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Nestrov Accelerated Gradients (NAG)}{11}{subsection.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Ada Grad}{12}{subsection.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}RMS Prop}{12}{subsection.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Adam}{12}{subsection.2.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3}Convergence Behavior of SGD and Minibatch SGD}{13}{section.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}SGD Convergence for Convex and Smooth Functions}{13}{subsection.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}SGD Convergence for Strongly Convex and Smooth Functions}{16}{subsection.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Minibatch SGD Convergence for Convex and Smooth Functions}{17}{subsection.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Minibatch SGD Convergence for Strongly Convex and Smooth Functions}{20}{subsection.3.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}Algorithmic Stability of SGD}{22}{section.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Numerical SGD Experiments}{23}{section.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}SGD: Ridge Regression}{23}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.6.2}Variance}{6}{subsubsection.1.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.7}Expected Smoothness and Variance [Minibatch SGD]}{10}{subsection.1.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.7.1}Expected Smoothness}{10}{subsubsection.1.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.7.2}Variance}{10}{subsubsection.1.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Varianats on Stochastic Gradient Descent}{12}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Momentum}{12}{subsection.2.1}\protected@file@percent }
+\newlabel{eq: Momentum}{{135}{12}{Momentum}{equation.2.135}{}}
+\newlabel{eq: Momentum@cref}{{[equation][135][]135}{[1][12][]12}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Nestrov Accelerated Gradients (NAG)}{12}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Ada Grad}{13}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Root Mean Square Propagation (\textbf  {RMS Prop)}}{14}{subsection.2.4}\protected@file@percent }
+\newlabel{eq: RMS Window}{{144}{14}{Root Mean Square Propagation (\textbf {RMS Prop)}}{equation.2.144}{}}
+\newlabel{eq: RMS Window@cref}{{[equation][144][]144}{[1][13][]14}}
+\newlabel{eq: Expeted RMS}{{145}{14}{Root Mean Square Propagation (\textbf {RMS Prop)}}{equation.2.145}{}}
+\newlabel{eq: Expeted RMS@cref}{{[equation][145][]145}{[1][14][]14}}
+\newlabel{eq: RMS RMSprop}{{146}{14}{Root Mean Square Propagation (\textbf {RMS Prop)}}{equation.2.146}{}}
+\newlabel{eq: RMS RMSprop@cref}{{[equation][146][]146}{[1][14][]14}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Convergence Behavior of SGD and Minibatch SGD}{15}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}SGD Convergence for Convex and Smooth Functions}{15}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}SGD Convergence for Strongly Convex and Smooth Functions}{18}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Minibatch SGD Convergence for Convex and Smooth Functions}{20}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Minibatch SGD Convergence for Strongly Convex and Smooth Functions}{23}{subsection.3.4}\protected@file@percent }
+\abx@aux@cite{0}{Stability}
+\abx@aux@segm{0}{0}{Stability}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Algorithmic Stability of SGD}{25}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Stability of Randomized Iterative Algorithms}{25}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}Generalization Error}{25}{subsubsection.4.1.1}\protected@file@percent }
+\newlabel{eq: population risk}{{208}{25}{Generalization Error}{equation.4.208}{}}
+\newlabel{eq: population risk@cref}{{[equation][208][]208}{[1][25][]25}}
+\newlabel{eq: empirical risk}{{209}{25}{Generalization Error}{equation.4.209}{}}
+\newlabel{eq: empirical risk@cref}{{[equation][209][]209}{[1][25][]25}}
+\newlabel{eq: generalization error}{{210}{25}{Generalization Error}{equation.4.210}{}}
+\newlabel{eq: generalization error@cref}{{[equation][210][]210}{[1][25][]25}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Stability of SGD}{25}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Algorithmic Stability and Generalization}{26}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Conclusion}{26}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Numerical SGD Experiments}{27}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}SGD: Ridge Regression}{27}{subsection.5.1}\protected@file@percent }
 \abx@aux@read@bbl@mdfivesum{EE04F40F768DAEED26442158E95ABA61}
-\gdef \@abspage@last{23}
+\abx@aux@read@bblrerun
+\gdef \@abspage@last{27}

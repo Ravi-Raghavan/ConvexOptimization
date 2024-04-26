@@ -1,24 +1,27 @@
-\subsection{Theory: Smooth Functions and Convexity}
+\subsection{Smooth Functions and Convexity}
 When discussing convergence, we will first discuss the underlying theory of Smooth Functions and Convexity. 
 
 \subsubsection{Differentiability}
 
-\textbf{Definition 1} (Jacobian). Let $\mathcal{F}: \mathbb{R}^d \rightarrow \mathbb{R}^p$ be differentiable, and $x \in \mathbb{R}^d$. Then, we note $\mathcal{D}\mathcal{F}(x)$ the \textbf{Jacobian} of $\mathcal{F}$ at x, which is the matrix defined by its first partial derivatives: \newline 
+\textbf{Definition 1} (Jacobian). Suppose $f: \mathbb{R}^n \rightarrow \mathbb{R}^m$ be differentiable, and $x \in \textbf{int} \enspace  \textbf{dom} f$. Then, we note $Df(x)$ the derivative or \textbf{Jacobian} of $f$ at x, which is the matrix defined by its first partial derivatives: \newline 
 \begin{equation}
-    [\mathcal{D}\mathcal{F}(x)]_{ij} = \frac{\partial{f_i}}{\partial{x_j}}(x), \enspace for \enspace i = 1, \dots, p, j = 1, \dots, d
+    [Df(x)]_{ij} = \frac{\partial{f_i}}{\partial{x_j}}(x), \enspace for \enspace i = 1, \dots, m, j = 1, \dots, n
 \end{equation}
 
-\noindent \textbf{Remark 2} (Gradient). If $f: \mathbb{R}^d \rightarrow \mathbb{R}$ is differentiable, then $\mathcal{D}f(x) \in \mathbb{R}^{1 x d}$ is a row vector, whose transpose is called the \textbf{gradient} of $f$ at x: $\nabla f(x) = \mathcal{D} f(x)^T \in \mathbb{R}^{d x 1}$ \newline 
-
-\noindent \textbf{Definition 3} (Hessian). Let $f: \mathbb{R}^d \rightarrow \mathbb{R}$ is twice differentiable, and $x \in \mathbb{R}^d$. Then we note $\nabla^2 f(x)$ the \textbf{Hessian} of f at x, which is the matrix defined by its second-order partial derivatives:
+\noindent \textbf{Remark 2} (Gradient). If $f: \mathbb{R}^n \rightarrow \mathbb{R}$ is differentiable, then $Df(x) \in \mathbb{R}^{1 \times d}$ is a row vector, whose transpose is called the \textbf{gradient} of $f$ at x: 
 \begin{equation}
-    [\nabla^2 f(x)]_{ij} = \frac{\partial^2{f}}{\partial{x_i}\partial{x_j}}(x), \enspace for \enspace i, j = 1, \dots, d
+    \nabla f(x) = Df(x)^T \in \mathbb{R}^{d \times  1}
 \end{equation}
-Consequently $\nabla^2 f(x)$ is a $d \enspace x \enspace d$ matrix. 
 
-\noindent \textbf{Definition 4} (Lipschitz). Let $\mathcal{F}: \mathbb{R}^d \rightarrow \mathbb{R}^p$, and $L > 0$. We say that F is L-\textbf{Lipschitz} if
+\noindent \textbf{Definition 3} (Hessian). Let $f: \mathbb{R}^n \rightarrow \mathbb{R}$ is twice differentiable, and $x \in \textbf{int} \enspace  \textbf{dom} f$. Then we note $\nabla^2 f(x)$ the \textbf{Hessian} of f at x, which is the matrix defined by its second-order partial derivatives:
 \begin{equation}
-    \forall x, y \in \mathbb{R}^d, \enspace ||\mathcal{F}(y) - \mathcal{F}(x)|| \leq L ||y - x||
+    [\nabla^2 f(x)]_{ij} = \frac{\partial^2{f}}{\partial{x_i}\partial{x_j}}(x), \enspace for \enspace i, j = 1, \dots, n
+\end{equation}
+Consequently $\nabla^2 f(x)$ is a $n \times n$ matrix. 
+
+\noindent \textbf{Definition 4} (Lipschitz). Let $f: \mathbb{R}^n \rightarrow \mathbb{R}^m$, and $L > 0$. We say that F is L-\textbf{Lipschitz} if
+\begin{equation}
+    \forall x, y \in \textbf{dom} f, \enspace ||f(y) - f(x)|| \leq L ||y - x||
 \end{equation}
 
 \subsubsection{Convexity}
@@ -39,24 +42,24 @@ holds for all $x, y \in dom f$
 \end{equation}
 
 \subsubsection{Strong Convexity}
-\noindent \textbf{Definition 5} (Jensen's Inequality for Strong Convexity). A function $f: \mathbb{R}^n \rightarrow \mathbb{R}$ is \textit{p-strongly convex} if \textbf{dom} $f$ is a convex set and if for all $x, y \in dom f$, and $\theta$ with $0 \leq \theta \leq 1$, we have
+\noindent \textbf{Definition 8} (Jensen's Inequality for Strong Convexity). A function $f: \mathbb{R}^n \rightarrow \mathbb{R}$ is \textit{p-strongly convex} if \textbf{dom} $f$ is a convex set and if for all $x, y \in dom f$, and $\theta$ with $0 \leq \theta \leq 1$, we have
 \begin{equation}
     f(\theta x + (1 - \theta) y) \leq \theta f(x) + (1 - \theta) f(y) - \frac{p}{2} \theta (1 - \theta) ||x - y||^2_2
 \end{equation}
 
-\noindent \textbf{Definition 6} (First Order Condition for Strong Convexity). A function $f: \mathbb{R}^n \rightarrow \mathbb{R}$ is \textit{p-strongly convex} if and only if \textbf{dom} $f$ is a convex set and 
+\noindent \textbf{Definition 9} (First Order Condition for Strong Convexity). A function $f: \mathbb{R}^n \rightarrow \mathbb{R}$ is \textit{p-strongly convex} if and only if \textbf{dom} $f$ is a convex set and 
 \begin{equation}
     f(y) \geq f(x) + \nabla(f(x))^T (y - x) + \frac{p}{2} ||y - x||^2_2
 \end{equation}
 holds for all $x, y \in dom f$
 
-\noindent \textbf{Definition 7} (Second Order Condition for Strong Convexity). A function $f: \mathbb{R}^n \rightarrow \mathbb{R}$ is \textit{p-strongly convex} if and only if \textbf{dom} $f$ is a convex set and 
+\noindent \textbf{Definition 10} (Second Order Condition for Strong Convexity). A function $f: \mathbb{R}^n \rightarrow \mathbb{R}$ is \textit{p-strongly convex} if and only if \textbf{dom} $f$ is a convex set and 
 \begin{equation}
     \nabla^2 f(x) \succeq pI
 \end{equation}
 
 \subsubsection{Smoothness}
-\noindent \textbf{Definition 8} (L-Smooth Functions). A function $f: \mathbb{R}^n \rightarrow \mathbb{R}$ and $L > 0$ is L-Smooth if it is differentiable and if $\nabla f: \mathbb{R}^n \rightarrow \mathbb{R}^n$ is $L-$Lipschitz: 
+\noindent \textbf{Definition 11} (L-Smooth Functions). A function $f: \mathbb{R}^n \rightarrow \mathbb{R}$ and $L > 0$ is L-Smooth if it is differentiable and if $\nabla f: \mathbb{R}^n \rightarrow \mathbb{R}^n$ is $L-$Lipschitz: 
 \begin{equation}
     \forall x, y \in \mathbb{R}^n, \enspace ||\nabla f(y) - \nabla f(x)|| \leq L ||y - x||
 \end{equation}
@@ -66,61 +69,83 @@ holds for all $x, y \in dom f$
     \forall x, y \in \mathbb{R}^n, f(y) \leq f(x) + \langle \nabla f(x), y - x \rangle + \frac{L}{2} ||y - x||^2
 \end{equation}
 
-\noindent \textbf{Lemma:} If $f$ is $L-$smooth and $\gamma > 0$ then, 
+\noindent \textbf{Lemma 12:} If $f$ is $L-$smooth and $\gamma > 0$ then, 
 \begin{equation}
     \forall x, y \in \mathbb{R}^n, \enspace f(x - \gamma \nabla f(x)) - f(x) \leq -\gamma (1 - \frac{\gamma L}{2}) ||\nabla f(x)||^2
 \end{equation}
 
 \noindent \textbf{Proof:}  \newline 
-Let's begin with the definition of $L-$Smooth. Earlier, we showed that when a function is $L-$Smooth, the following holds true: \newline 
+According to Definition 11, when a function is $L-$Smooth, the following holds true: 
 
-$||\nabla f(x) - \nabla f(y)|| \leq L ||x - y||$ \newline
+\begin{equation}
+    ||\nabla f(x) - \nabla f(y)|| \leq L ||x - y||
+\end{equation}
 
+\noindent Let $g(t) = f(x + t(y - x))$. Based on the Fundamental Theorem of Calculus
+\begin{equation}
+    f(y) - f(x) = \int_{0}^{1} g'(t) \,dt
+\end{equation}
 
-Let's now begin with the proof: \newline
-Let $g(t) = f(x + t(y - x))$ \newline 
+\begin{equation}
+    f(y) - f(x) = \int_{0}^{1} \nabla f(x + t(y - x))^T (y - x) \,dt
+\end{equation}
 
-Based on simple calculus rules \newline 
-$f(y) - f(x) = \int_{0}^{1} g'(t) \,dt$ \newline 
-
-$f(y) - f(x) = \int_{0}^{1} \nabla f(x + t(y - x))^T (y - x) \,dt$ \newline 
-
-$f(y) - f(x) = \int_{0}^{1} \langle \nabla f(x + t(y - x)), y - x \rangle \,dt$ \newline 
-
-$f(y) - f(x) = \langle \nabla f(x), y - x \rangle + \int_{0}^{1} \langle \nabla f(x + t(y - x)) - \nabla f(x), y - x \rangle \,dt$ \newline 
-
-Apply the Cauchy Schwarz Inequality on the inside of the integral \newline 
-
-$f(y) - f(x) \leq \langle \nabla f(x), y - x \rangle + \int_{0}^{1} ||\nabla f(x + t(y - x)) - \nabla f(x)|| || y - x || \,dt$ \newline 
-
-Now let's apply the definition of $L-$Smoothness inside the integral, \newline 
-
-$f(y) - f(x) \leq \langle \nabla f(x), y - x \rangle + \int_{0}^{1} tL ||y - x||^2\,dt$ \newline 
-
-$f(y) - f(x) \leq \langle \nabla f(x), y - x \rangle + \frac{L}{2} ||y - x||^2$ \newline 
+\begin{equation}
+    f(y) - f(x) = \int_{0}^{1} \langle \nabla f(x + t(y - x)), y - x \rangle \,dt
+\end{equation}
+\begin{equation}
+    f(y) - f(x) = \langle \nabla f(x), y - x \rangle + \int_{0}^{1} \langle \nabla f(x + t(y - x)) - \nabla f(x), y - x \rangle \,dt
+\end{equation} 
 
 
-Now, let's insert $y = x - \gamma \nabla f(x)$ into the above equation \newline 
+\noindent Applying the Cauchy Schwarz Inequality:
+\begin{equation}
+    f(y) - f(x) \leq \langle \nabla f(x), y - x \rangle + \int_{0}^{1} ||\nabla f(x + t(y - x)) - \nabla f(x)|| \enspace || y - x || \,dt
+\end{equation}
 
-$f(x - \gamma \nabla f(x)) - f(x) \leq \langle \nabla f(x), x - \gamma \nabla f(x) - x \rangle + \frac{L}{2} ||x - \gamma \nabla f(x) - x||^2$ \newline 
 
-$f(x - \gamma \nabla f(x)) - f(x) \leq \langle \nabla f(x), - \gamma \nabla f(x) \rangle + \frac{L}{2} ||- \gamma \nabla f(x)||^2$ \newline 
+\noindent Now let's apply the definition of $L-$Smoothness inside the integral.
 
-$f(x - \gamma \nabla f(x)) - f(x) \leq - \langle \nabla f(x), \gamma \nabla f(x) \rangle + \frac{L\gamma ^2}{2} ||\nabla f(x)||^2$ \newline 
+\begin{equation}
+    f(y) - f(x) \leq \langle \nabla f(x), y - x \rangle + \int_{0}^{1} tL ||y - x||^2\,dt
+\end{equation}
+\begin{equation}
+    f(y) - f(x) \leq \langle \nabla f(x), y - x \rangle + \frac{L}{2} ||y - x||^2
+\end{equation}
 
-$f(x - \gamma \nabla f(x)) - f(x) \leq - \gamma ||\nabla f(x)||^2 + \frac{L\gamma ^2}{2} ||\nabla f(x)||^2$ \newline 
+\noindent Let's insert $y = x - \gamma \nabla f(x)$ into the above equation \newline 
+\begin{equation}
+    f(x - \gamma \nabla f(x)) - f(x) \leq \langle \nabla f(x), x - \gamma \nabla f(x) - x \rangle + \frac{L}{2} ||x - \gamma \nabla f(x) - x||^2
+\end{equation}
 
-$f(x - \gamma \nabla f(x)) - f(x) \leq (- \gamma + \frac{L\gamma ^2}{2}) ||\nabla f(x)||^2$ \newline 
+\begin{equation}
+    f(x - \gamma \nabla f(x)) - f(x) \leq \langle \nabla f(x), - \gamma \nabla f(x) \rangle + \frac{L}{2} ||- \gamma \nabla f(x)||^2
+\end{equation}
 
-If we assume that $\inf f > -\infty$ and if we set $\gamma = \frac{1}{L}$, we can see that: \newline 
+\begin{equation}
+    f(x - \gamma \nabla f(x)) - f(x) \leq - \langle \nabla f(x), \gamma \nabla f(x) \rangle + \frac{L\gamma ^2}{2} ||\nabla f(x)||^2
+\end{equation}
 
-$\inf f - f(x) \leq f(x - \frac{1}{L} \nabla f(x)) - f(x) \leq (-\frac{1}{2L}) ||\nabla f(x)||^2$ \newline 
+\begin{equation}
+    f(x - \gamma \nabla f(x)) - f(x) \leq - \gamma ||\nabla f(x)||^2 + \frac{L\gamma ^2}{2} ||\nabla f(x)||^2
+\end{equation}
 
-$(\frac{1}{2L}) ||\nabla f(x)||^2 \leq f(x) - \inf f$
+\begin{equation}
+    f(x - \gamma \nabla f(x)) - f(x) \leq (- \gamma + \frac{L\gamma ^2}{2}) ||\nabla f(x)||^2
+\end{equation}
+
+\noindent If we assume that $\inf f > -\infty$ and if we set $\gamma = \frac{1}{L}$, we can see that:
+\begin{equation}
+    \inf f - f(x) \leq f(x - \frac{1}{L} \nabla f(x)) - f(x) \leq (-\frac{1}{2L}) ||\nabla f(x)||^2
+\end{equation}
+
+\begin{equation}
+    (\frac{1}{2L}) ||\nabla f(x)||^2 \leq f(x) - \inf f
+\end{equation}
 
 
 \subsubsection{Smoothness and Convexity}
-\noindent \textbf{Lemma:} If $f: \mathbb{R}^d \rightarrow \mathbb{R}$ is convex and $L-$smooth, then $\forall x, y \in \mathbb{R}^d$, we have that: 
+\noindent \textbf{Lemma 13:} If $f: \mathbb{R}^d \rightarrow \mathbb{R}$ is convex and $L-$smooth, then $\forall x, y \in \mathbb{R}^d$, we have that: 
 \begin{equation}
     \frac{1}{2L} ||\nabla f(y) - \nabla f(x)||^2 \leq f(y) - f(x) - \langle \nabla f(x), y - x \rangle
 \end{equation}
@@ -128,189 +153,233 @@ $(\frac{1}{2L}) ||\nabla f(x)||^2 \leq f(x) - \inf f$
 \noindent \textbf{Proof:} 
 $f(x) - f(y) = f(x) - f(z) + f(z) - f(y)$ \newline 
 
-\noindent We know that, due to the first order condition of convexity, $f(z) \geq f(x) + \nabla f(x)^T (z - x)$
+\noindent Due to the first order condition of convexity 
+\begin{equation}
+    f(z) \geq f(x) + \nabla f(x)^T (z - x)
+\end{equation}
+\begin{equation}
+    f(x) - f(z) \leq -\nabla f(x)^T (z - x) = \nabla f(x)^T(x - z)
+\end{equation}
 
-\noindent $f(x) - f(z) \leq -\nabla f(x)^T (z - x) = \nabla f(x)^T(x - z)$ 
+\noindent Since L-Smooth functions have a Quadratic Upper Bound
+\begin{equation}
+    f(z) \leq f(y) + \langle \nabla f(y), z - y \rangle + \frac{L}{2} ||z - y||^2
+\end{equation}
+\begin{equation}
+    f(z) - f(y) \leq \langle \nabla f(y), z - y \rangle + \frac{L}{2} ||z - y||^2
+\end{equation}
 
-\noindent We also know that, due to the quadratic upper bound property of L-Smooth functions, \newline 
-$f(z) \leq f(y) + \langle \nabla f(y), z - y \rangle + \frac{L}{2} ||z - y||^2$ \newline 
-$f(z) - f(y) \leq \langle \nabla f(y), z - y \rangle + \frac{L}{2} ||z - y||^2$ \newline 
+\begin{equation}
+    f(x) - f(y) = f(x) - f(z) + f(z) - f(y) \leq \nabla f(x)^T(x - z) + \langle \nabla f(y), z - y \rangle + \frac{L}{2} ||z - y||^2
+\end{equation}
 
-Hence, $f(x) - f(y) = f(x) - f(z) + f(z) - f(y) \leq \nabla f(x)^T(x - z) + \langle \nabla f(y), z - y \rangle + \frac{L}{2} ||z - y||^2$
+\noindent To minimize the Right Hand Side with respect to $z$, let's first compute the gradient of the Right Hand Side with respect to $z$
+\begin{equation}
+    -\nabla f(x) + \nabla f(y) + \frac{L}{2} (2z -2y)
+\end{equation}
 
-\noindent Let's aim to minimize the right hand side. \newline 
-Let's take the derivative of the right hand side with respect to $z$. This gradient is: \newline 
-$-\nabla f(x) + \nabla f(y) + \frac{L}{2} (2z -2y)$ \newline 
-$-\nabla f(x) + \nabla f(y) + L (z - y)$
+\noindent Setting this to zero gives us: $z - y = \frac{1}{L}(\nabla f(x) - \nabla f(y))$, which means that: $z = y - \frac{1}{L}(\nabla f(y) - \nabla f(x))$ \newline 
 
-Setting this to zero gives us: $z - y = \frac{1}{L}(\nabla f(x) - \nabla f(y))$ \newline 
-$z = y - \frac{1}{L}(\nabla f(y) - \nabla f(x))$
+\noindent Let's substitute this value for $z$ back into the Right Hand Side of Equation (34). 
 
-Now that we have found the quantity to minimize the right hand side, we can substitute it in.
+\begin{equation}
+    \nabla f(x)^T(x - (y - \frac{1}{L}(\nabla f(y) - \nabla f(x)))) + \langle \nabla f(y), y - \frac{1}{L}(\nabla f(y) - \nabla f(x)) - y \rangle + \frac{L}{2} ||y - \frac{1}{L}(\nabla f(y) - \nabla f(x)) - y||^2
+\end{equation}
 
-$\nabla f(x)^T(x - (y - \frac{1}{L}(\nabla f(y) - \nabla f(x)))) + \langle \nabla f(y), y - \frac{1}{L}(\nabla f(y) - \nabla f(x)) - y \rangle + \frac{L}{2} ||y - \frac{1}{L}(\nabla f(y) - \nabla f(x)) - y||^2$ \newline 
+\begin{equation}
+    \nabla f(x)^T(x - (y - \frac{1}{L}(\nabla f(y) - \nabla f(x)))) - \langle \nabla f(y),  \frac{1}{L}(\nabla f(y) - \nabla f(x))\rangle + \frac{L}{2} ||\frac{1}{L}(\nabla f(y) - \nabla f(x))||^2
+\end{equation}
 
-$\nabla f(x)^T(x - (y - \frac{1}{L}(\nabla f(y) - \nabla f(x)))) - \langle \nabla f(y),  \frac{1}{L}(\nabla f(y) - \nabla f(x))\rangle + \frac{L}{2} ||\frac{1}{L}(\nabla f(y) - \nabla f(x))||^2$ \newline 
+\begin{equation}
+    \nabla f(x)^T (x - y) + \frac{1}{L} \nabla f(x)^T (\nabla f(y) - \nabla f(x)) - \langle \nabla f(y),  \frac{1}{L}(\nabla f(y) - \nabla f(x))\rangle + \frac{1}{2L} ||\nabla f(y) - \nabla f(x)||^2
+\end{equation}
 
-$\nabla f(x)^T (x - y) + \frac{1}{L} \nabla f(x)^T (\nabla f(y) - \nabla f(x)) - \langle \nabla f(y),  \frac{1}{L}(\nabla f(y) - \nabla f(x))\rangle + \frac{1}{2L} ||\nabla f(y) - \nabla f(x)||^2$ \newline 
+\begin{equation}
+    \nabla f(x)^T (x - y) + \frac{1}{L} \langle \nabla f(x) - \nabla f(y), \nabla f(y) - \nabla f(x) \rangle + \frac{1}{2L} ||\nabla f(y) - \nabla f(x)||^2
+\end{equation}
 
-$\nabla f(x)^T (x - y) + \frac{1}{L} \langle \nabla f(x) - \nabla f(y), \nabla f(y) - \nabla f(x) \rangle + \frac{1}{2L} ||\nabla f(y) - \nabla f(x)||^2$ \newline 
+\begin{equation}
+    \nabla f(x)^T (x - y) - \frac{1}{L} \langle \nabla f(y) - \nabla f(x), \nabla f(y) - \nabla f(x) \rangle + \frac{1}{2L} ||\nabla f(y) - \nabla f(x)||^2
+\end{equation}
+\begin{equation}
+    \nabla f(x)^T (x - y) - \frac{1}{L} ||\nabla f(y) - \nabla f(x)||^2 + \frac{1}{2L} ||\nabla f(y) - \nabla f(x)||^2
+\end{equation}
 
-$\nabla f(x)^T (x - y) - \frac{1}{L} \langle \nabla f(y) - \nabla f(x), \nabla f(y) - \nabla f(x) \rangle + \frac{1}{2L} ||\nabla f(y) - \nabla f(x)||^2$ \newline 
+\begin{equation}
+    \nabla f(x)^T (x - y) - \frac{1}{2L} ||\nabla f(y) - \nabla f(x)||^2
+\end{equation}
 
-$\nabla f(x)^T (x - y) - \frac{1}{L} ||\nabla f(y) - \nabla f(x)||^2 + \frac{1}{2L} ||\nabla f(y) - \nabla f(x)||^2$ \newline 
+We chose the optimal value of $z$ to minimize the Right Hand Side. Hence, it is clear that 
+\begin{equation}
+    f(x) - f(y) \leq \nabla f(x)^T (x - y) - \frac{1}{2L} ||\nabla f(y) - \nabla f(x)||^2
+\end{equation}
+\begin{equation}
+    \frac{1}{2L} ||\nabla f(y) - \nabla f(x)||^2 \leq f(y) - f(x) - \langle \nabla f(x), y - x \rangle
+\end{equation}
 
-$\nabla f(x)^T (x - y) - \frac{1}{2L} ||\nabla f(y) - \nabla f(x)||^2$ \newline 
-
-We now see that $f(x) - f(y) \leq \nabla f(x)^T (x - y) - \frac{1}{2L} ||\nabla f(y) - \nabla f(x)||^2$
-
-Rearranging terms will make us see that $\frac{1}{2L} ||\nabla f(y) - \nabla f(x)||^2 \leq f(y) - f(x) - \langle \nabla f(x), y - x \rangle$
 \subsection{Gradient Descent}
-\noindent \textbf{Gradient Descent Algorithm}. Let $x^{(0)} \in \mathbb{R}^d$, and let $\gamma > 0$ be a step size. The \textbf{Gradient Descent (GD)} algorithm defines a sequence $(x^{(t)})_{t \in \mathbb{N}}$ satisfying
+\noindent \textbf{Gradient Descent Algorithm}. Let $x^{(0)} \in \textbf{dom} f$, and let $\gamma > 0$ be a step size. The \textbf{Gradient Descent (GD)} algorithm defines a sequence $(x^{(t)})_{t \in \mathbb{N}}$ satisfying
 \begin{equation}
     x^{(t + 1)}  = x^{(t)} - \gamma \nabla f(x^{(t)})
 \end{equation}
 
 \subsection{Function Definitions}
-\noindent \textbf{Sum of Functions}. Let's say that we have a function $f: \mathbb{R}^d \rightarrow \mathbb{R}$ which can be expressed as: 
+\noindent \textbf{Sum of Functions}. Let's say that we have a function $f: \mathbb{R}^n \rightarrow \mathbb{R}$ which can be expressed as: 
 \begin{equation}
-    f(x) = \frac{1}{n} \sum_{i=1}^{n} f_i(x)
+    f(x) = \frac{1}{m} \sum_{i=1}^{m} f_i(x)
 \end{equation}
-where $f_i: \mathbb{R}^d \rightarrow \mathbb{R}$. We can say that $f$ is a Sum of Functions
+where $f_i: \mathbb{R}^n \rightarrow \mathbb{R}$. We can say that $f$ is a Sum of Functions \newline 
 
-\noindent \textbf{Sum of Convex Functions}. Let's say that we have a function $f: \mathbb{R}^d \rightarrow \mathbb{R}$ which can be expressed as: 
+\noindent \textbf{Sum of Convex Functions}. Let's say that we have a function $f: \mathbb{R}^n \rightarrow \mathbb{R}$ which can be expressed as: 
 \begin{equation}
-    f(x) = \frac{1}{n} \sum_{i=1}^{n} f_i(x)
+    f(x) = \frac{1}{m} \sum_{i=1}^{m} f_i(x)
 \end{equation}
-where $f_i: \mathbb{R}^d \rightarrow \mathbb{R}$ and $f_i$ is convex. We can say that $f$ is a Sum of Convex Functions
+where $f_i: \mathbb{R}^n \rightarrow \mathbb{R}$ and $f_i$ is convex. We can say that $f$ is a Sum of Convex Functions \newline 
 
-\noindent \textbf{Sum of L-Smooth Functions}. Let's say that we have a function $f: \mathbb{R}^d \rightarrow \mathbb{R}$ which can be expressed as: 
+\noindent \textbf{Sum of L-Smooth Functions}. Let's say that we have a function $f: \mathbb{R}^n \rightarrow \mathbb{R}$ which can be expressed as: 
 \begin{equation}
-    f(x) = \frac{1}{n} \sum_{i=1}^{n} f_i(x)
+    f(x) = \frac{1}{m} \sum_{i=1}^{m} f_i(x)
 \end{equation}
-where $f_i: \mathbb{R}^d \rightarrow \mathbb{R}$ and $f_i$ is $L_i$ smooth. We can say that $f$ is a Sum of L-Smooth Functions. Let $L_{max} = \max_{1, \dots, n} L_i$
+where $f_i: \mathbb{R}^n \rightarrow \mathbb{R}$ and $f_i$ is $L_i$ smooth. We can say that $f$ is a Sum of L-Smooth Functions. Let $L_{max} = \max_\{1, \dots, m\} \{L_i\}$
 
 \subsection{Stochastic Gradient Descent}
-\noindent \textbf{Stochastic Gradient Descent Algorithm}. Let's say that we are minimizing a function $f: \mathbb{R}^d \rightarrow \mathbb{R}$ which is a sum of functions. It is assumed that $\arg \min f \neq \emptyset$ and that $f_i$ is unbounded below.  
+\noindent \textbf{Stochastic Gradient Descent Algorithm}. Let's say that we are minimizing a function $f: \mathbb{R}^n \rightarrow \mathbb{R}$ which is a sum of functions. It is assumed that $\arg \min f \neq \emptyset$ and that $f_i$ is unbounded below.  
 
-\noindent Let $x^{(0)} \in \mathbb{R}^d$, and let $\gamma_t > 0$ be a sequence of step sizes. The \textbf{Stochastic Gradient Descent (GD)} algorithm defines a sequence $(x^{(t)})_{t \in \mathbb{N}}$ satisfying 
+\noindent Let $x^{(0)} \in \textbf{dom} f$, and let $\gamma_t > 0$ be a sequence of step sizes. The \textbf{Stochastic Gradient Descent (GD)} algorithm defines a sequence $(x^{(t)})_{t \in \mathbb{N}}$ satisfying 
 \begin{equation}
-    i_t \in \{1, \dots, n\}
+    i_t \in \{1, \dots, m\}
 \end{equation}
 \begin{equation}
     x^{(t + 1)}  = x^{(t)} - \gamma_t \nabla f_{i_t}(x^{(t)})
 \end{equation}
 
-\noindent Note $i_t$ is sampled with probability $\frac{1}{n}$
-
-\noindent It is evident to see that the gradients used during Stochastic Gradient Descent is an unbiased estimator of $\nabla f(x)$. $E[\nabla f_i(x)] = \frac{1}{n} \sum_{i=1}^{n} \nabla f_i(x) = \nabla f(x)$
+\noindent Note $i_t$ is sampled with probability $\frac{1}{m}$ and $E[\nabla f_{i_t}(x)] = \frac{1}{m} \sum_{i=1}^{m} \nabla f_i(x) = \nabla f(x)$
 
 \subsection{Minibatch Stochastic Gradient Descent}
-\noindent \textbf{Minibatch Stochastic Gradient Descent Algorithm}. Let's say that we are minimizing a function $f: \mathbb{R}^d \rightarrow \mathbb{R}$ which is a sum of functions. It is assumed that $\arg \min f \neq \emptyset$ and that $f_i$ is unbounded below.  
+\noindent \textbf{Minibatch Stochastic Gradient Descent Algorithm}. Let's say that we are minimizing a function $f: \mathbb{R}^n \rightarrow \mathbb{R}$ which is a sum of functions. It is assumed that $\arg \min f \neq \emptyset$ and that $f_i$ is unbounded below.  
 
-\noindent Let $x^{(0)} \in \mathbb{R}^d$, let $b \in [1, n]$ be the batch size, and let $\gamma_t > 0$ be a sequence of step sizes. The \textbf{Minibatch Stochastic Gradient Descent (Minibatch SGD)} algorithm defines a sequence $(x^{(t)})_{t \in \mathbb{N}}$ satisfying 
+\noindent Let $x^{(0)} \in \textbf{dom} f$, let $b \in [1, m]$ be the batch size, and let $\gamma_t > 0$ be a sequence of step sizes. The \textbf{Minibatch Stochastic Gradient Descent (Minibatch SGD)} algorithm defines a sequence $(x^{(t)})_{t \in \mathbb{N}}$ satisfying 
 \begin{equation}
-    B_t \subset \{1, \dots, n\}
+    B_t \subset \{1, \dots, m\}
 \end{equation}
 \begin{equation}
     x^{(t + 1)}  = x^{(t)} - \gamma_t \nabla f_{B_t}(x^{(t)})
 \end{equation}
 
-\noindent Note $B_t$ is sampled uniformly among all sets of size $b$. This means that given a batch of size $b$, it has a probability of $\frac{1}{\binom{n}{b}}$ of being selected 
+\noindent Note $B_t$ is sampled uniformly among all sets of size $b$. This means that given a batch of size $b$, it has a probability of $\frac{1}{\binom{m}{b}}$ of being selected 
 
 \begin{equation}
     \nabla f_{B_t}(x^{(t)}) = \frac{1}{|B|} \sum_{i \in B} \nabla f_{i}(x^{(t)})
 \end{equation}
 
-It is easy to see that: 
-\begin{equation}
-    \mathbb{E}[\nabla f_{B_t}(x^{(t)})] = \frac{1}{\binom{n}{b}} \sum_{B \subset \{1, \dots, n\} , |B| = b} \nabla f_{B}(x^{(t)})
-\end{equation}
+\noindent \textbf{Observation:} $\nabla f_i(x^{(t)})$ will be used when computing mini batch gradients(i.e. $\nabla f_{B_t}(x^{(t)})$) in exactly $\binom{m - 1}{b - 1}$ mini batches. 
 
-We can easily prove that 
-\begin{equation}
-    \mathbb{E}[\nabla f_{B_t}(x^{(t)})] = \nabla f(x^{(t)})
-\end{equation}
-
-The key observation we must make is that $\nabla f_i(x^{(t)})$ will be used when computing mini batch gradients(i.e. $\nabla f_{B_t}(x^{(t)})$) in exactly $\binom{n - 1}{b - 1}$ mini batches. 
-
-Combinatoric Property: $\binom{n}{b} = \binom{n - 1}{b - 1} \cdot \frac{n}{b}$
+\noindent \textbf{Property:} $\binom{m}{b} = \binom{m - 1}{b - 1} \cdot \frac{m}{b}$
 
 \begin{equation}
-    \mathbb{E}[\nabla f_{B_t}(x^{(t)})] = \frac{1}{\binom{n}{b}} \binom{n - 1}{b - 1} \sum_{i = 1}^{n} \frac{1}{b}\nabla f_{i}(x^{(t)}) = \frac{1}{n} \sum_{i = 1}^{n} \nabla f_{i}(x^{(t)}) = \nabla f(x^{(t)})
+    \mathbb{E}[\nabla f_{B_t}(x^{(t)})] = \frac{1}{\binom{m}{b}} \binom{m - 1}{b - 1} \sum_{i = 1}^{m} \frac{1}{b}\nabla f_{i}(x^{(t)}) = \frac{1}{m} \sum_{i = 1}^{m} \nabla f_{i}(x^{(t)}) = \nabla f(x^{(t)})
 \end{equation}
 
-\subsection{Expected Smoothness and Variance}
+\subsection{Expected Smoothness and Variance [SGD]}
 \subsubsection{Expected Smoothness}
-The goal of this section is to analyze the "expected properties" of $f_i$. \newline 
-\noindent \textbf{Lemma}. Let's say that we have a function $f: \mathbb{R}^d \rightarrow \mathbb{R}$ which is a sum of Convex functions and a sum of L-Smooth functions, we can state the following: 
+\noindent \textbf{Lemma 14:} Let's say that we have a function $f: \mathbb{R}^n \rightarrow \mathbb{R}$ which is a sum of Convex functions and a sum of L-Smooth functions, we can state the following: 
 \begin{equation}
-    \forall x, y \in \mathbb{R}^d, \enspace \frac{1}{2L_{max}} \mathbb{E}[||\nabla f_i(y) - \nabla f_i(x)||^2] \leq f(y) - f(x) - \langle \nabla f(x), y - x \rangle
+    \forall x, y \in \textbf{dom} f, \enspace \frac{1}{2L_{max}} \mathbb{E}[||\nabla f_i(y) - \nabla f_i(x)||^2] \leq f(y) - f(x) - \langle \nabla f(x), y - x \rangle
 \end{equation}
 
 \noindent \textbf{Proof}: 
-We can use the Lemma that we derived in Section 1.1.5 as well as the fact that $L_i \leq L_{max}$ to see the following: \newline 
-
-$\frac{1}{2L_{max}} ||\nabla f_i(y) - \nabla f_i(x)||^2 \leq \frac{1}{2L_i} ||\nabla f_i(y) - \nabla f_i(x)||^2 \leq f_i(y) - f_i(x) - \langle \nabla f_i(x), y - x \rangle$ \newline 
-
-$\frac{1}{2L_{max}} ||\nabla f_i(y) - \nabla f_i(x)||^2 \leq f_i(y) - f_i(x) - \langle \nabla f_i(x), y - x \rangle$ \newline 
-
-$\frac{1}{n} (\frac{1}{2L_{max}} ||\nabla f_i(y) - \nabla f_i(x)||^2) \leq \frac{1}{n} (f_i(y) - f_i(x) - \langle \nabla f_i(x), y - x \rangle)$ \newline 
-
-We are now prepared to take expectation. The above inequality can be duplicated for each value of $i$ and we can sum these inequalities across all values of $i$. Hence, we see the following: \newline 
-
-$\frac{1}{2L_{max}} \mathbb{E}[||\nabla f_i(y) - \nabla f_i(x)||^2] \leq f(y) - f(x) - \langle \nabla f(x), y - x \rangle$
-
-If we set $x = x^*$ and $y = x$, we can see that 
-
-$\frac{1}{2L_{max}} \mathbb{E}[||\nabla f_i(x) - \nabla f_i(x^*)||^2] \leq f(x) - f(x^*) - \langle \nabla f(x^*), x - x^* \rangle$ \newline 
-
-$\frac{1}{2L_{max}} \mathbb{E}[||\nabla f_i(x) - \nabla f_i(x^*)||^2] \leq f(x) - inf f$
-
-
-\subsubsection{Variance}
-It is rather intuitive that, given a particular value of $x$, if the values of $f_i$ at this value of $x$ exhibit a lower variance, this would indicate that our stochastic algorithm would converge faster. This section is going to dive deep into this variance concept and provide a few measurable quantities that will quantify this concept. 
-
-\noindent \textbf{Definition}. Let's say we have a function that is a Sum of Functions. \textbf{Interpolation} holds if there exists a common $x^* \in \mathbb{R}^d$ such that $f_i(x^*) = inf f_i, \forall i = 1, \dots n$. We will state that interpolation occurs at $x^*$
-
-\noindent \textbf{Lemma.} Let's say we have a function that is a Sum of Functions. If interpolation holds at $x^* \in \mathbb{R}^d$, then $x^* \in \arg \min f$
-
-\noindent \textbf{Proof.} 
-Since we know that interpolation holds at $x^*$, we know that $f_i(x^*) = inf f_i, \forall i = 1, \dots n$
-
-$f(x^*) = \frac{1}{n} \sum_{i=1}^{n} f_i(x^*) = \frac{1}{n} \sum_{i=1}^{n} inf f_i \leq \frac{1}{n} \sum_{i=1}^{n} f_i(x) = f(x)$
-
-\noindent \textbf{Definition.} Again, we are looking at functions that are Sum of Functions. Let us define a new quantity called \textbf{function noise}. 
+Lemma 13 and $L_i \leq L_{max}$ tells us that: 
 \begin{equation}
-    \Delta^*_f = inf f - \frac{1}{n} \sum_{i=1}^{n} inf f_i
+    \frac{1}{2L_{max}} ||\nabla f_i(y) - \nabla f_i(x)||^2 \leq \frac{1}{2L_i} ||\nabla f_i(y) - \nabla f_i(x)||^2 \leq f_i(y) - f_i(x) - \langle \nabla f_i(x), y - x \rangle
 \end{equation}
 
-\noindent \textbf{Lemma.} Given the previous definition, we can state the following 
+\begin{equation}
+    \frac{1}{2L_{max}} ||\nabla f_i(y) - \nabla f_i(x)||^2 \leq f_i(y) - f_i(x) - \langle \nabla f_i(x), y - x \rangle
+\end{equation}
+
+
+
+\noindent We are now prepared to take expectation. 
+
+\begin{equation}
+    \frac{1}{2L_{max}} \mathbb{E}[||\nabla f_i(y) - \nabla f_i(x)||^2] \leq \mathbb{E}[(f_i(y) - f_i(x) - \langle \nabla f_i(x), y - x \rangle)]
+\end{equation}
+\noindent Applying Linearity of Expectation on the Right Hand Side gives us: 
+\begin{equation}
+    \frac{1}{2L_{max}} \mathbb{E}[||\nabla f_i(y) - \nabla f_i(x)||^2] \leq f(y) - f(x) - \langle \nabla f(x), y - x \rangle
+\end{equation}
+
+
+\noindent \textbf{Lemma 15:} When $x = x^*$, where $x^* \in \arg \min f$, and $y = x$, following Lemma 14, we can see that 
+
+\begin{equation}
+    \frac{1}{2L_{max}} \mathbb{E}[||\nabla f_i(x) - \nabla f_i(x^*)||^2] \leq f(x) - f(x^*) - \langle \nabla f(x^*), x - x^* \rangle
+\end{equation}
+
+Since $\nabla f(x^*) = 0$ 
+
+\begin{equation}
+    \frac{1}{2L_{max}} \mathbb{E}[||\nabla f_i(x) - \nabla f_i(x^*)||^2] \leq f(x) - \inf f
+\end{equation}
+
+\subsubsection{Variance}
+\noindent \textbf{Definition 16} (Interpolation). Let $f: \mathbb{R}^n \rightarrow \mathbb{R}$ be a Sum of Functions. \textbf{Interpolation} holds if there exists a common $x^* \in \mathbb{R}^n$ such that $f_i(x^*) = inf f_i, \forall i = 1, \dots m$. 
+
+\noindent \textbf{Lemma 17.} Let $f: \mathbb{R}^n \rightarrow \mathbb{R}$ be a Sum of Functions. If interpolation holds at $x^* \in \mathbb{R}^n$, then $x^* \in \arg \min f$
+
+\noindent \textbf{Proof.} 
+Since we know that interpolation holds at $x^*$, we know that $f_i(x^*) = inf f_i, \forall i = 1, \dots m$
+
+We know that the following holds true for all $x \in dom f$
+\begin{equation}
+    f(x^*) = \frac{1}{m} \sum_{i=1}^{m} f_i(x^*) = \frac{1}{m} \sum_{i=1}^{m} inf f_i \leq \frac{1}{m} \sum_{i=1}^{m} f_i(x) = f(x)
+\end{equation}
+
+\noindent \textbf{Definition 18}(Function Noise).  Let $f: \mathbb{R}^n \rightarrow \mathbb{R}$ be a Sum of Functions. The \textbf{Function Noise}, $\Delta^*_f$, is defined as:
+\begin{equation}
+    \Delta^*_f = \inf f - \frac{1}{m} \sum_{i=1}^{m} \inf f_i
+\end{equation}
+
+\noindent \textbf{Lemma 19.} Given the previous definition, we can state the following 
 \begin{equation}
     \Delta^*_f \geq 0
 \end{equation}
 
 Interpolation Holds if and only if $\Delta^*_f = 0$ 
 
-\noindent \textbf{Proof.} $\Delta^*_f = f(x^*) - \frac{1}{n} \sum_{i=1}^{n} inf f_i \geq f(x^*) - \frac{1}{n} \sum_{i=1}^{n} f_i(x^*) = f(x^*) - f(x^*) = 0$
+\noindent \textbf{Proof.} Let $x^* \in \arg \min f$
+\begin{equation}
+    \Delta^*_f = \inf f - \frac{1}{m} \sum_{i=1}^{m} \inf f_i = f(x^*) - \frac{1}{m} \sum_{i=1}^{m} \inf f_i \geq f(x^*) - \frac{1}{m} \sum_{i=1}^{m} f_i(x^*) = f(x^*) - f(x^*) = 0
+\end{equation}
 
-Let's now prove that Interpolation Holds if and only if $\Delta^*_f = 0$. 
+\noindent Let's now prove that Interpolation Holds if and only if $\Delta^*_f = 0$. 
 
-First we will prove the first direction. So let it be the case that interpolation holds. 
+\noindent Proof of First Direction(i.e. If Interpolation, then $\Delta^*_f = 0$)
 
-When interpolation holds, $inf f_i = f_i(x^*)$. Hence, we can say that $\Delta^*_f = f(x^*) - \frac{1}{n} \sum_{i=1}^{n} inf f_i = f(x^*) - \frac{1}{n} \sum_{i=1}^{n} f_i(x^*) = f(x^*) - f(x^*) = 0$
+\noindent Due to interpolation, $\inf f_i = f_i(x^*)$. Hence, 
+\begin{equation}
+    \Delta^*_f = f(x^*) - \frac{1}{m} \sum_{i=1}^{m} inf f_i = f(x^*) - \frac{1}{m} \sum_{i=1}^{m} f_i(x^*) = f(x^*) - f(x^*) = 0
+\end{equation}
 
-Now let's prove the second direction. Let it be the case that $\Delta^*_f = 0$. 
+\noindent Proof of second direction(i.e. If $\Delta^*_f = 0$, then Interpolation holds)
 
-We know that $\Delta^*_f = f(x^*) - \frac{1}{n} \sum_{i=1}^{n} inf f_i \geq f(x^*) - \frac{1}{n} \sum_{i=1}^{n} f_i(x^*) = f(x^*) - f(x^*) = 0$ \newline 
+\begin{equation}
+    \Delta^*_f = f(x^*) - \frac{1}{m} \sum_{i=1}^{m} \inf f_i \geq f(x^*) - \frac{1}{m} \sum_{i=1}^{m} f_i(x^*) = f(x^*) - f(x^*) = 0
+\end{equation}
 
-This means that $\sum_{i=1}^{n} inf f_i = \sum_{i=1}^{n} f_i(x^*)$ \newline 
+Subsequently, 
+\begin{equation}
+    \sum_{i=1}^{m} \inf f_i = \sum_{i=1}^{m} f_i(x^*)
+\end{equation}
 
-$\sum_{i=1}^{n} f_i(x^*) - inf f_i = 0$ \newline 
+\begin{equation}
+    \sum_{i=1}^{m} (f_i(x^*) - \inf f_i) = 0
+\end{equation}
 
-We know that $f_i(x^*) \geq inf f_i$. Hence, for the above equality to hold true, we must observe that $f_i(x^*) = inf f_i$ which means that Interpolation must hold
+Conclusion: $f_i(x^*) = \inf f_i$, meaning Interpolation Holds!
 
-\noindent \textbf{Definition} Let us now work with a function that is a Sum of L-Smooth Functions. We will define a term, called \textbf{gradient noise} that is set up as follows: 
+
+\noindent \textbf{Definition 20.} Let $f: \mathbb{R}^n \rightarrow \mathbb{R}$ be a Sum of $L-$ Smooth Functions. \textbf{Gradient Noise}, $\sigma_f^*$, is defined as such:
 
 \begin{equation}
     \sigma_f^* = \inf_{x^* \in \arg \min f} V[\nabla f_i(x^*)]
@@ -318,274 +387,367 @@ We know that $f_i(x^*) \geq inf f_i$. Hence, for the above equality to hold true
 
 where $V[X] = E[|| X - E[X] ||^2]$ \newline 
 
-\noindent \textbf{Definition:} Let us now work with a function that is a Sum of L-Smooth Functions. We will define a term, called \textbf{minibatch gradient noise} that is set up as follows: 
 
-\begin{equation}
-    {\sigma_b}^* = \inf_{x^* \in \arg \min f} V[\nabla f_B(x^*)]
-\end{equation}
-
-\noindent \textbf{Definition:} Let us now work with a function that is a Sum of L-Smooth Functions. Let $b \in [1, n]$. We can say that $f$ is $L_b$ smooth in expectation if 
-\begin{equation}
-    \forall x, y \in \mathbb{R}^d, \frac{1}{2L_b} \mathbb{E}[||\nabla f_B(y) - \nabla f_B(x)||^2] \leq f(y) - f(x) - \langle \nabla f(x), y - x \rangle
-\end{equation}
-
-If $y = x$ and $x = x^*$, we can see that a function being $L_b$ smooth indicates that: \newline 
-$\frac{1}{2L_b} \mathbb{E}[||\nabla f_B(x) - \nabla f_B(x^*)||^2] \leq f(x) - f(x^*) - \langle \nabla f(x^*), x - x^* \rangle$ \newline 
-
-$\frac{1}{2L_b} \mathbb{E}[||\nabla f_B(x) - \nabla f_B(x^*)||^2] \leq f(x) - \inf f$
-
-\noindent \textbf{Lemma.} Let us say we have a function that is a sum of L-Smooth Functions. 
-
-If we also have that this function is a sum of Convex functions, we can claim that 
+\noindent \textbf{Lemma 21.} Let $f: \mathbb{R}^n \rightarrow \mathbb{R}$ be a Sum of $L-$ Smooth Functions and a Sum of Convex Functions 
 \begin{equation}
     \sigma_f^* = V[\nabla f_i(x^*)], \forall x^* \in \arg \min f
 \end{equation}
 
-\noindent \textbf{Proof.} Let us denote $x_1, x^* \in \arg \min f$. If we can show that $V[\nabla f_i(x_1)] = V[\nabla f_i(x^*)]$, then we will have completed the proof 
+\noindent \textbf{Proof.} Let $x_1, x_2 \in \arg \min f$.  
 
-$\frac{1}{2L_{max}} \mathbb{E}[||\nabla f_i(x_1) - \nabla f_i(x^*)||^2] \leq f(x_1) - f(x^*) - \langle \nabla f(x^*), x_1 - x^* \rangle$
-
-We know that $f(x^*) = inf f$ and that $\nabla f(x^*) = 0$ \newline 
-
-$\frac{1}{2L_{max}} \mathbb{E}[||\nabla f_i(x_1) - \nabla f_i(x^*)||^2] \leq f(x_1) - inf f = 0$
-
-Since $||\nabla f_i(x_1) - \nabla f_i(x^*)||^2$ is a positive quantity, this must mean that $\mathbb{E}[||\nabla f_i(x_1) - \nabla f_i(x^*)||^2] = 0$ and that $||\nabla f_i(x_1) - \nabla f_i(x^*)|| = 0$ for all $i$. 
-
-Hence, we have shown that $f_i(x_1) = f_i(x^*)$ and that, subsequently, $V[\nabla f_i(x_1)] = V[\nabla f_i(x^*)]$
-
-\noindent \textbf{Lemma.} Let us say we have a function that is a sum of L-Smooth Functions. 
-
-If we also have that this function is a sum of Convex functions, we can claim that 
+\noindent Based on Lemma 15,
 \begin{equation}
-    \sigma_b^* = V[\nabla f_B(x^*)], \forall x^* \in \arg \min f
+    \frac{1}{2L_{max}} \mathbb{E}[||\nabla f_i(x_1) - \nabla f_i(x_2)||^2] \leq f(x_1) - \inf f = \inf f - \inf f = 0
 \end{equation}
 
-\noindent \textbf{Proof.} Let us denote $x_1, x^* \in \arg \min f$. If we can show that $V[\nabla f_B(x_1)] = V[\nabla f_B(x^*)]$, then we will have completed the proof 
+\noindent Subsequently, since $\mathbb{E}[||\nabla f_i(x_1) - \nabla f_i(x_2)||^2] \geq 0$, for the above to be true, $\mathbb{E}[||\nabla f_i(x_1) - \nabla f_i(x_2)||^2] = 0$
+and $||\nabla f_i(x_1) - \nabla f_i(x_2)||^2 = 0$. This means that $f_i(x_1) = f_i(x_2)$ and, subsequently, $V[\nabla f_i(x_1)] = V[\nabla f_i(x_2)]$
 
-$\frac{1}{2L_{b}} \mathbb{E}[||\nabla f_B(x_1) - \nabla f_B(x^*)||^2] \leq f(x_1) - f(x^*) - \langle \nabla f(x^*), x_1 - x^* \rangle$
-
-We know that $f(x^*) = inf f$ and that $\nabla f(x^*) = 0$ \newline 
-
-$\frac{1}{2L_{b}} \mathbb{E}[||\nabla f_B(x_1) - \nabla f_B(x^*)||^2] \leq f(x_1) - inf f = 0$
-
-Since $||\nabla f_B(x_1) - \nabla f_B(x^*)||^2$ is a positive quantity, this must mean that $\mathbb{E}[||\nabla f_B(x_1) - \nabla f_B(x^*)||^2] = 0$ and that $||\nabla f_B(x_1) - \nabla f_B(x^*)|| = 0$ for all $i$. 
-
-Hence, we have shown that $f_B(x_1) = f_B(x^*)$ and that, subsequently, $V[\nabla f_B(x_1)] = V[\nabla f_B(x^*)]$
-
-
-\noindent From the aforementioned analysis it is clear that both the function noise and gradient noise measure how close/far away from interpolation we are. 
-
-\noindent \textbf{Lemma}. Let us say that we have a function that is a Sum of L-Smooth Functions. 
+\noindent \textbf{Lemma 22}. Let $f: \mathbb{R}^n \rightarrow \mathbb{R}$ be a Sum of $L-$ Smooth Functions
 
 \begin{enumerate}
     \item $\sigma_f^* \leq 2L_{max} \Delta^*_f$
     \item If each $f_i$ is $p$ strongly convex, then $2p\Delta^*_f \leq \sigma_f^*$
 \end{enumerate}
 
-\noindent \textbf{Proof:} Let us say that we have a point $x^* \in \arg \min f$. Earlier, we show that if a function $f$ is $L-$Smooth, then $||\nabla f(x)||^2 \leq 2L * (f(x) - \inf f)$. 
+\noindent \textbf{Proof:} Let $x^* \in \arg \min f$. 
 
-In this case, we know that each $f_i$ is $L-$Smooth. We can proceed as follows: \newline 
-$||\nabla f_i(x^*)||^2 \leq 2L_i * (f_i(x^*) - \inf f_i) \leq 2L_{max} *  (f_i(x^*) - \inf f_i)$. 
+\noindent Based on Lemma 12, $||\nabla f(x)||^2 \leq 2L * (f(x) - \inf f)$. 
 
-Let's take the expectation over both sides of the inequality: \newline 
-$\mathbb{E}[||\nabla f_i(x^*)||^2] \leq \mathbb{E}[2L_{max} * (f_i(x^*) - \inf f_i)]$. \newline  
+\noindent Since each $f_i$ is $L-$Smooth,
+\begin{equation}
+    ||\nabla f_i(x^*)||^2 \leq 2L_i * (f_i(x^*) - \inf f_i) \leq 2L_{max} *  (f_i(x^*) - \inf f_i)
+\end{equation}
 
-$\mathbb{E}[||\nabla f_i(x^*)||^2] \leq 2L_{max}  \mathbb{E}[(f_i(x^*) - \inf f_i)]$. 
+\noindent Taking Expectations on both sides of inequality:
+\begin{equation}
+    \mathbb{E}[||\nabla f_i(x^*)||^2] \leq \mathbb{E}[2L_{max} * (f_i(x^*) - \inf f_i)]
+\end{equation}
 
-Let's take a look at $\mathbb{E}[||\nabla f_i(x^*)||^2]$. We will use the fact that $\nabla f(x^*) = 0$
+\begin{equation}
+    \mathbb{E}[||\nabla f_i(x^*)||^2] \leq 2L_{max}  \mathbb{E}[(f_i(x^*) - \inf f_i)]
+\end{equation}
 
-$\mathbb{E}[||\nabla f_i(x^*)||^2]  =  \mathbb{E}[||\nabla f_i(x^*) - \nabla f(x^*)||^2] = \mathbb{E}[||\nabla f_i(x^*) - \mathbb{E}[\nabla f_i(x^*)]||^2] = \mathbb{V}[\nabla f_i(x^*)]  \geq \sigma_f^*$ \newline 
+\noindent Since $\nabla f(x^*) = 0$
 
-Now, let's analyze $2L_{max}  \mathbb{E}[(f_i(x^*) - \inf f_i)]$. \newline 
+\begin{equation}
+    \mathbb{E}[||\nabla f_i(x^*)||^2]  =  \mathbb{E}[||\nabla f_i(x^*) - \nabla f(x^*)||^2] = \mathbb{E}[||\nabla f_i(x^*) - \mathbb{E}[\nabla f_i(x^*)]||^2] = \mathbb{V}[\nabla f_i(x^*)]  \geq \sigma_f^*
+\end{equation}
 
-$2L_{max}  \mathbb{E}[(f_i(x^*) - \inf f_i)] = 2L_{max} (\mathbb{E}[(f_i(x^*))] - \mathbb{E}[(\inf f_i)]) = 2L_{max} (f(x^*) - \frac{1}{n} \sum_{i=1}^{n} inf f_i)$
+\noindent Due to Linearity of Expectation,
+\begin{equation}
+2L_{max}  \mathbb{E}[(f_i(x^*) - \inf f_i)] = 2L_{max} (\mathbb{E}[(f_i(x^*))] - \mathbb{E}[(\inf f_i)]) = 2L_{max} (f(x^*) - \frac{1}{n} \sum_{i=1}^{n} \inf f_i)    
+\end{equation}
 
-This can be simplified further: \newline 
-$2L_{max} (\inf f - \frac{1}{n} \sum_{i=1}^{n} \inf f_i) = 2L_{max} \Delta^*_f$ \newline 
-
-We have shown that $\sigma_f^* \leq 2L_{max} \Delta^*_f$
-
-
-Now, our job is to show that If each $f_i$ is $p$ strongly convex, then $2p\Delta^*_f \leq \sigma_f^*$ \newline 
-
-The definition of strong convexity tells us that, when a function $f$ is $p$ strongly convex and $x^* \in \arg \min f$: \newline 
-$f(x) - f(x^*) \leq \frac{1}{2p} ||\nabla f(x)||^2$
-
-
-When a function $f_i$ is $p$ strongly convex, we have the inequality for each $f_i$: \newline 
-$f_i(x) - \inf f_i \leq \frac{1}{2p} ||\nabla f_i(x)||^2$ \newline 
-
-$f_i(x^*) - \inf f_i \leq \frac{1}{2p} ||\nabla f_i(x^*)||^2$
-
-Take Expectation over this inequality: \newline 
-
-$\mathbb{E} [f_i(x^*) - \inf f_i] \leq \frac{1}{2p} \mathbb{E} [||\nabla f_i(x^*)||^2]$ \newline 
-
-$\mathbb{E} [f_i(x^*)] - \mathbb{E} [\inf f_i] \leq \frac{1}{2p} \mathbb{E} [||\nabla f_i(x^*)||^2]$ \newline 
-
-$\inf f - \frac{1}{n} \sum_{i=1}^{n} \inf f_i \leq \frac{1}{2p} \mathbb{V} [\nabla f_i(x^*)]$ \newline 
-
-$\Delta_f^* \leq \frac{1}{2p} \mathbb{V} [\nabla f_i(x^*)]$ \newline 
-
-Since we have convexity, we know that $\sigma_f^* = \mathbb{V} [\nabla f_i(x^*)]$ \newline 
-
-$\Delta_f^* \leq \frac{1}{2p} \sigma_f^*$ \newline 
-
-$2p \Delta_f^* \leq \sigma_f^*$ \newline 
+\begin{equation}
+    = 2L_{max} (\inf f - \frac{1}{n} \sum_{i=1}^{n} \inf f_i) = 2L_{max} \Delta^*_f
+\end{equation}
 
 
-\noindent \textbf{Lemma}.  Let us say that we have a function that is a Sum of L-Smooth Functions. 
+\noindent Part (2) of Proof: Show that, if each $f_i$ is $p$ strongly convex, then $2p\Delta^*_f \leq \sigma_f^*$ \newline 
+
+\noindent Due to strong convexity, when a function $f$ is $p$ strongly convex and $x^* \in \arg \min f$:
+\begin{equation}
+    f(y) \geq f(x) + \nabla(f(x))^T (y - x) + \frac{p}{2} ||y - x||^2_2
+\end{equation}
+\noindent Set $y = x^*$ and $x = x$
+\begin{equation}
+    f(x^*) \geq f(x) + \nabla(f(x))^T (x^* - x) + \frac{p}{2} ||x^* - x||^2_2
+\end{equation}
+
+\noindent After some mathematical manipulations,
+\begin{equation}
+    f(x) - f(x^*) \leq \nabla(f(x))^T (x - x^*) - \frac{p}{2} ||x^* - x||^2_2 = \frac{-1}{2} || \sqrt{p} (x - x^*) - \frac{1}{\sqrt{p}} \nabla f(x)||^2 + \frac{1}{2p} ||\nabla f(x)||^2 \leq \frac{1}{2p} ||\nabla f(x)||^2
+\end{equation}
+
+\noindent Hence, 
+\begin{equation}
+    f_i(x) - \inf f_i \leq \frac{1}{2p} ||\nabla f_i(x)||^2
+\end{equation}
+
+\begin{equation}
+    f_i(x^*) - \inf f_i \leq \frac{1}{2p} ||\nabla f_i(x^*)||^2
+\end{equation}
+
+\noindent Take Expectation over this inequality:
+\begin{equation}
+    \mathbb{E} [f_i(x^*) - \inf f_i] \leq \frac{1}{2p} \mathbb{E} [||\nabla f_i(x^*)||^2]
+\end{equation}
+
+\noindent Applying Linearity of Expectation: 
+\begin{equation}
+    \mathbb{E} [f_i(x^*)] - \mathbb{E} [\inf f_i] \leq \frac{1}{2p} \mathbb{E} [||\nabla f_i(x^*)||^2]
+\end{equation}
+
+\noindent Since $\nabla f(x^*) = 0$, $\mathbb{E} [||\nabla f_i(x^*)||^2] = \mathbb{E} [||\nabla f_i(x^*) - \nabla f(x^*)||^2] = \mathbb{E} [||\nabla f_i(x^*) - \mathbb{E}[\nabla f_i(x^*)]||^2] = \mathbb{V} [\nabla f_i(x^*)]$
+
+\begin{equation}
+    \inf f - \frac{1}{n} \sum_{i=1}^{n} \inf f_i \leq \frac{1}{2p} \mathbb{V} [\nabla f_i(x^*)]
+\end{equation}
+
+\begin{equation}
+    \Delta_f^* \leq \frac{1}{2p} \mathbb{V} [\nabla f_i(x^*)]
+\end{equation}
+
+
+Due to convexity, $\sigma_f^* = \mathbb{V} [\nabla f_i(x^*)]$
+\begin{equation}
+    \Delta_f^* \leq \frac{1}{2p} \sigma_f^*
+\end{equation}
+
+\begin{equation}
+    2p \Delta_f^* \leq \sigma_f^*
+\end{equation}
+
+\noindent \textbf{Lemma 23}.  Let $f: \mathbb{R}^n \rightarrow \mathbb{R}$ be a Sum of $L-$ Smooth Functions
 \begin{equation}
     \forall x \in \mathbb{R}^d, \enspace \mathbb{E}[||\nabla f_i(x)||^2] \leq 2L_{max} (f(x) - \inf f) + 2L_{max} \Delta^*_f
 \end{equation}
 
 \noindent \textbf{Proof:} 
-Earlier, we showed that, for L-Smooth Functions, $(\frac{1}{2L}) ||\nabla f(x)||^2 \leq f(x) - \inf f$ \newline 
+As per Lemma 12, 
+\begin{equation}
+    \frac{1}{2L} ||\nabla f(x)||^2 \leq f(x) - \inf f
+\end{equation}
 
-Hence, we can state that: $(\frac{1}{2L_i}) ||\nabla f_i(x)||^2 \leq f_i(x) - \inf f_i$ \newline 
+\noindent Hence,
+\begin{equation}
+    \frac{1}{2L_i} ||\nabla f_i(x)||^2 \leq f_i(x) - \inf f_i
+\end{equation}
 
-$ ||\nabla f_i(x)||^2 \leq 2L_i (f_i(x) - \inf f_i) \leq 2L_{max} (f_i(x) - \inf f_i) = 2L_{max} (f_i(x) - f_i(x^*)) + 2L_{max} (f_i(x^*) - \inf f_i)$ \newline 
+\begin{equation}
+     ||\nabla f_i(x)||^2 \leq 2L_i (f_i(x) - \inf f_i) \leq 2L_{max} (f_i(x) - \inf f_i) = 2L_{max} (f_i(x) - f_i(x^*)) + 2L_{max} (f_i(x^*) - \inf f_i)
+\end{equation}
 
-$ ||\nabla f_i(x)||^2 \leq  2L_{max} (f_i(x) - f_i(x^*)) + 2L_{max} (f_i(x^*) - \inf f_i)$ \newline 
-
-Let's take expectation \newline 
-$ \mathbb{E} [||\nabla f_i(x)||^2] \leq  2L_{max} \mathbb{E}[(f_i(x) - f_i(x^*))] + 2L_{max} \mathbb{E}[(f_i(x^*) - \inf f_i)]$ \newline 
-
-$ \mathbb{E} [||\nabla f_i(x)||^2] \leq  2L_{max} (f(x) - \inf f) + 2L_{max} \mathbb{E}[(f_i(x^*) - \inf f_i)]$ \newline 
-
-$ \mathbb{E} [||\nabla f_i(x)||^2] \leq  2L_{max} (f(x) - \inf f) + 2L_{max} (\inf f - E[\inf f_i])$ \newline
-
-$ \mathbb{E} [||\nabla f_i(x)||^2] \leq  2L_{max} (f(x) - \inf f) + 2L_{max} (\inf f - \frac{1}{n} \sum_{i=1}^{n} inf f_i)$ \newline
-
-$ \mathbb{E} [||\nabla f_i(x)||^2] \leq  2L_{max} (f(x) - \inf f) + 2L_{max} \Delta_f^*$ \newline
+\begin{equation}
+    ||\nabla f_i(x)||^2 \leq  2L_{max} (f_i(x) - f_i(x^*)) + 2L_{max} (f_i(x^*) - \inf f_i)
+\end{equation}
 
 
-\noindent \textbf{Lemma. } Let us say that we have a function that is a Sum of L-Smooth and Convex Functions. 
+Taking Expectation over both sides of the inequality: 
+\begin{equation}
+     \mathbb{E} [||\nabla f_i(x)||^2] \leq  2L_{max} \mathbb{E}[(f_i(x) - f_i(x^*))] + 2L_{max} \mathbb{E}[(f_i(x^*) - \inf f_i)]
+\end{equation}
+
+According to Linearity of Expectation:
+\begin{equation}
+     \mathbb{E} [||\nabla f_i(x)||^2] \leq  2L_{max} (\mathbb{E}[(f_i(x))] - \mathbb{E}[(f_i(x^*))]) + 2L_{max} (\mathbb{E}[(f_i(x^*))] - \mathbb{E}[(\inf f_i)])
+\end{equation}
+
+\begin{equation}
+    \mathbb{E} [||\nabla f_i(x)||^2] \leq  2L_{max} (f(x) - \inf f) + 2L_{max} (\inf f - E[\inf f_i])
+\end{equation}
+
+\begin{equation}
+    \mathbb{E} [||\nabla f_i(x)||^2] \leq  2L_{max} (f(x) - \inf f) + 2L_{max} (\inf f - \frac{1}{n} \sum_{i=1}^{n} \inf f_i)
+\end{equation}
+
+\begin{equation}
+     \mathbb{E} [||\nabla f_i(x)||^2] \leq  2L_{max} (f(x) - \inf f) + 2L_{max} \Delta_f^*
+\end{equation}
+
+
+\noindent \textbf{Lemma 24. } Let $f: \mathbb{R}^n \rightarrow \mathbb{R}$ be a Sum of $L-$ Smooth Functions and a Sum of Convex Functions 
 
 \begin{equation}
 \forall x \in \mathbb{R}^d, \enspace \mathbb{E}[||\nabla f_i(x)||^2] \leq 4L_{max} (f(x) - \inf f) + 2\sigma^*_f
 \end{equation}
 
-\noindent \textbf{Proof: } \newline 
-For the rest of this proof, let's pick an $x^* \in \arg \min f$
+\noindent \textbf{Proof: } Let $x^* \in \arg \min f$
 
-In our journey to prove this lemma, the first thing we can do is express $||\nabla f_i(x)||^2$ as follows: \newline 
+\begin{equation}
+    ||\nabla f_i(x)||^2 = ||\nabla f_i(x) - \nabla f_i(x^*) + f_i(x^*)||^2
+\end{equation}
 
-$||\nabla f_i(x)||^2 = ||\nabla f_i(x) - \nabla f_i(x^*) + f_i(x^*)||^2$ \newline 
+\noindent Based on the triangular inequality for norms, $||x + y|| \leq ||x|| + ||y||$ 
+\begin{equation}
+    ||\nabla f_i(x) - \nabla f_i(x^*) + f_i(x^*)||^2 \leq (||\nabla f_i(x) - \nabla f_i(x^*)|| + ||f_i(x^*)||)^2
+\end{equation}
+\begin{equation}
+    ||\nabla f_i(x) - \nabla f_i(x^*) + f_i(x^*)||^2 \leq ||\nabla f_i(x) - \nabla f_i(x^*)||^2 + 2 ||\nabla f_i(x) - \nabla f_i(x^*)|| ||\nabla f_i(x^*)|| + ||\nabla f_i(x^*)||^2
+\end{equation}
 
-Based on the triangular inequality for norms, we know that $||x + y|| \leq ||x|| + ||y||$ \newline 
+\noindent Known Fact: $||\nabla f_i(x) - \nabla f_i(x^*) - f_i(x^*)||^2 \geq 0$
+\begin{equation}
+    ||\nabla f_i(x) - \nabla f_i(x^*)||^2 - 2 ||\nabla f_i(x) - \nabla f_i(x^*)|| ||\nabla f_i(x^*)|| + ||\nabla f_i(x^*)||^2 \geq 0
+\end{equation}
 
-$||\nabla f_i(x) - \nabla f_i(x^*) + f_i(x^*)||^2 \leq ||\nabla f_i(x) - \nabla f_i(x^*)||^2 + 2 ||\nabla f_i(x) - \nabla f_i(x^*)|| ||\nabla f_i(x^*)|| + ||\nabla f_i(x^*)||^2$ \newline 
+\begin{equation}
+    ||\nabla f_i(x) - \nabla f_i(x^*)||^2  + ||\nabla f_i(x^*)||^2 \geq 2 ||\nabla f_i(x) - \nabla f_i(x^*)|| ||\nabla f_i(x^*)||
+\end{equation}
 
-We know that $||\nabla f_i(x) - \nabla f_i(x^*) - f_i(x^*)||^2 \geq 0$ \newline 
+\noindent Using Inequality (105) in Inequality (103): 
+\begin{equation}
+    ||\nabla f_i(x) - \nabla f_i(x^*) + f_i(x^*)||^2 \leq 2||\nabla f_i(x) - \nabla f_i(x^*)||^2 + 2||\nabla f_i(x^*)||^2
+\end{equation}
 
-$||\nabla f_i(x) - \nabla f_i(x^*)||^2 - 2 ||\nabla f_i(x) - \nabla f_i(x^*)|| ||\nabla f_i(x^*)|| + ||\nabla f_i(x^*)||^2 \geq 0$ \newline 
+\begin{equation}
+    ||\nabla f_i(x)||^2 \leq 2||\nabla f_i(x) - \nabla f_i(x^*)||^2 + 2||\nabla f_i(x^*)||^2
+\end{equation}
 
-$||\nabla f_i(x) - \nabla f_i(x^*)||^2  + ||\nabla f_i(x^*)||^2 \geq 2 ||\nabla f_i(x) - \nabla f_i(x^*)|| ||\nabla f_i(x^*)||$ \newline 
+\noindent Take the expectation over this inequality
+\begin{equation}
+    \mathbb{E}[||\nabla f_i(x)||^2] \leq \mathbb{E} [2||\nabla f_i(x) - \nabla f_i(x^*)||^2 + 2||\nabla f_i(x^*)||^2]
+\end{equation}
 
-We can express $||\nabla f_i(x) - \nabla f_i(x^*) + f_i(x^*)||^2 \leq ||\nabla f_i(x) - \nabla f_i(x^*)||^2 + 2 ||\nabla f_i(x) - \nabla f_i(x^*)|| ||\nabla f_i(x^*)|| + ||\nabla f_i(x^*)||^2$  as follows: \newline 
-
-$||\nabla f_i(x) - \nabla f_i(x^*) + f_i(x^*)||^2 \leq 2||\nabla f_i(x) - \nabla f_i(x^*)||^2 + 2||\nabla f_i(x^*)||^2$ \newline 
-
-$||\nabla f_i(x)||^2 \leq 2||\nabla f_i(x) - \nabla f_i(x^*)||^2 + 2||\nabla f_i(x^*)||^2$ \newline 
-
-The next thing we can do is take the expectation over this inequality \newline
-
-\noindent $\mathbb{E}[||\nabla f_i(x)||^2] \leq \mathbb{E} [2||\nabla f_i(x) - \nabla f_i(x^*)||^2 + 2||\nabla f_i(x^*)||^2]$ \newline 
-
-$\mathbb{E}[||\nabla f_i(x)||^2] \leq 2\mathbb{E} [||\nabla f_i(x) - \nabla f_i(x^*)||^2 + ||\nabla f_i(x^*)||^2]$ \newline 
-
-Earlier, we showed that $\frac{1}{2L_{max}} \mathbb{E}[||\nabla f_i(x) - \nabla f_i(x^*)||^2] \leq f(x) - inf f$ \newline 
-
-This basically means that $\mathbb{E}[||\nabla f_i(x) - \nabla f_i(x^*)||^2] \leq 2L_{max} (f(x) - \inf f)$ \newline 
-
-$2\mathbb{E}[||\nabla f_i(x) - \nabla f_i(x^*)||^2] \leq 4L_{max} (f(x) - \inf f)$
-
-Since we have a function that is a Sum of L-Smooth and Convex Functions, we know that \newline 
-\noindent $\sigma_f^* = V[\nabla f_i(x^*)], \forall x^* \in \arg \min f.$ \newline 
-
-\noindent $\sigma_f^* = E[||\nabla f_i(x^*) - E[\nabla f_i(x^*)]||^2], \forall x^* \in \arg \min f.$ \newline 
-
-We know that $E[\nabla f_i(x^*)] = \nabla f(x^*) = 0$ since $f$ is a Sum of Convex Functions. \newline 
-
-In this case, 
-\noindent $\sigma_f^* = E[||\nabla f_i(x^*)||^2]$ \newline 
-
-$2 \sigma_f^* = 2 E[||\nabla f_i(x^*)||^2]$ \newline 
-
-According to Linearity of Expectation, we know that \newline 
-$2\mathbb{E} [||\nabla f_i(x) - \nabla f_i(x^*)||^2 + ||\nabla f_i(x^*)||^2] = 2\mathbb{E} [||\nabla f_i(x) - \nabla f_i(x^*)||^2] + 2 \mathbb{E}  [||\nabla f_i(x^*)||^2]$
+\begin{equation}
+    \mathbb{E}[||\nabla f_i(x)||^2] \leq 2\mathbb{E} [||\nabla f_i(x) - \nabla f_i(x^*)||^2 + ||\nabla f_i(x^*)||^2]
+\end{equation}
 
 
-Using this fact, we can further simplify this inequality: \noindent $\mathbb{E}[||\nabla f_i(x)||^2] \leq \mathbb{E} [2||\nabla f_i(x) - \nabla f_i(x^*)||^2 + 2||\nabla f_i(x^*)||^2]$ \newline 
+\noindent  According to Lemma 15, $\frac{1}{2L_{max}} \mathbb{E}[||\nabla f_i(x) - \nabla f_i(x^*)||^2] \leq f(x) - \inf f$ and  $\mathbb{E}[||\nabla f_i(x) - \nabla f_i(x^*)||^2] \leq 2L_{max} (f(x) - \inf f)$ \newline 
 
-\noindent $\mathbb{E}[||\nabla f_i(x)||^2] \leq 2\mathbb{E} [||\nabla f_i(x) - \nabla f_i(x^*)||^2] + 2 \mathbb{E}  [||\nabla f_i(x^*)||^2]$ \newline 
+\begin{equation}
+    2\mathbb{E}[||\nabla f_i(x) - \nabla f_i(x^*)||^2] \leq 4L_{max} (f(x) - \inf f)
+\end{equation}
 
-Substituting the values that we derived earlier(i.e. $2\mathbb{E}[||\nabla f_i(x) - \nabla f_i(x^*)||^2] \leq 4L_{max} (f(x) - \inf f)$ and $2 \sigma_f^* = 2 E[||\nabla f_i(x^*)||^2]$) \newline 
+\noindent  Since $f$ is a Sum of $L-$Smooth and Convex Functions,
+\begin{equation}
+    \sigma_f^* = V[\nabla f_i(x^*)], \forall x^* \in \arg \min f.
+\end{equation}
 
-\noindent $\mathbb{E}[||\nabla f_i(x)||^2] \leq 4L_{max} (f(x) - \inf f) + 2 \sigma_f^*$
+\begin{equation}
+    \sigma_f^* = E[||\nabla f_i(x^*) - E[\nabla f_i(x^*)]||^2], \forall x^* \in \arg \min f.
+\end{equation}
 
-\noindent \textbf{Lemma} Let us have a function that is a sum of L-Smooth Functions and a sum of Convex functions. 
+\noindent Known Fact: $E[\nabla f_i(x^*)] = \nabla f(x^*) = 0$ \newline  
+\noindent Hence, $\sigma_f^* = E[||\nabla f_i(x^*)||^2]$, $2 \sigma_f^* = 2 E[||\nabla f_i(x^*)||^2]$ \newline 
+
+\noindent  Applying Linearity of Expectation on the Right Hand Side of (109)
+\begin{equation}
+    2\mathbb{E} [||\nabla f_i(x) - \nabla f_i(x^*)||^2 + ||\nabla f_i(x^*)||^2] = 2\mathbb{E} [||\nabla f_i(x) - \nabla f_i(x^*)||^2] + 2 \mathbb{E}  [||\nabla f_i(x^*)||^2]
+\end{equation}
+
+\noindent  We showed that $2\mathbb{E}[||\nabla f_i(x) - \nabla f_i(x^*)||^2] \leq 4L_{max} (f(x) - \inf f)$ and $2 \sigma_f^* = 2 E[||\nabla f_i(x^*)||^2]$) \newline 
+
+\noindent Substituting this and (113) into (109) gives: 
+\begin{equation}
+    \mathbb{E}[||\nabla f_i(x)||^2] \leq 4L_{max} (f(x) - \inf f) + 2 \sigma_f^*
+\end{equation}
+
+\subsection{Expected Smoothness and Variance [Minibatch SGD]}
+\subsubsection{Expected Smoothness}
+\noindent \textbf{Definition 25:} Let $f: \mathbb{R}^n \rightarrow \mathbb{R}$ be a Sum of $L-$ Smooth Functions Let $b \in [1, m]$. We can say that $f$ is $L_b$ smooth in expectation if 
+\begin{equation}
+    \forall x, y \in \mathbb{R}^n, \frac{1}{2L_b} \mathbb{E}[||\nabla f_B(y) - \nabla f_B(x)||^2] \leq f(y) - f(x) - \langle \nabla f(x), y - x \rangle
+\end{equation}
+
+\noindent If $y = x$ and $x = x^*$, where $x^* \in \arg \min f$, we can see that a function being $L_b$ smooth indicates that: 
+\begin{equation}
+    \frac{1}{2L_b} \mathbb{E}[||\nabla f_B(x) - \nabla f_B(x^*)||^2] \leq f(x) - f(x^*) - \langle \nabla f(x^*), x - x^* \rangle
+\end{equation}
+
+\noindent Since $\nabla f(x^*) = 0$
+
+\begin{equation}
+    \frac{1}{2L_b} \mathbb{E}[||\nabla f_B(x) - \nabla f_B(x^*)||^2] \leq f(x) - \inf f
+\end{equation}
+
+\subsubsection{Variance}
+
+\noindent \textbf{Definition 26:} Let $f: \mathbb{R}^n \rightarrow \mathbb{R}$ be a Sum of $L-$ Smooth Functions. \textbf{Minibatch Gradient Noise} is defined as such: 
+
+\begin{equation}
+    {\sigma_b}^* = \inf_{x^* \in \arg \min f} V[\nabla f_B(x^*)]
+\end{equation}
+
+\noindent \textbf{Lemma 27.} Let $f: \mathbb{R}^n \rightarrow \mathbb{R}$ be a Sum of $L-$ Smooth Functions and Convex Functions.
+
+\begin{equation}
+    \sigma_b^* = V[\nabla f_B(x^*)], \forall x^* \in \arg \min f
+\end{equation}
+
+\noindent \textbf{Proof.} Let $x_1, x_2 \in \arg \min f$.  
+
+\begin{equation}
+    \frac{1}{2L_{b}} \mathbb{E}[||\nabla f_B(x_1) - \nabla f_B(x_2)||^2] \leq f(x_1) - f(x_2) - \langle \nabla f(x_2), x_1 - x_2 \rangle
+\end{equation}
+
+\noindent Known Fact: $f(x_2) = \inf f$ and $\nabla f(x_2) = 0$ \newline 
+
+\begin{equation}
+    \frac{1}{2L_{b}} \mathbb{E}[||\nabla f_B(x_1) - \nabla f_B(x_2)||^2] \leq f(x_1) - \inf f = 0
+\end{equation}
+
+\noindent Known Fact: $\mathbb{E}[||\nabla f_B(x_1) - \nabla f_B(x_2)||^2] \geq 0$ \newline 
+
+\noindent (121) tell us that  $\mathbb{E}[||\nabla f_B(x_1) - \nabla f_B(x_2)||^2] = 0$ and $\nabla f_B(x_1) - \nabla f_B(x_2)$ = 0 and that $\nabla f_B(x_1) = \nabla f_B(x_2)$
+
+\noindent Since $f_B(x_1) = f_B(x_2)$, $V[\nabla f_B(x_1)] = V[\nabla f_B(x_2)]$
+
+\noindent \textbf{Lemma 28.} Let $f: \mathbb{R}^n \rightarrow \mathbb{R}$ be a Sum of $L-$ Smooth Functions and a Sum of Convex Functions  
 
 \begin{equation}
     \mathbb{E}[||\nabla f_B(x)||^2] \leq 4 L_b (f(x) - \inf f) + 2\sigma_b^*
 \end{equation}
 
-\noindent \textbf{Proof:} \newline 
-For the rest of this proof, let's pick an $x^* \in \arg \min f$
+\noindent \textbf{Proof:} Let $x^* \in \arg \min f$
+\begin{equation}
+    ||\nabla f_B(x)||^2 = ||\nabla f_B(x) - \nabla f_B(x^*) + f_B(x^*)||^2
+\end{equation}
 
-In our journey to prove this lemma, the first thing we can do is express $||\nabla f_B(x)||^2$ as follows: \newline 
+\noindent Triangle Inequality: $||x + y|| \leq ||x|| + ||y||$
 
-$||\nabla f_B(x)||^2 = ||\nabla f_B(x) - \nabla f_B(x^*) + f_B(x^*)||^2$ \newline 
+\begin{equation}
+    ||\nabla f_B(x) - \nabla f_B(x^*) + f_B(x^*)||^2 \leq (||\nabla f_B(x) - \nabla f_B(x^*)|| + ||f_B(x^*)||)^2
+\end{equation}
 
-Based on the triangular inequality for norms, we know that $||x + y|| \leq ||x|| + ||y||$ \newline 
+\begin{equation}
+    ||\nabla f_B(x) - \nabla f_B(x^*) + f_B(x^*)||^2 \leq ||\nabla f_B(x) - \nabla f_B(x^*)||^2 + 2 ||\nabla f_B(x) - \nabla f_B(x^*)|| ||\nabla f_B(x^*)|| + ||\nabla f_B(x^*)||^2
+\end{equation}
 
-$||\nabla f_B(x) - \nabla f_B(x^*) + f_B(x^*)||^2 = ||\nabla f_B(x) - \nabla f_B(x^*)||^2 + 2 ||\nabla f_B(x) - \nabla f_B(x^*)|| ||\nabla f_B(x^*)|| + ||\nabla f_B(x^*)||^2$ \newline 
+\noindent Known Fact: $||\nabla f_B(x) - \nabla f_B(x^*) - f_B(x^*)||^2 \geq 0$
 
-We know that $||\nabla f_B(x) - \nabla f_B(x^*) - f_B(x^*)||^2 \geq 0$ \newline 
+\begin{equation}
+    ||\nabla f_B(x) - \nabla f_B(x^*)||^2 - 2 ||\nabla f_B(x) - \nabla f_B(x^*)|| ||\nabla f_B(x^*)|| + ||\nabla f_B(x^*)||^2 \geq 0
+\end{equation}
 
-$||\nabla f_B(x) - \nabla f_B(x^*)||^2 - 2 ||\nabla f_B(x) - \nabla f_B(x^*)|| ||\nabla f_B(x^*)|| + ||\nabla f_B(x^*)||^2 \geq 0$ \newline 
+\begin{equation}
+    ||\nabla f_B(x) - \nabla f_B(x^*)||^2  + ||\nabla f_B(x^*)||^2 \geq 2 ||\nabla f_B(x) - \nabla f_B(x^*)|| ||\nabla f_B(x^*)||
+\end{equation}
 
-$||\nabla f_B(x) - \nabla f_B(x^*)||^2  + ||\nabla f_B(x^*)||^2 \geq 2 ||\nabla f_B(x) - \nabla f_B(x^*)|| ||\nabla f_B(x^*)||$ \newline 
+\noindent Substituting (127) into (125)
 
-We can express $||\nabla f_B(x) - \nabla f_B(x^*) + f_B(x^*)||^2 = ||\nabla f_B(x) - \nabla f_B(x^*)||^2 + 2 ||\nabla f_B(x) - \nabla f_B(x^*)|| ||\nabla f_B(x^*)|| + ||\nabla f_B(x^*)||^2$  as follows: \newline 
+\begin{equation}
+    ||\nabla f_B(x) - \nabla f_B(x^*) + f_B(x^*)||^2 \leq 2||\nabla f_B(x) - \nabla f_B(x^*)||^2 + 2||\nabla f_B(x^*)||^2
+\end{equation}
 
-$||\nabla f_B(x) - \nabla f_B(x^*) + f_B(x^*)||^2 \leq 2||\nabla f_B(x) - \nabla f_B(x^*)||^2 + 2||\nabla f_B(x^*)||^2$ \newline 
+\begin{equation}
+    ||\nabla f_B(x)||^2 \leq 2||\nabla f_B(x) - \nabla f_B(x^*)||^2 + 2||\nabla f_B(x^*)||^2
+\end{equation}
 
-$||\nabla f_B(x)||^2 \leq 2||\nabla f_B(x) - \nabla f_B(x^*)||^2 + 2||\nabla f_B(x^*)||^2$ \newline 
+\noindent Taking Expectation over both sides of (129): 
+\begin{equation}
+    \mathbb{E}[||\nabla f_B(x)||^2] \leq \mathbb{E} [2||\nabla f_B(x) - \nabla f_B(x^*)||^2 + 2||\nabla f_B(x^*)||^2]
+\end{equation}
 
-The next thing we can do is take the expectation over this inequality \newline
+\begin{equation}
+    \mathbb{E}[||\nabla f_B(x)||^2] \leq 2\mathbb{E} [||\nabla f_B(x) - \nabla f_B(x^*)||^2 + ||\nabla f_B(x^*)||^2]
+\end{equation}
 
-\noindent $\mathbb{E}[||\nabla f_B(x)||^2] \leq \mathbb{E} [2||\nabla f_B(x) - \nabla f_B(x^*)||^2 + 2||\nabla f_B(x^*)||^2]$ \newline 
+\noindent According to Definition 25, $\frac{1}{2L_{b}} \mathbb{E}[||\nabla f_B(x) - \nabla f_B(x^*)||^2] \leq f(x) - \inf f$ and $\mathbb{E}[||\nabla f_B(x) - \nabla f_B(x^*)||^2] \leq 2L_b (f(x) - \inf f)$ \newline 
 
-$\mathbb{E}[||\nabla f_B(x)||^2] \leq 2\mathbb{E} [||\nabla f_B(x) - \nabla f_B(x^*)||^2 + ||\nabla f_B(x^*)||^2]$ \newline 
+\begin{equation}
+    2\mathbb{E}[||\nabla f_B(x) - \nabla f_B(x^*)||^2] \leq 4L_b (f(x) - \inf f)
+\end{equation}
 
-Earlier, we showed that $\frac{1}{2L_{b}} \mathbb{E}[||\nabla f_B(x) - \nabla f_B(x^*)||^2] \leq f(x) - inf f$ \newline 
-
-This basically means that $\mathbb{E}[||\nabla f_B(x) - \nabla f_B(x^*)||^2] \leq 2L_b (f(x) - \inf f)$ \newline 
-
-$2\mathbb{E}[||\nabla f_B(x) - \nabla f_B(x^*)||^2] \leq 4L_b (f(x) - \inf f)$
-
-Since we have a function that is a Sum of L-Smooth and Convex Functions, we know that \newline 
-\noindent $\sigma_b^* = V[\nabla f_B(x^*)], \forall x^* \in \arg \min f.$ \newline 
+\noindent  Since $f$ is a Sum of $L-$Smooth and Convex Functions, $\sigma_b^* = V[\nabla f_B(x^*)], \forall x^* \in \arg \min f.$ \newline 
 
 \noindent $\sigma_b^* = E[||\nabla f_B(x^*) - E[\nabla f_B(x^*)]||^2], \forall x^* \in \arg \min f.$ \newline 
 
-We know that $E[\nabla f_B(x^*)] = \nabla f(x^*) = 0$ since $f$ is a Sum of Convex Functions. \newline 
+\noindent Since $f$ is a Sum of Convex Functions, $E[\nabla f_B(x^*)] = \nabla f(x^*) = 0$. \newline 
 
-In this case, 
-\noindent $\sigma_b^* = E[||\nabla f_B(x^*)||^2]$ \newline 
+\noindent In this case, $\sigma_b^* = E[||\nabla f_B(x^*)||^2]$ and $2 \sigma_b^* = 2 E[||\nabla f_B(x^*)||^2]$ \newline 
 
-$2 \sigma_b^* = 2 E[||\nabla f_B(x^*)||^2]$ \newline 
+\noindent Applying Linearity of Expectation to the Right Hand Side of (131):
+\begin{equation}
+    2\mathbb{E} [||\nabla f_B(x) - \nabla f_B(x^*)||^2 + ||\nabla f_B(x^*)||^2] = 2\mathbb{E} [||\nabla f_B(x) - \nabla f_B(x^*)||^2] + 2 \mathbb{E}  [||\nabla f_B(x^*)||^2]
+\end{equation}
 
-According to Linearity of Expectation, we know that \newline 
-$2\mathbb{E} [||\nabla f_B(x) - \nabla f_B(x^*)||^2 + ||\nabla f_B(x^*)||^2] = 2\mathbb{E} [||\nabla f_B(x) - \nabla f_B(x^*)||^2] + 2 \mathbb{E}  [||\nabla f_B(x^*)||^2]$
 
+\noindent We showed that $2\mathbb{E}[||\nabla f_B(x) - \nabla f_B(x^*)||^2] \leq 4L_{b} (f(x) - \inf f)$ and $2 \sigma_b^* = 2 E[||\nabla f_B(x^*)||^2]$ \newline 
 
-Using this fact, we can further simplify this inequality: \noindent $\mathbb{E}[||\nabla f_B(x)||^2] \leq \mathbb{E} [2||\nabla f_B(x) - \nabla f_B(x^*)||^2 + 2||\nabla f_B(x^*)||^2]$ \newline 
-
-\noindent $\mathbb{E}[||\nabla f_B(x)||^2] \leq 2\mathbb{E} [||\nabla f_B(x) - \nabla f_B(x^*)||^2] + 2 \mathbb{E}  [||\nabla f_B(x^*)||^2]$ \newline 
-
-Substituting the values that we derived earlier(i.e. $2\mathbb{E}[||\nabla f_B(x) - \nabla f_B(x^*)||^2] \leq 4L_{b} (f(x) - \inf f)$ and $2 \sigma_b^* = 2 E[||\nabla f_B(x^*)||^2]$) \newline 
-
-\noindent $\mathbb{E}[||\nabla f_B(x)||^2] \leq 4L_{b} (f(x) - \inf f) + 2 \sigma_b^*$ \newline 
+\noindent Subsituting this and (133) into (131)
+\begin{equation}
+    \mathbb{E}[||\nabla f_B(x)||^2] \leq 4L_{b} (f(x) - \inf f) + 2 \sigma_b^*
+\end{equation}
