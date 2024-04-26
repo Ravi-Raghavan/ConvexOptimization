@@ -16,5 +16,78 @@
   {}
 \endgroup
 
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{Stability}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=e771760b6d0d33f8b4dfd907d8d57ac2}{%
+           family={Hardt},
+           familyi={H\bibinitperiod},
+           given={Moritz},
+           giveni={M\bibinitperiod}}}%
+        {{hash=ffa081e7e59a2c82fd714ab7ea81fe97}{%
+           family={Recht},
+           familyi={R\bibinitperiod},
+           given={Ben},
+           giveni={B\bibinitperiod}}}%
+        {{hash=300d4990e626d975e0c28630444f63c3}{%
+           family={Singer},
+           familyi={S\bibinitperiod},
+           given={Yoram},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=024bfb76c2f5540f5021fb377901cc25}{%
+           family={Balcan},
+           familyi={B\bibinitperiod},
+           given={Maria\bibnamedelima Florina},
+           giveni={M\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+        {{hash=68a0238356fbd88b34be8886f25938a7}{%
+           family={Weinberger},
+           familyi={W\bibinitperiod},
+           given={Kilian\bibnamedelima Q.},
+           giveni={K\bibinitperiod\bibinitdelim Q\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York, New York, USA}%
+      }
+      \list{publisher}{1}{%
+        {PMLR}%
+      }
+      \strng{namehash}{4fd1e5f48d77d6306a58d2ce82b236a5}
+      \strng{fullhash}{4fd1e5f48d77d6306a58d2ce82b236a5}
+      \strng{bibnamehash}{4fd1e5f48d77d6306a58d2ce82b236a5}
+      \strng{authorbibnamehash}{4fd1e5f48d77d6306a58d2ce82b236a5}
+      \strng{authornamehash}{4fd1e5f48d77d6306a58d2ce82b236a5}
+      \strng{authorfullhash}{4fd1e5f48d77d6306a58d2ce82b236a5}
+      \strng{editorbibnamehash}{574fba25a54bf082817211b5d522e7ef}
+      \strng{editornamehash}{574fba25a54bf082817211b5d522e7ef}
+      \strng{editorfullhash}{574fba25a54bf082817211b5d522e7ef}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We show that parametric models trained by a stochastic gradient method (SGM) with few iterations have vanishing generalization error. We prove our results by arguing that SGM is algorithmically stable in the sense of Bousquet and Elisseeff. Our analysis only employs elementary tools from convex and continuous optimization. We derive stability bounds for both convex and non-convex optimization under standard Lipschitz and smoothness assumptions. Applying our results to the convex case, we provide new insights for why multiple epochs of stochastic gradient methods generalize well in practice. In the non-convex case, we give a new interpretation of common practices in neural networks, and formally show that popular techniques for training large deep models are indeed stability-promoting. Our findings conceptually underscore the importance of reducing training time beyond its obvious benefit.}
+      \field{booktitle}{Proceedings of The 33rd International Conference on Machine Learning}
+      \field{month}{20--22 Jun}
+      \field{series}{Proceedings of Machine Learning Research}
+      \field{title}{Train faster, generalize better: Stability of stochastic gradient descent}
+      \field{volume}{48}
+      \field{year}{2016}
+      \field{pages}{1225\bibrangedash 1234}
+      \range{pages}{10}
+      \verb{file}
+      \verb http://proceedings.mlr.press/v48/hardt16.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://proceedings.mlr.press/v48/hardt16.html
+      \endverb
+      \verb{url}
+      \verb https://proceedings.mlr.press/v48/hardt16.html
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
 \endinput
 

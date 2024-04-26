@@ -2008,47 +2008,29 @@ Underfull \hbox (badness 10000) in paragraph at lines 581--582
 
  []
 
-) [24] (./Stability.tex
-
-LaTeX Warning: Citation 'Stability' on page 25 undefined on input line 7.
-
-[25]) [26] (./Experiments.tex) [27] (./Project.aux)
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `Project.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `Project.out':
-(rerunfilecheck)             Before: FDFB1FA7F1DF8C6EC76FC3392AEF3B1D;6281
-(rerunfilecheck)             After:  1A1406FD6CF7B0F57F27735D6AB2FFE3;7261.
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                Project
-(biblatex)                and rerun LaTeX afterwards.
-
+) [24] (./Stability.tex [25]) [26] (./Experiments.tex) [27] (./Project.aux)
+Package rerunfilecheck Info: File `Project.out' has not changed.
+(rerunfilecheck)             Checksum: 1A1406FD6CF7B0F57F27735D6AB2FFE3;7261.
 Package logreq Info: Writing requests to 'Project.run.xml'.
 \openout1 = `Project.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 53963 strings out of 476025
- 1232857 string characters out of 5790017
- 2038882 words of memory out of 5000000
- 73327 multiletter control sequences out of 15000+600000
+ 54002 strings out of 476025
+ 1233707 string characters out of 5790017
+ 2039170 words of memory out of 5000000
+ 73365 multiletter control sequences out of 15000+600000
  589684 words of font info for 110 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 114i,11n,131p,939b,1136s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 114i,11n,131p,1136b,1172s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+pdfTeX warning (dest): name{cite.0@Stability} has been referenced but does not exist, replaced by a fixed one
+
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/libertinus-type1/LibertinusSerif-Bold.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/libertinus-type1/LibertinusSerif-Italic.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/libertinus-type1/LibertinusSerif-Regular.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on Project.pdf (27 pages, 525425 bytes).
+Output written on Project.pdf (27 pages, 526007 bytes).
 PDF statistics:
- 631 PDF objects out of 1000 (max. 8388607)
- 559 compressed objects within 6 object streams
- 280 named destinations out of 1000 (max. 500000)
- 253 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 648 PDF objects out of 1000 (max. 8388607)
+ 576 compressed objects within 6 object streams
+ 281 named destinations out of 1000 (max. 500000)
+ 293 words of extra memory for PDF output out of 10000 (max. 10000000)
 
